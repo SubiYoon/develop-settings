@@ -31,7 +31,7 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── alpha.lua # nvim 실행시 dashboard
 │   │   │
-│   │   ├─── gruvbox.lua # 에디터 테마
+│   │   ├─── theme.lua # 에디터 테마
 │   │   │
 │   │   ├─── indent-blankline.lua # 들여쓰기 가이드 표시
 │   │   │
