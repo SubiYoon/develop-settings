@@ -19,7 +19,6 @@ return {
 					"yamlls",
 					"jsonls",
 					"taplo",
-					"ast_grep",
 					"lemminx",
 				},
 			})
@@ -36,7 +35,6 @@ return {
 			lspconfig.yamlls.setup({})
 			lspconfig.jsonls.setup({})
 			lspconfig.taplo.setup({})
-			lspconfig.ast_grep.setup({})
 			lspconfig.lemminx.setup({})
 
 			-- vim.lsp.buf.hover
