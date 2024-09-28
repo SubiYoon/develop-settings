@@ -43,6 +43,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
 │   │   │
+│   │   ├─── git-signs.lua # git 변경사항 실시간 반영
+│   │   │
 │   │   ├─── vnim-conform.lua # 코드 포멧팅 제공(prettier 등)
 │   │   │
 │   │   ├─── nvim-treesitter.lua # syntax highlight 등 등
