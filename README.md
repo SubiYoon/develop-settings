@@ -49,6 +49,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── fugitive.lua # git 명령어 싱행가능하게 설정
 │   │   │
+│   │   ├─── barbar.lua # tab관련 플러그인
+│   │   │
 │   │   ├─── vnim-conform.lua # 코드 포멧팅 제공(prettier 등)
 │   │   │
 │   │   ├─── nvim-treesitter.lua # syntax highlight 등 등
