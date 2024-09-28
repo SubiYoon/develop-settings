@@ -45,6 +45,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── git-signs.lua # git 변경사항 실시간 반영
 │   │   │
+│   │   ├─── fugitive.lua # git 명령어 싱행가능하게 설정
+│   │   │
 │   │   ├─── vnim-conform.lua # 코드 포멧팅 제공(prettier 등)
 │   │   │
 │   │   ├─── nvim-treesitter.lua # syntax highlight 등 등
