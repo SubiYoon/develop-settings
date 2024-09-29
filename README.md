@@ -57,6 +57,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── nnvim-ufo.lua # code를 펼치고/접는 기능(command -/+와 같은 기능)
 │   │   │
+│   │   ├─── surround.lua # text를 특정 basket으로 감싸는 플러그인
+│   │   │
 │   │   ├─── telescope.lua # 파일 검색
 │   │   │
 │   │   └─── vim-autopairs.lua # auto basket close
