@@ -28,13 +28,17 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
+			-- lua
 			lspconfig.lua_ls.setup({})
+			-- java
 			lspconfig.jdtls.setup({})
-			lspconfig.nginx_language_server.setup({})
-			lspconfig.vuels.setup({})
+			-- yaml
 			lspconfig.yamlls.setup({})
+			-- json
 			lspconfig.jsonls.setup({})
+			-- toml
 			lspconfig.taplo.setup({})
+			-- css
 			lspconfig.lemminx.setup({})
 
 			-- vim.lsp.buf.hover
