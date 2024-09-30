@@ -14,9 +14,9 @@ return {
         ensure_installed = {
           "lua_ls",
           "jdtls",
-          "vueur-vls",
+          "vuels",
           "yamlls",
-          "json-lsp",
+          "jsonls",
           "taplo",
           "lemminx",
           "vtsls",
@@ -33,11 +33,11 @@ return {
       -- java
       lspconfig.jdtls.setup({})
       -- vue
-      lspconfig.vueur-vls.setup({})
+      lspconfig.vuels.setup({})
       -- yaml
       lspconfig.yamlls.setup({})
       -- json
-      lspconfig.json-lsp.setup({})
+      lspconfig.jsonls.setup({})
       -- toml
       lspconfig.taplo.setup({})
       -- css
