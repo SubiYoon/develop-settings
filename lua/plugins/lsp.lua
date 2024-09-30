@@ -29,7 +29,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       -- lua
-      lspconfig.lua_ls.setup({}
+      lspconfig.lua_ls.setup({})
       -- java
       lspconfig.jdtls.setup({})
       -- vue
