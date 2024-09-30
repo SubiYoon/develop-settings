@@ -14,12 +14,12 @@ return {
         ensure_installed = {
           "lua_ls",
           "jdtls",
-          "nginx_language_server",
-          "vuels",
+          "vueur-vls",
           "yamlls",
-          "jsonls",
+          "json-lsp",
           "taplo",
           "lemminx",
+          "vtsls",
         },
       })
     end,
@@ -29,19 +29,21 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       -- lua
-      lspconfig.lua_ls.setup({})
+      lspconfig.lua_ls.setup({}
       -- java
       lspconfig.jdtls.setup({})
+      -- vue
+      lspconfig.vueur-vls.setup({})
       -- yaml
       lspconfig.yamlls.setup({})
       -- json
-      lspconfig.jsonls.setup({})
+      lspconfig.json-lsp.setup({})
       -- toml
       lspconfig.taplo.setup({})
       -- css
       lspconfig.lemminx.setup({})
-      -- nginx
-      lspconfig.nginx_language_server.setup({})
+      -- javascript
+      lspconfig.vtsls.setup({})
 
       -- vim.lsp.buf.hover
       -- vim.lsp.buf.definition
