@@ -40,6 +40,8 @@ return {
       lspconfig.taplo.setup({})
       -- css
       lspconfig.lemminx.setup({})
+      -- nginx
+      lspconfig.nginx_language_server.setup({})
 
       -- vim.lsp.buf.hover
       -- vim.lsp.buf.definition
