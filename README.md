@@ -61,6 +61,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── telescope.lua # 파일 검색
 │   │   │
+│   │   ├─── vim-maximizer.lua # 분할한 화면 최대 크기로 키우는 플러그인(<leader>sm)
+│   │   │
 │   │   └─── vim-autopairs.lua # auto basket close
 │   │ 
 │   └──── utils
