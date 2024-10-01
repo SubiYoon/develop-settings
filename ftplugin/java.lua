@@ -4,9 +4,9 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = workspace_path .. project_name
 
 local status, jdtls = pcall(require, 'jdtls')
--- if not status then
---   return
--- end
+if not status then
+  return
+end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 
 local config = {

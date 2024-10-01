@@ -37,12 +37,16 @@ return {
     config = function()
       require('mason-tool-installer').setup({
         ensure_installed = {
+          "java-debug-adapter",
+          'java-test',
           "google-java-format",
           "prettier",
           "eslint",
           "eslint_d",
         }
       })
+
+      vim.api.nvim_command('MasonToolsInstall')
     end
   },
   {
