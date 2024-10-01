@@ -4,7 +4,15 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
     end,
   },
   {
@@ -23,6 +31,19 @@ return {
         },
       })
     end,
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    config = function()
+      require('mason-tool-installer').setup({
+        ensure_installed = {
+          "google-java-format",
+          "prettier",
+          "eslint",
+          "eslint_d",
+        }
+      })
+    end
   },
   {
     "neovim/nvim-lspconfig",
@@ -44,14 +65,6 @@ return {
       lspconfig.lemminx.setup({})
       -- javascript
       lspconfig.vtsls.setup({})
-
-      -- vim.lsp.buf.hover
-      -- vim.lsp.buf.definition
-      -- vim.lsp.buf.code_action
-      keyMapper("K", vim.lsp.buf.hover)
-      keyMapper("gd", vim.lsp.buf.definition)
-      keyMapper("gr", vim.lsp.buf.references)
-      keyMapper("<leader>ca", vim.lsp.buf.code_action)
     end,
   },
 }

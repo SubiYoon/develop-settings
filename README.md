@@ -29,13 +29,16 @@ brew install neovim ripgrep
 │   │ 
 │   ├─── plugins
 │   │   │
+│   │   ├─── lsp
+│   │   │   │
+│   │   │   └─── lsp.lua # language 문법 검사
+│   │   │
+│   │   │
 │   │   ├─── alpha.lua # nvim 실행시 dashboard
 │   │   │
 │   │   ├─── theme.lua # 에디터 테마
 │   │   │
 │   │   ├─── indent-blankline.lua # 들여쓰기 가이드 표시
-│   │   │
-│   │   ├─── lsp.lua # language 문법 검사
 │   │   │
 │   │   ├─── lualine.lua # 하단 표시 테마(INSERT mode, NOMAL mode 표시)
 │   │   │

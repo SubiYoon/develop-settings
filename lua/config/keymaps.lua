@@ -5,9 +5,9 @@ mapKey("<leader>e", ":Neotree toggle<cr>")
 
 -- pane navigation
 mapKey("<C-h>", "<C-w>h") -- left
-mapKey("<C-j>", "<C-w>j") -- left
-mapKey("<C-k>", "<C-w>k") -- left
-mapKey("<C-l>", "<C-w>l") -- left
+mapKey("<C-j>", "<C-w>j") -- down
+mapKey("<C-k>", "<C-w>k") -- up
+mapKey("<C-l>", "<C-w>l") -- right
 
 -- clear search highlight
 mapKey("<leader>h", ":nohlsearch<CR>")
@@ -58,3 +58,12 @@ mapKey("<Space>tn", "<Cmd>BufferOrderByName<CR>")
 mapKey("<Space>td", "<Cmd>BufferOrderBytirectory<CR>")
 mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>")
 mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>")
+
+-- lsp
+mapKey("<leader>rs", ":LspRestart<CR>")
+mapKey("K", vim.lsp.buf.hover)
+mapKey("gr", "<cmd>Telescope lsp_references<CR>")      -- show lsp references
+mapKey("gd", "<cmd>Telescope lsp_definitions<CR>")     -- show lsp definitions
+mapKey("gi", "<cmd>Telescope lsp_implementations<CR>") -- show lsp implementations
+mapKey("<leader>rn", vim.lsp.buf.rename)               -- smart rename
+mapKey("<leader>ca", vim.lsp.buf.code_action)
