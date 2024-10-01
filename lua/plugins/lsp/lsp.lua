@@ -65,7 +65,7 @@ return {
       lspconfig.jsonls.setup({})
       -- toml
       lspconfig.taplo.setup({})
-      -- css
+      -- xml
       lspconfig.lemminx.setup({})
       -- javascript
       lspconfig.vtsls.setup({})
