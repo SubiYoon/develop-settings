@@ -15,6 +15,10 @@ brew install neovim ripgrep
 
 # 폴더 구조
 ```bash
+├─── ftplugin
+│   │ 
+│   └─── java.lua # lsp java설정 관련
+│    
 ├─── lua
 │   │ 
 │   ├─── config

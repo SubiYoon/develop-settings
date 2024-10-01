@@ -52,7 +52,7 @@ return {
       -- lua
       lspconfig.lua_ls.setup({})
       -- java
-      lspconfig.jdtls.setup({})
+      -- lspconfig.jdtls.setup({})
       -- vue
       lspconfig.vuels.setup({})
       -- yaml
