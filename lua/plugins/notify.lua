@@ -3,7 +3,7 @@ return {
   config = function()
     local notify = require('notify')
     notify.setup({
-      background_colour = "NotifyBackground",
+      background_colour = "#F00000",
       fps = 30,
       icons = {
         DEBUG = "",

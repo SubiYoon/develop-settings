@@ -46,8 +46,6 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── lualine.lua # 하단 표시 테마(INSERT mode, NOMAL mode 표시)
 │   │   │
-│   │   ├─── command-completion.lua # neovim command 자동완성
-│   │   │
 │   │   ├─── dressing.lua # select,insert 꾸미기
 │   │   │
 │   │   ├─── notify.lua # 알림창
