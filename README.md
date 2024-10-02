@@ -50,6 +50,10 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── dressing.lua # select,insert 꾸미기
 │   │   │
+│   │   ├─── notify.lua # 알림창
+│   │   │
+│   │   ├─── noice.lua # message, cmdline, popupmenu UI
+│   │   │
 │   │   ├─── neo-tree.lua # filefolder 탐색기
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
