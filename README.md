@@ -48,6 +48,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── command-completion.lua # neovim command 자동완성
 │   │   │
+│   │   ├─── dressing.lua # select,insert 꾸미기
+│   │   │
 │   │   ├─── neo-tree.lua # filefolder 탐색기
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
