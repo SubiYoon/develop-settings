@@ -17,8 +17,8 @@ mapKey("<", "<gv", "v")
 mapKey(">", ">gv", "v")
 
 -- split window
-mapKey("ss", ":split<Return>", "n")
-mapKey("vs", ":vsplit<Return>", "n")
+mapKey("<leader>ss", ":split<Return>", "n")
+mapKey("<leader>vs", ":vsplit<Return>", "n")
 
 -- tab(bar) control
 mapKey("gT", "<Cmd>BufferPrevious<CR>")
