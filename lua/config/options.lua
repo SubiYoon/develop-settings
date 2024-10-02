@@ -9,9 +9,9 @@ opt.smartindent = true
 opt.wrap = false
 
 -- search
-opt.incsearch = true -- search시 바로 반응
+opt.incsearch = true  -- search시 바로 반응
 opt.ignorecase = true -- 대소문자 구분 안함
-opt.smartcase = true -- 대소문자가 섞여있으면 구분함
+opt.smartcase = true  -- 대소문자가 섞여있으면 구분함
 
 -- visual
 opt.number = true
