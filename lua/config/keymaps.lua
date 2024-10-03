@@ -1,98 +1,199 @@
 local mapKey = require("utils/keyMapper").mapKey
 
+-- -- Neotree toggle
+-- mapKey("<leader>e", ":Neotree toggle<cr>")
+--
+-- -- pane navigation
+-- mapKey("<C-h>", "<C-w>h") -- left
+-- mapKey("<C-j>", "<C-w>j") -- down
+-- mapKey("<C-k>", "<C-w>k") -- up
+-- mapKey("<C-l>", "<C-w>l") -- right
+--
+-- -- clear search highlight
+-- mapKey("<leader>h", ":nohlsearch<CR>")
+--
+-- -- indent
+-- mapKey("<", "<gv", "v")
+-- mapKey(">", ">gv", "v")
+--
+-- -- split window
+-- mapKey("<leader>ss", ":split<Return>", "n", { desc = "split" })
+-- mapKey("<leader>vs", ":vsplit<Return>", "n", { desc = "vsplit" })
+--
+-- -- tab(bar) control start
+-- mapKey("t<", "<Cmd>BufferMovePrevious<CR>", {})
+-- mapKey("t>", "<Cmd>BufferMoveNext<CR>")
+-- mapKey("t1", "<Cmd>BufferGoto 1<CR>")
+-- mapKey("t2", "<Cmd>BufferGoto 2<CR>")
+-- mapKey("t3", "<Cmd>BufferGoto 3<CR>")
+-- mapKey("t4", "<Cmd>BufferGoto 4<CR>")
+-- mapKey("t5", "<Cmd>BufferGoto 5<CR>")
+-- mapKey("t6", "<Cmd>BufferGoto 6<CR>")
+-- mapKey("t7", "<Cmd>BufferGoto 7<CR>")
+-- mapKey("t8", "<Cmd>BufferGoto 8<CR>")
+-- mapKey("t9", "<Cmd>BufferGoto 9<CR>")
+-- mapKey("t0", "<Cmd>BufferLast<CR>")
+-- mapKey("tc", "<Cmd>BufferClose<CR>")
+-- mapKey("gT", "<Cmd>BufferPrevious<CR>")
+-- mapKey("gt", "<Cmd>BufferNext<CR>")
+-- -- Pin/unpin buffer
+-- -- mapKey("<A-p>", "<Cmd>BufferPin<CR>")
+-- -- Goto pinned/unpinned buffer
+-- --                 :BufferGotoPinned
+-- --                 :BufferGotoUnpinned
+-- -- Close buffer
+-- -- Wipeout buffer
+-- --                 :BufferWipeout
+-- -- Close commands
+-- --                 :BufferClosetllButCurrent
+-- --                 :BufferClosetllButPinned
+-- --                 :BufferClosetllButCurrentOrPinned
+-- --                 :BufferCloseBuffersLeft
+-- --                 :BufferCloseBuffersRight
+-- -- Magic buffer-picking mode
+-- -- mapKey("<C-p>", "<Cmd>BufferPick<CR>")
+-- -- Sort automatically by...
+-- mapKey("<Space>tb", "<Cmd>BufferOrderByBufferNumber<CR>")
+-- mapKey("<Space>tn", "<Cmd>BufferOrderByName<CR>")
+-- mapKey("<Space>td", "<Cmd>BufferOrderBytirectory<CR>")
+-- mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>")
+-- mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>")
+-- -- tab(bar) control end
+--
+-- -- lsp
+-- mapKey("<leader>rs", ":LspRestart<CR>")
+-- mapKey("K", vim.lsp.buf.hover)
+-- mapKey("gr", "<cmd>Telescope lsp_references<CR>")      -- show lsp references
+-- mapKey("gd", "<cmd>Telescope lsp_definitions<CR>")     -- show lsp definitions
+-- mapKey("gi", "<cmd>Telescope lsp_implementations<CR>") -- show lsp implementations
+-- mapKey("<leader>rn", vim.lsp.buf.rename)               -- smart rename
+-- mapKey("<leader>ca", vim.lsp.buf.code_action)
+--
+-- -- debug
+-- mapKey('<F9>', function() require('dap').step_over() end)
+-- mapKey('<F8>', function() require('dap').step_into() end)
+-- mapKey('<F10>', function() require('dap').step_out() end)
+-- mapKey('<Leader>ds', function() require('dap').continue() end)
+-- mapKey('<Leader>do', function() require('dapui').open() end)
+-- mapKey('<Leader>dc', function() require('dapui').close() end)
+-- mapKey('<Leader>dt', function() require('dapui').toggle() end)
+-- mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end)
+-- mapKey('<Leader>db', function() require('dap').set_breakpoint() end)
+-- mapKey('<Leader>dq', function() require('dap').terminate() end)
+-- mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+-- mapKey('<Leader>dro', function() require('dap').repl.open() end)
+-- mapKey('<Leader>drl', function() require('dap').run_last() end)
+-- mapKey('<Leader>dh', function()
+--   require('dap.ui.widgets').hover()
+-- end, 'v')
+-- mapKey('<Leader>dp', function()
+--   require('dap.ui.widgets').preview()
+-- end, 'v')
+-- mapKey('<Leader>df', function()
+--   local widgets = require('dap.ui.widgets')
+--   widgets.centered_float(widgets.frames)
+-- end)
+-- mapKey('<Leader>ds', function()
+--   local widgets = require('dap.ui.widgets')
+--   widgets.centered_float(widgets.scopes)
+-- end)
+
+local mapKey = require("utils/keyMapper").mapKey
+
 -- Neotree toggle
-mapKey("<leader>e", ":Neotree toggle<cr>")
+mapKey("<leader>e", ":Neotree toggle<cr>", "n", { desc = "Toggle Neotree" })
 
--- pane navigation
-mapKey("<C-h>", "<C-w>h") -- left
-mapKey("<C-j>", "<C-w>j") -- down
-mapKey("<C-k>", "<C-w>k") -- up
-mapKey("<C-l>", "<C-w>l") -- right
+-- Pane navigation
+mapKey("<C-h>", "<C-w>h", "n", { desc = "Move to left pane" })   -- left
+mapKey("<C-j>", "<C-w>j", "n", { desc = "Move to bottom pane" }) -- down
+mapKey("<C-k>", "<C-w>k", "n", { desc = "Move to upper pane" })  -- up
+mapKey("<C-l>", "<C-w>l", "n", { desc = "Move to right pane" })  -- right
 
--- clear search highlight
-mapKey("<leader>h", ":nohlsearch<CR>")
+-- Clear search highlight
+mapKey("<leader>h", ":nohlsearch<CR>", "n", { desc = "Clear search highlight" })
 
--- indent
-mapKey("<", "<gv", "v")
-mapKey(">", ">gv", "v")
+-- Indent
+mapKey("<", "<gv", "v", { desc = "Decrease indent for selected text" })
+mapKey(">", ">gv", "v", { desc = "Increase indent for selected text" })
 
--- split window
-mapKey("<leader>ss", ":split<Return>", "n")
-mapKey("<leader>vs", ":vsplit<Return>", "n")
+-- Split window
+mapKey("<leader>ss", ":split<Return>", "n", { desc = "Horizontal split" })
+mapKey("<leader>vs", ":vsplit<Return>", "n", { desc = "Vertical split" })
 
--- tab(bar) control
-mapKey("gT", "<Cmd>BufferPrevious<CR>")
-mapKey("gt", "<Cmd>BufferNext<CR>")
-mapKey("t<", "<Cmd>BufferMovePrevious<CR>")
-mapKey("t>", "<Cmd>BufferMoveNext<CR>")
-mapKey("t1", "<Cmd>BufferGoto 1<CR>")
-mapKey("t2", "<Cmd>BufferGoto 2<CR>")
-mapKey("t3", "<Cmd>BufferGoto 3<CR>")
-mapKey("t4", "<Cmd>BufferGoto 4<CR>")
-mapKey("t5", "<Cmd>BufferGoto 5<CR>")
-mapKey("t6", "<Cmd>BufferGoto 6<CR>")
-mapKey("t7", "<Cmd>BufferGoto 7<CR>")
-mapKey("t8", "<Cmd>BufferGoto 8<CR>")
-mapKey("t9", "<Cmd>BufferGoto 9<CR>")
-mapKey("t0", "<Cmd>BufferLast<CR>")
+-- Tab (bar) control
+mapKey("gT", "<Cmd>BufferPrevious<CR>", "n", { desc = "Previous buffer" })
+mapKey("gt", "<Cmd>BufferNext<CR>", "n", { desc = "Next buffer" })
+mapKey("t<", "<Cmd>BufferMovePrevious<CR>", "n", { desc = "Move to previous buffer" })
+mapKey("t>", "<Cmd>BufferMoveNext<CR>", "n", { desc = "Move to next buffer" })
+mapKey("t1", "<Cmd>BufferGoto 1<CR>", "n", { desc = "Go to buffer 1" })
+mapKey("t2", "<Cmd>BufferGoto 2<CR>", "n", { desc = "Go to buffer 2" })
+mapKey("t3", "<Cmd>BufferGoto 3<CR>", "n", { desc = "Go to buffer 3" })
+mapKey("t4", "<Cmd>BufferGoto 4<CR>", "n", { desc = "Go to buffer 4" })
+mapKey("t5", "<Cmd>BufferGoto 5<CR>", "n", { desc = "Go to buffer 5" })
+mapKey("t6", "<Cmd>BufferGoto 6<CR>", "n", { desc = "Go to buffer 6" })
+mapKey("t7", "<Cmd>BufferGoto 7<CR>", "n", { desc = "Go to buffer 7" })
+mapKey("t8", "<Cmd>BufferGoto 8<CR>", "n", { desc = "Go to buffer 8" })
+mapKey("t9", "<Cmd>BufferGoto 9<CR>", "n", { desc = "Go to buffer 9" })
+mapKey("t0", "<Cmd>BufferLast<CR>", "n", { desc = "Go to last buffer" })
+
 -- Pin/unpin buffer
--- mapKey("<A-p>", "<Cmd>BufferPin<CR>")
+-- mapKey("<A-p>", "<Cmd>BufferPin<CR>", "n", { desc = "Pin current buffer" })
 -- Goto pinned/unpinned buffer
---                 :BufferGotoPinned
---                 :BufferGotoUnpinned
+-- mapKey("<C-p>", "<Cmd>BufferGotoPinned<CR>", "n", { desc = "Go to pinned buffer" })
+-- mapKey("<C-u>", "<Cmd>BufferGotoUnpinned<CR>", "n", { desc = "Go to unpinned buffer" })
+
 -- Close buffer
-mapKey("tc", "<Cmd>BufferClose<CR>")
+mapKey("tc", "<Cmd>BufferClose<CR>", "n", { desc = "Close current buffer" })
 -- Wipeout buffer
---                 :BufferWipeout
+-- mapKey("<leader>w", "<Cmd>BufferWipeout<CR>", "n", { desc = "Wipeout current buffer" })
 -- Close commands
---                 :BufferClosetllButCurrent
---                 :BufferClosetllButPinned
---                 :BufferClosetllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
+-- mapKey("<leader>cl", "<Cmd>BufferClosetllButCurrent<CR>", "n", { desc = "Close all but current" })
+-- mapKey("<leader>cp", "<Cmd>BufferClosetllButPinned<CR>", "n", { desc = "Close all but pinned" })
+-- mapKey("<leader>cu", "<Cmd>BufferClosetllButCurrentOrPinned<CR>", "n", { desc = "Close all but current or pinned" })
+-- mapKey("<leader>cll", "<Cmd>BufferCloseBuffersLeft<CR>", "n", { desc = "Close buffers to the left" })
+-- mapKey("<leader>clr", "<Cmd>BufferCloseBuffersRight<CR>", "n", { desc = "Close buffers to the right" })
+
 -- Magic buffer-picking mode
--- mapKey("<C-p>", "<Cmd>BufferPick<CR>")
+-- mapKey("<C-p>", "<Cmd>BufferPick<CR>", "n", { desc = "Pick a buffer" })
+
 -- Sort automatically by...
-mapKey("<Space>tb", "<Cmd>BufferOrderByBufferNumber<CR>")
-mapKey("<Space>tn", "<Cmd>BufferOrderByName<CR>")
-mapKey("<Space>td", "<Cmd>BufferOrderBytirectory<CR>")
-mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>")
-mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>")
+mapKey("<Space>tb", "<Cmd>BufferOrderByBufferNumber<CR>", "n", { desc = "Sort by buffer number" })
+mapKey("<Space>tn", "<Cmd>BufferOrderByName<CR>", "n", { desc = "Sort by name" })
+mapKey("<Space>td", "<Cmd>BufferOrderByDirectory<CR>", "n", { desc = "Sort by directory" })
+mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>", "n", { desc = "Sort by language" })
+mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>", "n", { desc = "Sort by window number" })
 
--- lsp
-mapKey("<leader>rs", ":LspRestart<CR>")
-mapKey("K", vim.lsp.buf.hover)
-mapKey("gr", "<cmd>Telescope lsp_references<CR>")      -- show lsp references
-mapKey("gd", "<cmd>Telescope lsp_definitions<CR>")     -- show lsp definitions
-mapKey("gi", "<cmd>Telescope lsp_implementations<CR>") -- show lsp implementations
-mapKey("<leader>rn", vim.lsp.buf.rename)               -- smart rename
-mapKey("<leader>ca", vim.lsp.buf.code_action)
+-- LSP
+mapKey("<leader>rs", ":LspRestart<CR>", "n", { desc = "Restart LSP" })
+mapKey("K", vim.lsp.buf.hover, "n", { desc = "LSP hover" })
+mapKey("gr", "<cmd>Telescope lsp_references<CR>", "n", { desc = "Show LSP references" })
+mapKey("gd", "<cmd>Telescope lsp_definitions<CR>", "n", { desc = "Show LSP definitions" })
+mapKey("gi", "<cmd>Telescope lsp_implementations<CR>", "n", { desc = "Show LSP implementations" })
+mapKey("<leader>rn", vim.lsp.buf.rename, "n", { desc = "Smart rename" })
+mapKey("<leader>ca", vim.lsp.buf.code_action, "n", { desc = "LSP code action" })
 
--- debug
-mapKey('<F9>', function() require('dap').step_over() end)
-mapKey('<F8>', function() require('dap').step_into() end)
-mapKey('<F10>', function() require('dap').step_out() end)
-mapKey('<Leader>ds', function() require('dap').continue() end)
-mapKey('<Leader>do', function() require('dapui').open() end)
-mapKey('<Leader>dc', function() require('dapui').close() end)
-mapKey('<Leader>dt', function() require('dapui').toggle() end)
-mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end)
-mapKey('<Leader>db', function() require('dap').set_breakpoint() end)
-mapKey('<Leader>dq', function() require('dap').terminate() end)
-mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-mapKey('<Leader>dro', function() require('dap').repl.open() end)
-mapKey('<Leader>drl', function() require('dap').run_last() end)
-mapKey('<Leader>dh', function()
-  require('dap.ui.widgets').hover()
-end, 'v')
-mapKey('<Leader>dp', function()
-  require('dap.ui.widgets').preview()
-end, 'v')
+-- Debug
+mapKey('<F9>', function() require('dap').step_over() end, "n", { desc = "Debug: Step over" })
+mapKey('<F8>', function() require('dap').step_into() end, "n", { desc = "Debug: Step into" })
+mapKey('<F10>', function() require('dap').step_out() end, "n", { desc = "Debug: Step out" })
+mapKey('<Leader>ds', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
+mapKey('<Leader>do', function() require('dapui').open() end, "n", { desc = "Open debug UI" })
+mapKey('<Leader>dc', function() require('dapui').close() end, "n", { desc = "Close debug UI" })
+mapKey('<Leader>dt', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
+mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
+mapKey('<Leader>db', function() require('dap').set_breakpoint() end, "n", { desc = "Debug: Set breakpoint" })
+mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
+mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "n",
+  { desc = "Debug: Set log point" })
+mapKey('<Leader>dro', function() require('dap').repl.open() end, "n", { desc = "Open debug REPL" })
+mapKey('<Leader>drl', function() require('dap').run_last() end, "n", { desc = "Run last debug session" })
+mapKey('<Leader>dh', function() require('dap.ui.widgets').hover() end, "v", { desc = "Debug: Hover" })
+mapKey('<Leader>dp', function() require('dap.ui.widgets').preview() end, "v", { desc = "Debug: Preview" })
 mapKey('<Leader>df', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.frames)
-end)
+end, "n", { desc = "Debug: Show frames" })
 mapKey('<Leader>ds', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.scopes)
-end)
+end, "n", { desc = "Debug: Show scopes" })

@@ -56,6 +56,10 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── neoconf.lua # 편리한 환경설정(?)
 │   │   │
+│   │   ├─── multicusor.lua # multicusor 플러그인 <leader>m
+│   │   │
+│   │   ├─── which-key.lua # keyMapping 사용시 목록 보여주는 플러그인
+│   │   │
 │   │   ├─── neo-tree.lua # filefolder 탐색기
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
