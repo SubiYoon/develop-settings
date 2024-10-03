@@ -54,9 +54,15 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── noice.lua # message, cmdline, popupmenu UI
 │   │   │
+│   │   ├─── neoconf.lua # 편리한 환경설정(?)
+│   │   │
 │   │   ├─── neo-tree.lua # filefolder 탐색기
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
+│   │   │
+│   │   ├─── nvim-dap-iu.lua # 디버깅
+│   │   │
+│   │   ├─── nvim-dap-virtual-text.lua # 디버깅
 │   │   │
 │   │   ├─── git-signs.lua # git 변경사항 실시간 반영
 │   │   │
