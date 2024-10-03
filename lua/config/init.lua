@@ -21,11 +21,13 @@ require("config/options")
 
 local plugins = "plugins"
 local lsp = "plugins/lsp"
+local language = "plugins/language"
 local opts = {}
 
 -- Setup lazy.nvim
 require("lazy").setup({
     { import = plugins },
+    { import = language },
     { import = lsp },
   },
   opts)
