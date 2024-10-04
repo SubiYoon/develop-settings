@@ -9,7 +9,7 @@ return -- lazy.nvim:
   cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
   keys = {
     {
-      mode = { 'v', 'n' },
+      mode = { 'n', 'v' },
       '<Leader>m',
       '<cmd>MCstart<cr>',
       desc = 'Create a selection for selected text or word under the cursor',
