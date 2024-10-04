@@ -71,7 +71,6 @@ local config = {
       references = {
         includeDecompiledSources = true,
       },
-      signatureHelp = { enabled = true },
       format = {
         enabled = true,
         -- Formatting works by default, but you can refer to a specific file/URL if you choose

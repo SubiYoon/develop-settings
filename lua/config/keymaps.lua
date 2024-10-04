@@ -73,10 +73,10 @@ mapKey("<leader>rn", vim.lsp.buf.rename, "n", { desc = "Smart rename" })
 mapKey("<leader>ca", vim.lsp.buf.code_action, "n", { desc = "LSP code action" })
 
 -- Debug
+mapKey('<F5>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
 mapKey('<F9>', function() require('dap').step_over() end, "n", { desc = "Debug: Step over" })
 mapKey('<F8>', function() require('dap').step_into() end, "n", { desc = "Debug: Step into" })
 mapKey('<F10>', function() require('dap').step_out() end, "n", { desc = "Debug: Step out" })
-mapKey('<Leader>ds', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
 mapKey('<Leader>do', function() require('dapui').open() end, "n", { desc = "Open debug UI" })
 mapKey('<Leader>dc', function() require('dapui').close() end, "n", { desc = "Close debug UI" })
 mapKey('<Leader>dt', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
