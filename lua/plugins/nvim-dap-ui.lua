@@ -110,11 +110,15 @@ return {
     -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
     dap.configurations.java = {
       {
-        name = "Debug Launch (2GB)",
+        name = "mathStorage",
         type = 'java',
         request = 'launch',
+        mainClass = 'com.limitless.mathStorage.MathStorageApplication',
+        cwd = vim.fn.getcwd(),
         vmArgs = "" ..
-            "-Xmx2g "
+            "-Xmx2g " ..
+            "-Xms2g ",
+        args = { "spring.profiles.active=local" }
       },
       {
         name = "Debug Attach (8000)",
