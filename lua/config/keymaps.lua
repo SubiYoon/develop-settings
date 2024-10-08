@@ -1,5 +1,11 @@
 local mapKey = require("utils/keyMapper").mapKey
 
+-- Custom mapping
+mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
+mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
+  { desc = "Move to the mapper with the cursor word(id)" })                                                                        -- macOS
+
+
 -- Neotree toggle
 mapKey("<leader>e", ":Neotree toggle<cr>", "n", { desc = "Toggle Neotree" })
 
@@ -44,6 +50,7 @@ mapKey("<leader>t0", "<Cmd>BufferLast<CR>", "n", { desc = "Go to last buffer" })
 
 -- Close buffer
 mapKey("<leader>tc", "<Cmd>BufferClose<CR>", "n", { desc = "Close current buffer" })
+mapKey("<leader>tac", "<Cmd>BufferCloseAllButCurrent<CR>", "n", { desc = "Close all buffer" })
 -- Wipeout buffer
 -- mapKey("<leader>w", "<Cmd>BufferWipeout<CR>", "n", { desc = "Wipeout current buffer" })
 -- Close commands
@@ -73,15 +80,12 @@ mapKey("<leader>rn", vim.lsp.buf.rename, "n", { desc = "Smart rename" })
 mapKey("<leader>ca", vim.lsp.buf.code_action, "n", { desc = "LSP code action" })
 
 -- Debug
-mapKey('<F5>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
-mapKey('<F9>', function() require('dap').step_over() end, "n", { desc = "Debug: Step over" })
-mapKey('<F8>', function() require('dap').step_into() end, "n", { desc = "Debug: Step into" })
-mapKey('<F10>', function() require('dap').step_out() end, "n", { desc = "Debug: Step out" })
-mapKey('<Leader>do', function() require('dapui').open() end, "n", { desc = "Open debug UI" })
-mapKey('<Leader>dc', function() require('dapui').close() end, "n", { desc = "Close debug UI" })
+mapKey('<F7>', function() require('dap').step_into() end, "n", { desc = "Debug: Step into" })
+mapKey('<F8>', function() require('dap').step_over() end, "n", { desc = "Debug: Step over" })
+mapKey('<F9>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
+mapKey('<F10>', function() require('dap').step_back() end, "n", { desc = "Debug: Step back" })
 mapKey('<Leader>dt', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
 mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
-mapKey('<Leader>db', function() require('dap').set_breakpoint() end, "n", { desc = "Debug: Set breakpoint" })
 mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
 mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "n",
   { desc = "Debug: Set log point" })
