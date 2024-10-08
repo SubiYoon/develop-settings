@@ -110,49 +110,23 @@ return {
     -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
     dap.configurations.java = {
       {
-        name = "mathStorage",
+        name = "Debug launch (8000)",
         type = 'java',
         request = 'launch',
-        mainClass = 'com.limitless.mathStorage.MathStorageApplication',
-        cwd = vim.fn.getcwd(),
-        vmArgs = "" ..
-            "-Xmx2g " ..
-            "-Xms2g ",
-        args = { "spring.profiles.active=local" }
-      },
-      {
-        name = "Debug Attach (8000)",
-        type = 'java',
-        request = 'attach',
-        hostName = "127.0.0.1",
         port = 8000,
-      },
-      {
-        name = "Debug Attach (5005)",
-        type = 'java',
-        request = 'attach',
-        hostName = "127.0.0.1",
-        port = 5005,
-      },
-      {
-        name = "My Custom Java Run Configuration",
-        type = "java",
-        request = "launch",
-        -- You need to extend the classPath to list your dependencies.
         -- `nvim-jdtls` would automatically add the `classPaths` property if it is missing
         -- classPaths = {},
-
-        -- If using multi-module projects, remove otherwise.
-        -- projectName = "yourProjectName",
-
-        -- javaExec = "java",
-        mainClass = "replace.with.your.fully.qualified.MainClass",
-
+        mainClass = '${mainClass location}', -- com.example.project.~Application(.java)
         -- If using the JDK9+ module system, this needs to be extended
         -- `nvim-jdtls` would automatically populate this property
         -- modulePaths = {},
+        cwd = vim.fn.getcwd(), -- setting root dir current location
         vmArgs = "" ..
-            "-Xmx2g "
+            "-Xmx2g ",
+        args = { "spring.profiles.active=local" },
+        env = {
+          SPRING_PROFILES_ACTIVE = "local",
+        }
       },
     }
   end

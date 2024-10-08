@@ -17,7 +17,7 @@ brew install neovim ripgrep
 ```bash
 ├─── ftplugin
 │   │ 
-│   └─── java.lua # lsp java설정 관련
+│   └─── java.lua # lsp java설정 관련(project별 환경설정 방법 ':JavaProfile'로 설정)
 │    
 ├─── lua
 │   │ 
