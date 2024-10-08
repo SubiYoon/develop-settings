@@ -90,6 +90,8 @@ brew install neovim ripgrep
 │   │ 
 │   └──── utils
 │        │
+│        ├─── searchUtils.lua # 검색관련 utils 함수 모음
+│        │
 │        └─── keyMapper.lua # 키맵할 수 있는 함수
 │ 
 ├─── init.lua
