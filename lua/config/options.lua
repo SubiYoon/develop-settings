@@ -21,6 +21,8 @@ opt.signcolumn = "yes"
 
 -- etc
 opt.encoding = "UTF-8"
+opt.fileencoding = "UTF-8"
+opt.fileencodings = { 'UTF-8', 'EUC-KR', 'CP949' }
 opt.cmdheight = 1
 opt.scrolloff = 10
 opt.mouse:append("a")

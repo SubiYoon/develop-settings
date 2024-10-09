@@ -7,6 +7,9 @@ return {
     "MunifTanjim/nui.nvim",
   },
   opts = {
+    window = {
+      width = "35%",
+    },
     filesystem = {
       filtered_items = {
         visible = true,
