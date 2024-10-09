@@ -1,9 +1,10 @@
 local mapKey = require("utils/keyMapper").mapKey
 
--- Custom mapping
+-- Custom mapping Start
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
 mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
-  { desc = "Move to the mapper with the cursor word(id)" })                                                                        -- macOS
+  { desc = "Move to the mapper with the cursor word(id)" })
+-- Custom mapping End
 
 
 -- Neotree toggle
