@@ -14,8 +14,6 @@ return {
           { "<leader>fw", builtin.live_grep,  desc = "Find Word" },
           { "<leader>fb", builtin.buffers,    desc = "Find Buffer" },
           { "<leader>fh", builtin.help_tags,  desc = "Help Tags" },
-          { 't',          group = 'Tab' },
-          { 't1',         'cmd',              desc = 'test' }
         },
         {
           -- Nested mappings are allowed and can be added in any order

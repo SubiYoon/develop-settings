@@ -105,7 +105,7 @@ end, "n", { desc = "Debug: Show scopes" })
 
 -- Git
 mapKey('<Leader>g', "", "n", { desc = "Git" })
-mapKey('<Leader>gg', "<Cmd>:Gitsigns preview_hunk<CR>", "n", { desc = "Preview This Hunk" })
+mapKey('<Leader>gp', "<Cmd>:Gitsigns preview_hunk<CR>", "n", { desc = "Preview This Hunk" })
 mapKey('<Leader>gr', "", "n", { desc = "Reset" })
 mapKey('<Leader>grh', "<Cmd>:Gitsigns reset_hunk<CR>", "n", { desc = "Reset This Hunk" })
 mapKey('<Leader>grb', "<Cmd>:Gitsigns reset_buffer<CR>", "n", { desc = "Reset This Buffer" })
