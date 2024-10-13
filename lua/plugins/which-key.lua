@@ -1,5 +1,6 @@
 -- local keymaps = require("config.keymaps")
 local builtin = require("telescope/builtin")
+local todo = require("todo-comments")
 
 return {
   {
@@ -9,11 +10,12 @@ return {
       local wk = require('which-key')
       wk.add({
           { "<leader>f",  group = "File" },
-          { "<leader>ff", builtin.find_files, desc = "Find File" },
-          { "<leader>fr", builtin.oldfiles,   desc = "Recent File" },
-          { "<leader>fw", builtin.live_grep,  desc = "Find Word" },
-          { "<leader>fb", builtin.buffers,    desc = "Find Buffer" },
-          { "<leader>fh", builtin.help_tags,  desc = "Help Tags" },
+          { "<leader>ff", builtin.find_files,       desc = "Find File" },
+          { "<leader>fr", builtin.oldfiles,         desc = "Recent File" },
+          { "<leader>fw", builtin.live_grep,        desc = "Find Word" },
+          { "<leader>fb", builtin.buffers,          desc = "Find Buffer" },
+          { "<leader>ft", "<Cmd>TodoTelescope<CR>", desc = "Find TODO List" },
+          { "<leader>fh", builtin.help_tags,        desc = "Help Tags" },
         },
         {
           -- Nested mappings are allowed and can be added in any order
