@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config/globals")
 require("config/keymaps")
 require("config/options")
+require('utils.commonUtils').install_ripgrep()
 
 local plugins = "plugins"
 local lsp = "plugins/lsp"
