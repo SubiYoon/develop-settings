@@ -25,14 +25,19 @@ end
 
 -- git push
 M.gitPush = function()
+  local remote = vim.fn.input('input remote name!! default: origin')
   local branch = vim.fn.input('input branch name!!')
+
+  if remote == '' then
+    remote = 'origin'
+  end
 
   if branch == '' then
     print('please input branch name!!')
     return -1
   end
 
-  vim.cmd('Git push origin ' .. branch)
+  vim.cmd('Git push '.. remote .. ' ' .. branch)
 end
 
 -- git reset
