@@ -1,9 +1,12 @@
 local mapKey = require("utils/keyMapper").mapKey
+local common = require("utils.commonUtils")
 
 -- Custom mapping Start
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
 mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
   { desc = "Move to the mapper with the cursor word(id)" })
+mapKey("<leader>cw", function() common.widthResize() end, "n", { desc = "Change Width" })
+mapKey("<leader>ch", function() common.heightResize() end, "n", { desc = "Change Height" })
 -- Custom mapping End
 
 
@@ -73,7 +76,6 @@ mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>", "n", { desc = "Sort by lan
 mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>", "n", { desc = "Sort by window number" })
 
 -- LSP
-mapKey("<leader>rs", ":LspRestart<CR>", "n", { desc = "Restart LSP" })
 mapKey("K", vim.lsp.buf.hover, "n", { desc = "LSP hover" })
 mapKey("gr", "<cmd>Telescope lsp_references<CR>", "n", { desc = "Show LSP references" })
 mapKey("gd", "<cmd>Telescope lsp_definitions<CR>", "n", { desc = "Show LSP definitions" })

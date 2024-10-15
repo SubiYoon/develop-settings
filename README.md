@@ -1,8 +1,7 @@
 ---
 tags:
   - Tools
-  - NeoVim
-  - Install
+  - NeoVim Install
 ---
 # 기본 환경
 * homebrew
@@ -95,6 +94,8 @@ brew install neovim ripgrep
 │        ├─── searchUtils.lua # 검색관련 utils 함수 모음
 │        │
 │        ├─── gitUtils.lua # git관련 utils 함수 모음
+│        │
+│        ├─── commonUtils.lua # 공통 utils 함수 모음
 │        │
 │        └─── keyMapper.lua # 키맵할 수 있는 함수
 │ 
