@@ -37,7 +37,7 @@ M.gitPush = function()
     return -1
   end
 
-  vim.cmd('Git push '.. remote .. ' ' .. branch)
+  vim.cmd('Git push ' .. remote .. ' ' .. branch)
 end
 
 -- git reset
