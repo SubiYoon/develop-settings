@@ -32,6 +32,7 @@ return {
         "taplo",
         "lemminx",
         "vtsls",
+        "html",
       },
     })
 
@@ -91,7 +92,14 @@ return {
     -- xml
     lspconfig.lemminx.setup({})
     -- javascript
-    lspconfig.vtsls.setup({})
+    lspconfig.vtsls.setup({
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    })
+    -- html
+    lspconfig.html.setup({
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      filetypes = { "html", "htm", "thymeleaf" },
+    })
 
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
