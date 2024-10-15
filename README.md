@@ -51,6 +51,8 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── notify.lua # 알림창
 │   │   │
+│   │   ├─── lazygit.lua # git GUI 플러그인
+│   │   │
 │   │   ├─── noice.lua # message, cmdline, popupmenu UI
 │   │   │
 │   │   ├─── neoconf.lua # 편리한 환경설정(?)
