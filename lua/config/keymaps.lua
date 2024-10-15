@@ -121,3 +121,16 @@ mapKey('<Leader>grb', "<Cmd>Gitsigns reset_buffer<CR>", "n", { desc = "Reset Thi
 mapKey('<Leader>gd', "", "n", { desc = "Diff" })
 mapKey('<Leader>gdv', "<Cmd>Gvdiffsplit<CR>", "n", { desc = "Vsplit" })
 mapKey('<Leader>gdh', "<Cmd>Ghdiffsplit<CR>", "n", { desc = "Hsplit" })
+
+-- Java
+mapKey('<Leader>j', "", "n", { desc = "Java" })
+mapKey('<Leader>jm', "", "n", { desc = "Make" })
+mapKey('<Leader>jmv', "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
+mapKey('<Leader>jmm', "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
+mapKey('<Leader>jmf', "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Method" })
+mapKey('<Leader>jmc', "<Cmd>JavaRefactorExtractConstant<CR>", "n", { desc = "Constant" })
+mapKey('<Leader>jt', "", "n", { desc = "Test" })
+mapKey('<Leader>jtc', "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
+mapKey('<Leader>jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
+mapKey('<Leader>jtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
+mapKey('<Leader>jtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
