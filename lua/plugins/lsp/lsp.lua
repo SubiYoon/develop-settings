@@ -42,6 +42,7 @@ return {
         'java-test',
         "google-java-format",
         "prettier",
+        "prettierd",
         "eslint",
         "eslint_d",
       }
