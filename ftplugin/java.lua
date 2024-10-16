@@ -25,7 +25,7 @@ local config = {
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
-    '-Xmx1g',
+    '-Xmx2g',
     '--add-modules=ALL-SYSTEM',
     '--add-opens',
     'java.base/java.util=ALL-UNNAMED',
@@ -74,10 +74,11 @@ local config = {
       format = {
         enabled = true,
         -- Formatting works by default, but you can refer to a specific file/URL if you choose
-        -- settings = {
-        --   url = "https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml",
-        --   profile = "GoogleStyle",
-        -- },
+        settings = {
+          url = "file:///" ..
+              home .. "/.local/share/nvim/mason/packages/google-java-format/google-java-format-1.24.0-all-deps.jar",
+          profile = "GoogleStyle",
+        },
       },
       inlayHints = {
         parameterNames = {

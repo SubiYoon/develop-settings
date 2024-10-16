@@ -33,6 +33,7 @@ return {
         "lemminx",
         "vtsls",
         "html",
+        "cssls"
       },
     })
 
@@ -101,6 +102,8 @@ return {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
       filetypes = { "html", "htm", "thymeleaf" },
     })
+    -- css
+    lspconfig.cssls.setup({})
 
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
