@@ -7,9 +7,13 @@ tags:
 * homebrew
 * mac OS
 
-# NeoVim 설치
+# 최초설치시 주의 사항
+* lsp.lua파일에 들어가서 jdlts를 주석처리하고 플러그인 설치
+* 전부 설치 후 다시 jdlts의 주석을 다시 해제
+
+# NeoVim 설치(현재는 자동감지해서 설치하게 만듬)
 ```bash
-brew install neovim ripgrep
+brew install neovim ripgrep lazygit
 ```
 
 # 폴더 구조
