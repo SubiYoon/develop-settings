@@ -76,7 +76,7 @@ local config = {
         -- Formatting works by default, but you can refer to a specific file/URL if you choose
         settings = {
           url = "file:///" ..
-              home .. "/.local/share/nvim/mason/packages/google-java-format/google-java-format-1.24.0-all-deps.jar",
+              home .. "/.local/share/nvim/mason/packages/google-java-format/google-java-format*.jar",
           profile = "GoogleStyle",
         },
       },
