@@ -26,10 +26,6 @@ mapKey("<leader>h", ":nohlsearch<CR>", "n", { desc = "Clear search highlight" })
 mapKey("<", "<gv", "v", { desc = "Decrease indent for selected text" })
 mapKey(">", ">gv", "v", { desc = "Increase indent for selected text" })
 
--- Split window
-mapKey("<leader>ss", ":split<Return>", "n", { desc = "Horizontal split" })
-mapKey("<leader>vs", ":vsplit<Return>", "n", { desc = "Vertical split" })
-
 -- Tab (bar) control
 mapKey("gT", "<Cmd>BufferPrevious<CR>", "n", { desc = "Previous buffer" })
 mapKey("gt", "<Cmd>BufferNext<CR>", "n", { desc = "Next buffer" })
