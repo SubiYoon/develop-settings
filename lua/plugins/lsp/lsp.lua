@@ -25,7 +25,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
-        -- "jdtls",
+        "jdtls",
         "vuels",
         "yamlls",
         "jsonls",
@@ -82,7 +82,7 @@ return {
       }
     })
     -- java
-    -- lspconfig.jdtls.setup({})
+    lspconfig.jdtls.setup({})
     -- vue
     lspconfig.vuels.setup({})
     -- yaml

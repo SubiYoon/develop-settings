@@ -34,8 +34,6 @@ brew install neovim ripgrep
 │   │   │
 │   │   ├─── lsp
 │   │   │   │
-│   │   │   ├─── jdtls.lua # java lsp
-│   │   │   │
 │   │   │   └─── lsp.lua # language 문법 검사
 │   │   │
 │   │   │
