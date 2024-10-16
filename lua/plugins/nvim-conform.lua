@@ -7,7 +7,7 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 javascript = { "prettierd", "prettier" },
-                java = { "google-java-format" },
+                java = {},
                 css = { "prettierd", "prettier" },
                 vue = { "prettierd", "prettier" },
                 html = { "prettierd", "prettier" },
