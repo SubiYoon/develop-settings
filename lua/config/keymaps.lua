@@ -4,7 +4,7 @@ local common = require("utils.commonUtils")
 -- Custom mapping Start
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
 mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
-  { desc = "Move to the mapper with the cursor word(id)" })
+    { desc = "Move to the mapper with the cursor word(id)" })
 mapKey("<leader>cw", function() common.widthResize() end, "n", { desc = "Change Width" })
 mapKey("<leader>ch", function() common.heightResize() end, "n", { desc = "Change Height" })
 -- Custom mapping End
@@ -89,18 +89,18 @@ mapKey('<Leader>dt', function() require('dapui').toggle() end, "n", { desc = "To
 mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
 mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
 mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "n",
-  { desc = "Debug: Set log point" })
+    { desc = "Debug: Set log point" })
 mapKey('<Leader>dro', function() require('dap').repl.open() end, "n", { desc = "Open debug REPL" })
 mapKey('<Leader>drl', function() require('dap').run_last() end, "n", { desc = "Run last debug session" })
 mapKey('<Leader>dh', function() require('dap.ui.widgets').hover() end, "v", { desc = "Debug: Hover" })
 mapKey('<Leader>dp', function() require('dap.ui.widgets').preview() end, "v", { desc = "Debug: Preview" })
 mapKey('<Leader>df', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.frames)
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.frames)
 end, "n", { desc = "Debug: Show frames" })
 mapKey('<Leader>ds', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.scopes)
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.scopes)
 end, "n", { desc = "Debug: Show scopes" })
 
 -- Git
