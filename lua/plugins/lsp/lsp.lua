@@ -99,7 +99,7 @@ return {
     end,
     opts = {
         servers = {
-            -- jdtls = { enabled = true },
+            jdtls = { enabled = true },
             vuels = { enabled = true },
             yamlls = { enabled = true },
             jsonls = { enabled = true },
