@@ -5,8 +5,8 @@ local common = require("utils.commonUtils")
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
 mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
     { desc = "Move to the mapper with the cursor word(id)" })
-mapKey("<leader>cw", function() common.widthResize() end, "n", { desc = "Change Width" })
-mapKey("<leader>ch", function() common.heightResize() end, "n", { desc = "Change Height" })
+mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })
+mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })
 -- Custom mapping End
 
 
@@ -128,8 +128,5 @@ mapKey('<Leader>jtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug
 mapKey('<Leader>jtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
 
 -- neogen
-mapKey('<Leader>cd', "", "n", { desc = "Create Doc" })
-mapKey('<Leader>cdf', "<Cmd>Neogen func<CR>", "n", { desc = "Function" })
-mapKey('<Leader>cdc', "<Cmd>Neogen class<CR>", "n", { desc = "Class" })
-mapKey('<Leader>cdt', "<Cmd>Neogen type<CR>", "n", { desc = "Type" })
-mapKey('<Leader>cdF', "<Cmd>Neogen file<CR>", "n", { desc = "File" })
+mapKey('<Leader>n', "", "n", { desc = "New" })
+mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })

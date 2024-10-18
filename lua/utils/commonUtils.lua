@@ -117,4 +117,22 @@ M.install_ripgrep = function()
     end
 end
 
+M.new_doc = function()
+    local doc_type = vim.fn.input("c: class, f: function, F: file, t: type")
+    if doc_type == 'c' then
+        doc_type = 'class'
+    elseif doc_type == 'f' then
+        doc_type = 'func'
+    elseif doc_type == 'F' then
+        doc_type = 'file'
+    elseif doc_type == 't' then
+        doc_type = 'type'
+    elseif doc_type == '' then
+        print("please select current type!!")
+        return -1
+    end
+
+    vim.cmd("Neogen " .. doc_type)
+end
+
 return M
