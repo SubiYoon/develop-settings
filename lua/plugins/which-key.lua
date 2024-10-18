@@ -8,7 +8,8 @@ return {
         event = "VeryLazy",
         config = function()
             local wk = require('which-key')
-            wk.add({
+            wk.add(
+                {
                     { "<leader>f",  group = "Search File" },
                     { "<leader>ff", searchUtils.search_by_filetype, desc = "Find File Type" },
                     -- { "<leader>ff", builtin.find_files,                         desc = "Find File" },
