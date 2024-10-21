@@ -17,7 +17,6 @@ tags:
 |neovim|에디터|
 |ripgrep|검색|
 |lazygit|git UI|
-|gcc|C언어 컴파일러|
 
 ```bash
 brew install neovim ripgrep lazygit gcc
