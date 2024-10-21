@@ -12,8 +12,15 @@ tags:
 * 전부 설치 후 다시 jdlts의 주석을 다시 해제
 
 # NeoVim 설치(현재는 자동감지해서 설치하게 만듬)
+|pagkage|desc|
+|---|---|
+|neovim|에디터|
+|ripgrep|검색|
+|lazygit|git UI|
+|gcc|C언어 컴파일러|
+
 ```bash
-brew install neovim ripgrep lazygit
+brew install neovim ripgrep lazygit gcc
 ```
 
 # 폴더 구조

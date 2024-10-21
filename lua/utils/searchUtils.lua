@@ -15,7 +15,7 @@ M.open_mapper_xml = function()
         local file = io.open(xml_path, "r") -- XML 파일 열기
         if file then
             local content = file:read("*a") -- 파일 내용 전체 읽기
-            file:close()                -- 파일 닫기
+            file:close()                    -- 파일 닫기
             -- XML에서 id 속성 값 찾기
             for tag in content:gmatch("<(.-)>") do
                 -- tag: <select id="..." ...>
@@ -60,15 +60,18 @@ end
 
 -- 사용자로부터 확장자를 입력받아 검색하는 함수
 M.search_by_filetype = function()
-    local type = vim.fn.input("input file type!! (default: all)")
-    if type and type ~= "" then
+    local type = vim.fn.input("input file type!! (a: all)")
+
+    if type and type == "a" then
+        require('telescope.builtin').find_files()
+    elseif type and type ~= "" then
         -- 입력된 확장자로 파일 검색
         require('telescope.builtin').find_files({
             find_command = { "rg", "--files", "--glob", "*." .. type },
         })
     else
-        -- 입력이 없으면 전체 파일 검색
-        require('telescope.builtin').find_files()
+        print("search cancled!!")
+        return -1
     end
 end
 

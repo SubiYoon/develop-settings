@@ -8,8 +8,6 @@ vim.g.transparency = 0.8
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
-        if vim.fn.mode() ~= "n" then     -- 현재 모드가 Normal이 아니면
-            vim.api.nvim_command("stopinsert") -- Normal 모드로 전환
-        end
+        vim.cmd("stopinsert")
     end,
 })

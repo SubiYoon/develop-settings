@@ -4,7 +4,7 @@ local M = {}
 M.widthResize = function()
     local width = vim.fn.input("input change size!!")
 
-    if width == '' then
+    if width == "" then
         print("please input size!!")
         return -1
     end
@@ -16,7 +16,7 @@ end
 M.heightResize = function()
     local height = vim.fn.input("input change size!!")
 
-    if height == '' then
+    if height == "" then
         print("please input size!!")
         return -1
     end
@@ -133,6 +133,45 @@ M.new_doc = function()
     end
 
     vim.cmd("Neogen " .. doc_type)
+end
+
+-- 터미널을 20% 하단에 열고 닫는 토글 기능 설정
+M.toggle_terminal = function(size)
+    local term_buf = vim.fn.bufnr("term://*")
+
+    if size == nil then
+        size = 20
+    end
+    if term_buf == -1 then
+        -- 터미널이 열려있지 않으면 새로 열기
+        vim.cmd("botright split")  -- 화면 하단에 가로로 분할
+        vim.cmd("resize " .. size) -- 터미널 크기 설정
+        vim.cmd("term")            -- 터미널 열기
+
+        -- 열 때는 barbar의 탭에 나타나지 않도록 처리
+        vim.cmd("setlocal nobuflisted") -- 버퍼리스트에 나타나지 않도록 설정
+    else
+        -- 터미널이 열려있으면 숨기기/복원 처리
+        local term_win = vim.fn.bufwinid(term_buf) -- 해당 터미널 창의 ID 확인
+
+        if term_win == -1 then
+            -- 터미널이 숨겨져 있으면 복원
+            vim.cmd("botright split")              -- 화면 하단에 가로로 분할
+            vim.cmd("resize 20")                   -- 터미널 크기 설정
+            vim.cmd("buffer " .. term_buf)         -- 해당 버퍼로 돌아가서 복원
+            vim.cmd("wincmd p")                    -- 창 복원
+            vim.cmd("wincmd w")                    -- 터미널 커서이동
+        else
+            local current_win = vim.fn.win_getid() -- 현재 창 ID 확인
+            local term_win_id = vim.fn.bufwinid(term_buf)
+
+            if current_win == term_win_id then
+                vim.cmd("hide") -- 터미널 커서이동
+            else
+                print("터미널 창으로 커서를 이동해주세요.")
+            end
+        end
+    end
 end
 
 return M

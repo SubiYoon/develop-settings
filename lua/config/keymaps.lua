@@ -1,12 +1,15 @@
 local mapKey = require("utils/keyMapper").mapKey
 local common = require("utils.commonUtils")
+local search = require("utils.searchUtils")
 
 -- Custom mapping Start
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
-mapKey("<leader>fqm", '<Cmd>lua require("utils.searchUtils").open_mapper_xml()<CR>', "n",
-    { desc = "Move to the mapper with the cursor word(id)" })
-mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })
-mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })
+mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
+mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })                                     -- 현재 buffer 너비 조정
+mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })                                   -- 현재 buffer 높이 조정
+mapKey("<leader>o", "", "n", { desc = "Open" })
+mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
+mapKey("<Esc>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                           -- 터미널 Open
 -- Custom mapping End
 
 
@@ -85,7 +88,7 @@ mapKey('<F8>', function() require('dap').step_over() end, "n", { desc = "Debug: 
 mapKey('<F9>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
 mapKey('<F10>', function() require('dap').step_back() end, "n", { desc = "Debug: Step back" })
 mapKey('<Leader>d', "", "n", { desc = "Debug" })
-mapKey('<Leader>dt', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
+mapKey('<Leader>od', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
 mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
 mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
 mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "n",

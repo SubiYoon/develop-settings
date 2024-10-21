@@ -31,6 +31,7 @@ return {
                 "vtsls",
                 "html",
                 "cssls",
+                "clangd",
             },
         })
 
@@ -89,6 +90,8 @@ return {
         lspconfig.html.setup({})
         -- css
         lspconfig.cssls.setup({})
+        -- C
+        lspconfig.clangd.setup({})
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
