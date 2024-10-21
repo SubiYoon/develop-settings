@@ -174,4 +174,32 @@ M.toggle_terminal = function(size)
     end
 end
 
+M.c_complie = function()
+    -- 현재 열려 있는 파일 경로
+    local file = vim.api.nvim_buf_get_name(0)
+
+    print(vim.fn.getcwd())
+    -- 파일이 .c 확장자인지 확인
+    if file:match("%.c$") then
+        -- 현재 파일 저장
+        vim.cmd('write')
+        -- 파일이름만 추출
+        -- t: 경로에서 이름만 추출
+        -- r: 이름에서 확장자 제거
+        local output_file = vim.fn.fnamemodify(file, ":t:r")
+        print(output_file)
+        -- gcc 명령어 실행
+        local compile_cmd = "gcc " .. file .. " -o " .. vim.fn.getcwd() .. "/" .. output_file
+        local result = vim.fn.system(compile_cmd)
+
+        -- 컴파일 결과 출력
+        if vim.v.shell_error == 0 then
+            print("컴파일 성공: " .. file:gsub("%.c$", ""))
+        else
+            print("컴파일 실패:\n" .. result)
+        end
+    else
+        print("이 파일은 C 파일이 아닙니다.")
+    end
+end
 return M

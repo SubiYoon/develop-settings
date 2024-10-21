@@ -130,6 +130,10 @@ mapKey('<Leader>jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Cu
 mapKey('<Leader>jtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
 mapKey('<Leader>jtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
 
+-- C
+mapKey('<Leader>C', "", "n", { desc = "C" })
+mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
+
 -- neogen
 mapKey('<Leader>n', "", "n", { desc = "New" })
 mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })
