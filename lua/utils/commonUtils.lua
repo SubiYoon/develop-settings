@@ -29,32 +29,46 @@ M.install_lazygit = function()
     -- OS 감지
     local uname = vim.loop.os_uname().sysname
 
-    if uname == "Darwin" then
-        -- macOS
-        -- lazygit 설치 확인
-        local lazygit_installed = os.execute("command -v lazygit >/dev/null 2>&1")
-        if lazygit_installed ~= 0 then
-            print("Installing lazygit via Homebrew...")
-            os.execute("brew install lazygit")
+    -- 설치 확인 함수
+    local function is_installed(command)
+        return os.execute("command -v " .. command .. " >/dev/null 2>&1") == 0
+    end
+
+    -- macOS 설치 함수
+    local function install_on_mac(tool, brew_package)
+        if not is_installed(tool) then
+            print("Installing " .. tool .. " via Homebrew...")
+            os.execute("brew install " .. brew_package)
         else
-            print("Lazygit is already installed.")
+            print(tool .. " is already installed.")
         end
-    elseif uname:find("Windows") then
-        -- Windows
-        -- 관리 권한으로 명령 실행 함수
+    end
+
+    -- Windows 설치 함수
+    local function install_on_windows(tool, choco_package)
         local function run_as_admin(command)
             local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '" .. command .. "'"
             os.execute('powershell -Command "' .. powershell_command .. '"')
         end
 
-        -- lazygit 설치 확인
-        local lazygit_installed = os.execute("lazygit --version >/dev/null 2>&1")
-        if lazygit_installed ~= 0 then
-            print("Installing lazygit via Chocolatey as Administrator...")
-            run_as_admin("choco install lazygit -y")
+        if not is_installed(tool) then
+            print("Installing " .. tool .. " via Chocolatey as Administrator...")
+            run_as_admin("choco install " .. choco_package .. " -y")
         else
-            print("Lazygit is already installed.")
+            print(tool .. " is already installed.")
         end
+    end
+
+    if uname == "Darwin" then
+        -- macOS
+        install_on_mac("lazygit", "lazygit")
+        install_on_mac("rg", "ripgrep")
+        install_on_mac("platformio", "platformio")
+    elseif uname:find("Windows") then
+        -- Windows
+        install_on_windows("lazygit", "lazygit")
+        install_on_windows("rg", "ripgrep")
+        install_on_windows("platformio", "platformio")
     else
         print("Unsupported OS: " .. uname)
     end

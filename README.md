@@ -17,9 +17,10 @@ tags:
 |neovim|에디터|
 |ripgrep|검색|
 |lazygit|git UI|
+|platformio|project init setting|
 
 ```bash
-brew install neovim ripgrep lazygit gcc
+brew install neovim ripgrep lazygit platformio
 ```
 
 # 폴더 구조
@@ -54,6 +55,8 @@ brew install neovim ripgrep lazygit gcc
 │   │   ├─── indent-blankline.lua # 들여쓰기 가이드 표시
 │   │   │
 │   │   ├─── lualine.lua # 하단 표시 테마(INSERT mode, NOMAL mode 표시)
+│   │   │
+│   │   ├─── platformio.lua # 개발환경 세팅해주는 플러그인
 │   │   │
 │   │   ├─── dressing.lua # select,insert 꾸미기
 │   │   │
