@@ -74,6 +74,11 @@ M.install_lazygit = function()
     else
         print("Unsupported OS: " .. uname)
     end
+
+    -- platformIO Core(CLI) install
+    os.execute(
+        "curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py")
+    os.execute("python3 get-platformio.py")
 end
 
 M.install_ripgrep = function()
