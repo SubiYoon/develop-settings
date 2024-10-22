@@ -18,9 +18,10 @@ tags:
 |ripgrep|검색|
 |lazygit|git UI|
 |platformio|project init setting|
+|arduino-cli|arduino-cli|
 
 ```bash
-brew install neovim ripgrep lazygit platformio
+brew install neovim ripgrep lazygit platformio arduino-cli
 ```
 
 # 폴더 구조

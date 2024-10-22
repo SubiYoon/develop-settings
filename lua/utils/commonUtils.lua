@@ -64,11 +64,13 @@ M.install_lazygit = function()
         install_on_mac("lazygit", "lazygit")
         install_on_mac("rg", "ripgrep")
         install_on_mac("platformio", "platformio")
+        install_on_mac("arduino-cli", "arduino-cli")
     elseif uname:find("Windows") then
         -- Windows
         install_on_windows("lazygit", "lazygit")
         install_on_windows("rg", "ripgrep")
         install_on_windows("platformio", "platformio")
+        install_on_windows("arduino-cli", "arduino-cli")
     else
         print("Unsupported OS: " .. uname)
     end

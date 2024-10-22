@@ -22,7 +22,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "jdtls",
                 "vuels",
                 "yamlls",
                 "jsonls",
@@ -32,7 +31,8 @@ return {
                 "html",
                 "cssls",
                 "clangd",
-                "omnisharp"
+                "omnisharp",
+                "arduino_language_server"
             },
         })
 
@@ -69,8 +69,6 @@ return {
             end,
         })
 
-        local home = os.getenv("HOME")
-
         -- lua
         lspconfig.lua_ls.setup({})
         -- java
@@ -91,38 +89,12 @@ return {
         lspconfig.html.setup({})
         -- css
         lspconfig.cssls.setup({})
-        -- C
-        lspconfig.clangd.setup({
-            cmd = { "clangd" },
-            filetypes = { "c", "cpp", "objc", "objcpp" }, -- 지원 파일 타입
-            root_dir = require 'lspconfig'.util.root_pattern(".git", "compile_commands.json", "compile_flags.txt",
-                "Makefile", "CMakeLists.txt"),
-            capabilities = require('cmp_nvim_lsp').default_capabilities(), -- nvim-cmp와 연동 시 사용
-        })
-        -- C#
-        lspconfig.omnisharp.setup({
-            cmd = { "omnisharp" },
-            filetypes = { "cs", "vb" },
-            init_options = { formatting = true },
-            root_dir = require('lspconfig').util.root_pattern(".git", ".csproj"),
-        })
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
             opts = opts or {}
-            opts.border = opts.border or "rounded" -- Set border to rounded
+            opts.border = opts.border or "rounded"                   -- Set border to rounded
             return open_floating_preview(contents, syntax, opts, ...)
         end
     end,
-    opts = {
-        servers = {
-            jdtls = { enabled = true },
-            vuels = { enabled = true },
-            yamlls = { enabled = true },
-            jsonls = { enabled = true },
-            taplols = { enabled = true },
-            lemminx = { enabled = true },
-            lua_ls = { enabled = true },
-        },
-    },
 }
