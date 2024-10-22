@@ -21,7 +21,16 @@ tags:
 |arduino-cli|arduino-cli|
 
 ```bash
+# brew package
 brew install neovim ripgrep lazygit platformio arduino-cli
+```
+
+# 직접 설치
+```bash
+# platformIO Core(CLI) install
+curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
+python3 get-platformio.py
+
 ```
 
 # 폴더 구조
