@@ -9,7 +9,7 @@ mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })        
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })                                   -- 현재 buffer 높이 조정
 mapKey("<leader>o", "", "n", { desc = "Open" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
-mapKey("<Esc>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                           -- 터미널에서 normal모드 변경
+mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
 mapKey("<leader>ni", "<Cmd>Pioinit<CR>", "n", { desc = "Project init" })                                     -- 터미널 Open
 -- Custom mapping End
 

@@ -28,6 +28,12 @@ brew install neovim ripgrep lazygit platformio arduino-cli
 ```bash
 ├─── ftplugin
 │   │ 
+│   ├─── arduino.lua # lsp arduino설정 관련
+│   │ 
+│   ├─── c.lua # lsp C, C++설정 관련
+│   │ 
+│   ├─── csharp.lua # lsp C#설정 관련
+│   │ 
 │   └─── java.lua # lsp java설정 관련(project별 환경설정 방법 ':JavaProfile'로 설정)
 │    
 ├─── lua
