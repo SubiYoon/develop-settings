@@ -1,9 +1,11 @@
-local home = os.getenv 'HOME'
 local lspconfig = require("lspconfig")
 lspconfig.clangd.setup({
-    cmd = { "clangd" },
-    filetypes = { "c", "cpp", "objc", "objcpp" }, -- 지원 파일 타입
-    root_dir = require 'lspconfig'.util.root_pattern(".git", "compile_commands.json", "compile_flags.txt",
-        "Makefile", "CMakeLists.txt"),
-    capabilities = require('cmp_nvim_lsp').default_capabilities(), -- nvim-cmp와 연동 시 사용
+    cmd = { "ccls" }, -- 시스템에 설치된 ccls 실행 파일 경로
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_dir = lspconfig.util.root_pattern(".ccls", "compile_commands.json", ".git"),
+    init_options = {
+        cache = {
+            directory = ".ccls-cache",
+        },
+    },
 })

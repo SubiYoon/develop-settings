@@ -32,8 +32,10 @@ return {
                 "cssls",
                 "clangd",
                 "omnisharp",
-                "arduino_language_server"
+                "arduino_language_server",
+                "pylsp",
             },
+            automatic_installation = true,
         })
 
         require("mason-tool-installer").setup({
@@ -89,11 +91,13 @@ return {
         lspconfig.html.setup({})
         -- css
         lspconfig.cssls.setup({})
+        -- python
+        lspconfig.pylsp.setup({})
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
             opts = opts or {}
-            opts.border = opts.border or "rounded"                   -- Set border to rounded
+            opts.border = opts.border or "rounded" -- Set border to rounded
             return open_floating_preview(contents, syntax, opts, ...)
         end
     end,

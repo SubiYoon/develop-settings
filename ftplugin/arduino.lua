@@ -14,9 +14,4 @@ lspconfig.arduino_language_server.setup({
         -- 키맵핑 설정
         require("lsp.keymaps").on_attach(client, bufnr)
     end,
-    settings = {
-        arduino = {
-            path = os.getenv('HOME') .. "/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino"
-        }
-    }
 })

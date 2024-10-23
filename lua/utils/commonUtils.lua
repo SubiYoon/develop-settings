@@ -24,8 +24,8 @@ M.heightResize = function()
     vim.cmd("resize " .. height)
 end
 
--- lazygit 설치
-M.install_lazygit = function()
+-- 필요한 공통 패키지 설치
+M.install_common_package = function()
     -- OS 감지
     local uname = vim.loop.os_uname().sysname
 
@@ -38,16 +38,17 @@ M.install_lazygit = function()
     local function install_on_mac(tool, brew_package)
         if not is_installed(tool) then
             print("Installing " .. tool .. " via Homebrew...")
-            os.execute("brew install " .. brew_package)
+            os.execute("brew install " .. brew_package .. " >/dev/null 2>&1")
         else
-            print(tool .. " is already installed.")
+            -- print(tool .. " is already installed.")
         end
     end
 
     -- Windows 설치 함수
     local function install_on_windows(tool, choco_package)
         local function run_as_admin(command)
-            local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '" .. command .. "'"
+            local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '" ..
+                command .. "' -NoNewWindow -RedirectStandardOutput $null"
             os.execute('powershell -Command "' .. powershell_command .. '"')
         end
 
@@ -55,7 +56,7 @@ M.install_lazygit = function()
             print("Installing " .. tool .. " via Chocolatey as Administrator...")
             run_as_admin("choco install " .. choco_package .. " -y")
         else
-            print(tool .. " is already installed.")
+            -- print(tool .. " is already installed.")
         end
     end
 
@@ -65,12 +66,14 @@ M.install_lazygit = function()
         install_on_mac("rg", "ripgrep")
         install_on_mac("platformio", "platformio")
         install_on_mac("arduino-cli", "arduino-cli")
+        install_on_mac("ccls", "ccls")
     elseif uname:find("Windows") then
         -- Windows
         install_on_windows("lazygit", "lazygit")
         install_on_windows("rg", "ripgrep")
         install_on_windows("platformio", "platformio")
         install_on_windows("arduino-cli", "arduino-cli")
+        install_on_windows("ccls", "ccls")
     else
         print("Unsupported OS: " .. uname)
     end

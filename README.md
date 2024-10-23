@@ -19,6 +19,7 @@ tags:
 |lazygit|git UI|
 |platformio|project init setting|
 |arduino-cli|arduino-cli|
+|ccls|C, C++ lsp|
 
 ```bash
 # brew package
@@ -59,14 +60,16 @@ python3 get-platformio.py
 │   │ 
 │   ├─── plugins
 │   │   │
-│   │   ├─── lsp
+│   │   ├─── language
 │   │   │   │
-│   │   │   └─── lsp.lua # language 문법 검사
+│   │   │   └─── java.lua # java 전용 플러그인 세팅
 │   │   │
 │   │   │
 │   │   ├─── alpha.lua # nvim 실행시 dashboard
 │   │   │
 │   │   ├─── theme.lua # 에디터 테마
+│   │   │
+│   │   ├─── lsp.lua # language 문법 검사
 │   │   │
 │   │   ├─── indent-blankline.lua # 들여쓰기 가이드 표시
 │   │   │
