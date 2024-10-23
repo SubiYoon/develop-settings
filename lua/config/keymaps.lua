@@ -89,7 +89,7 @@ mapKey('<F8>', function() require('dap').step_over() end, "n", { desc = "Debug: 
 mapKey('<F9>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
 mapKey('<F10>', function() require('dap').step_back() end, "n", { desc = "Debug: Step back" })
 mapKey('<Leader>d', "", "n", { desc = "Debug" })
-mapKey('<Leader>od', function() require('dapui').toggle() end, "n", { desc = "Toggle debug UI" })
+mapKey('<Leader>od', function() require('dapui').toggle() end, "n", { desc = "Debug" })
 mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
 mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
 mapKey('<Leader>dbm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "n",
@@ -136,7 +136,6 @@ mapKey('<Leader>jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request"
 mapKey('<Leader>jfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
 mapKey('<Leader>jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
 
-
 -- C
 mapKey('<Leader>C', "", "n", { desc = "C" })
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
@@ -145,3 +144,6 @@ mapKey('<Leader>Cr', common.c_run, "n", { desc = "Compile" })
 -- neogen
 mapKey('<Leader>n', "", "n", { desc = "New" })
 mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })
+
+-- DB
+mapKey('<Leader>oD', "<Cmd>DBUI<CR>", "n", { desc = "Database" })

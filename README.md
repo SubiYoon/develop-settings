@@ -31,7 +31,6 @@ brew install neovim ripgrep lazygit platformio arduino-cli
 # platformIO Core(CLI) install
 curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 python3 get-platformio.py
-
 ```
 
 # 폴더 구조
@@ -120,6 +119,8 @@ python3 get-platformio.py
 │   │   ├─── telescope.lua # 파일 검색
 │   │   │
 │   │   ├─── todo-comments.lua # todo, fixme, hack, ... 등 하이라이트
+│   │   │
+│   │   ├─── vim-dadbod.lua # DB관련 플러그인 (사용하려는 DB 설치 필요 mysql, postgresql, oracleDB 등)
 │   │   │
 │   │   ├─── vim-maximizer.lua # 분할한 화면 최대 크기로 키우는 플러그인(<leader>sm)
 │   │   │
