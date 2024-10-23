@@ -34,6 +34,7 @@ return {
                 "omnisharp",
                 "arduino_language_server",
                 "pylsp",
+                "sqls",
             },
             automatic_installation = true,
         })
@@ -93,6 +94,8 @@ return {
         lspconfig.cssls.setup({})
         -- python
         lspconfig.pylsp.setup({})
+        -- sql
+        lspconfig.sqls.setup({})
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
