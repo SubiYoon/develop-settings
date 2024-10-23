@@ -115,6 +115,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── surround.lua # text를 특정 basket으로 감싸는 플러그인
 │   │   │
+│   │   ├─── telescope-spring.lua # spring Request Mapping 검색
+│   │   │
 │   │   ├─── telescope.lua # 파일 검색
 │   │   │
 │   │   ├─── todo-comments.lua # todo, fixme, hack, ... 등 하이라이트

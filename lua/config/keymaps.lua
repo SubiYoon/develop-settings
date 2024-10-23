@@ -130,6 +130,12 @@ mapKey('<Leader>jtc', "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Cur
 mapKey('<Leader>jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
 mapKey('<Leader>jtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
 mapKey('<Leader>jtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
+mapKey('<Leader>jf', "", "n", { desc = "Find" })
+mapKey('<Leader>jfg', "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
+mapKey('<Leader>jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
+mapKey('<Leader>jfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
+mapKey('<Leader>jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
+
 
 -- C
 mapKey('<Leader>C', "", "n", { desc = "C" })
