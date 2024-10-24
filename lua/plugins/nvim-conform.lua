@@ -11,7 +11,6 @@ return {
                 css = { "prettierd", "prettier" },
                 vue = { "prettierd", "prettier" },
                 html = {},
-                xml = { "prettierd", "prettier" },
             },
             format_on_save = {
                 timeout_ms = 500,

@@ -26,7 +26,6 @@ return {
                 "yamlls",
                 "jsonls",
                 "taplo",
-                "lemminx",
                 "vtsls",
                 "html",
                 "cssls",
@@ -59,11 +58,13 @@ return {
             -- crate keybinding... this
         end
 
+        local except_server = "cssls|omnisharp|arduino_language_server"
+
         -- Call setup on each LSP server
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 -- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
-                if server_name ~= "jdtls" then
+                if not string.find(except_server, server_name) then
                     lspconfig[server_name].setup({
                         on_attach = lsp_attach,
                         capabilities = lsp_capabilities,
@@ -71,31 +72,6 @@ return {
                 end
             end,
         })
-
-        -- lua
-        lspconfig.lua_ls.setup({})
-        -- java
-        lspconfig.jdtls.setup({})
-        -- vue
-        lspconfig.vuels.setup({})
-        -- yaml
-        lspconfig.yamlls.setup({})
-        -- json
-        lspconfig.jsonls.setup({})
-        -- toml
-        lspconfig.taplo.setup({})
-        -- xml
-        lspconfig.lemminx.setup({})
-        -- javascript
-        lspconfig.vtsls.setup({})
-        -- html
-        lspconfig.html.setup({})
-        -- css
-        lspconfig.cssls.setup({})
-        -- python
-        lspconfig.pylsp.setup({})
-        -- sql
-        lspconfig.sqls.setup({})
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
