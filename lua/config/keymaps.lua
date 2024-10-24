@@ -10,7 +10,6 @@ mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })      
 mapKey("<leader>o", "", "n", { desc = "Open" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
 mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
-mapKey("<leader>ni", "<Cmd>Pioinit<CR>", "n", { desc = "Project init" })                                     -- 터미널 Open
 -- Custom mapping End
 
 
@@ -140,6 +139,11 @@ mapKey('<Leader>jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Requ
 mapKey('<Leader>C', "", "n", { desc = "C" })
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
 mapKey('<Leader>Cr', common.c_run, "n", { desc = "Compile" })
+
+-- platformIO
+mapKey('<Leader>pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
+mapKey('<Leader>pm', "<Cmd>Piomon<CR>", "n", { desc = "PIO monitor" })
+mapKey("<leader>pi", "<Cmd>Pioinit<CR>", "n", { desc = "PIO init" }) -- 터미널 Open
 
 -- neogen
 mapKey('<Leader>n', "", "n", { desc = "New" })

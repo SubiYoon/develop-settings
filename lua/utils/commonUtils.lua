@@ -67,6 +67,7 @@ M.install_common_package = function()
         install_on_mac("platformio", "platformio")
         install_on_mac("arduino-cli", "arduino-cli")
         install_on_mac("ccls", "ccls")
+        install_on_mac("go", "go")
     elseif uname:find("Windows") then
         -- Windows
         install_on_windows("lazygit", "lazygit")
@@ -74,6 +75,7 @@ M.install_common_package = function()
         install_on_windows("platformio", "platformio")
         install_on_windows("arduino-cli", "arduino-cli")
         install_on_windows("ccls", "ccls")
+        install_on_windows("go", "go")
     else
         print("Unsupported OS: " .. uname)
     end
