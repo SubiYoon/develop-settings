@@ -1,5 +1,14 @@
 local M = {}
 
+-- lsp 경고별 모양 설정 함수
+M.sign = function(opts)
+    vim.fn.sign_define(opts.name, {
+        texthl = opts.name,
+        text = opts.text,
+        numhl = ''
+    })
+end
+
 -- tab의 너비 조절
 M.widthResize = function()
     local width = vim.fn.input("input change size!!")

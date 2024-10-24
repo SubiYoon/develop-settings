@@ -1,3 +1,5 @@
+local common = require('utils.commonUtils')
+
 vim.g.mapleader = " "      -- global leader
 vim.g.maplocalleader = " " -- local leader
 vim.opt.shell = "/bin/zsh"
@@ -9,3 +11,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     command = "stopinsert",
 })
+-- xml에 쿼리문 자동 바인딩을 위한 파일타입 변경
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "xml",
+    callback = function()
+        vim.bo.filetype = "sql"
+    end,
+})
+-- lspconfig 경고모양 변경
+common.sign({ name = 'DiagnosticSignError', text = '🚨' })
+common.sign({ name = 'DiagnosticSignWarn', text = '⚠️' })
+common.sign({ name = 'DiagnosticSignHint', text = '✨' })
+common.sign({ name = 'DiagnosticSignInfo', text = '🔍' })
