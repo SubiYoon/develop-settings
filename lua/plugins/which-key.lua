@@ -11,13 +11,14 @@ return {
             wk.add(
                 {
                     { "<leader>f",  group = "Search File" },
-                    { "<leader>ff", searchUtils.search_by_filetype, desc = "Find File Type" },
+                    { "<leader>ff", searchUtils.search_by_filetype,     desc = "Find File Type" },
+                    { '<Leader>fe', searchUtils.open_buffer_in_neotree, desc = "Find File Explorer" },
                     -- { "<leader>ff", builtin.find_files,                         desc = "Find File" },
-                    { "<leader>fr", builtin.oldfiles,               desc = "Recent File" },
-                    { "<leader>fw", builtin.live_grep,              desc = "Find Word" },
-                    { "<leader>fb", builtin.buffers,                desc = "Find Buffer" },
-                    { "<leader>ft", "<Cmd>TodoTelescope<CR>",       desc = "Find TODO List" },
-                    { "<leader>fh", builtin.help_tags,              desc = "Help Tags" },
+                    { "<leader>fr", builtin.oldfiles,                   desc = "Recent File" },
+                    { "<leader>fw", builtin.live_grep,                  desc = "Find Word" },
+                    { "<leader>fb", builtin.buffers,                    desc = "Find Buffer" },
+                    { "<leader>ft", "<Cmd>TodoTelescope<CR>",           desc = "Find TODO List" },
+                    { "<leader>fh", builtin.help_tags,                  desc = "Help Tags" },
                 },
                 {
                     -- Nested mappings are allowed and can be added in any order

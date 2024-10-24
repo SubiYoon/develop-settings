@@ -75,4 +75,17 @@ M.search_by_filetype = function()
     end
 end
 
+M.open_buffer_in_neotree = function()
+    local current_buffer = vim.api.nvim_get_current_buf()
+    local buffer_name = vim.api.nvim_buf_get_name(current_buffer)
+
+    -- Neo-tree를 열고 해당 파일의 위치로 포커스를 이동
+    require("neo-tree.command").execute({
+        action = "show",
+        source = "filesystem",
+        path = buffer_name,
+        reveal = true, -- 해당 파일 위치를 강조
+    })
+end
+
 return M
