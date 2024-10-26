@@ -82,6 +82,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── lazygit.lua # git GUI 플러그인
 │   │   │
+│   │   ├─── markdown.lua # markdown 작성 bowswer로 미리보기
+│   │   │
 │   │   ├─── noice.lua # message, cmdline, popupmenu UI
 │   │   │
 │   │   ├─── neoconf.lua # 편리한 환경설정(?)
@@ -122,7 +124,7 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── vim-dadbod.lua # DB관련 플러그인 (사용하려는 DB 설치 필요 mysql, postgresql, oracleDB 등)
 │   │   │
-│   │   ├─── vim-maximizer.lua # 분할한 화면 최대 크기로 키우는 플러그인(<leader>sm)
+│   │   ├─── vim-maximizer.lua # 분할한 화면 최대 크기로 키우는 플러그인
 │   │   │
 │   │   └─── vim-autopairs.lua # auto basket close
 │   │ 

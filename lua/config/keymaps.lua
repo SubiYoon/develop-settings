@@ -3,13 +3,19 @@ local common = require("utils.commonUtils")
 local search = require("utils.searchUtils")
 
 -- Custom mapping Start
+mapKey("<leader>r", "", "n", { desc = "Re" })
+mapKey("<leader>c", "", "n", { desc = "Change" })
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
 mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })                                     -- 현재 buffer 너비 조정
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })                                   -- 현재 buffer 높이 조정
 mapKey("<leader>o", "", "n", { desc = "Open" })
-mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
-mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
+mapKey('<Leader>oD', "<Cmd>DBUI<CR>", "n", { desc = "Database" })
+mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })           -- 터미널 Open
+mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })             -- 터미널에서 normal모드 변경
+mapKey("<leader>p", "", "n", { desc = "Preview" })                                 -- 터미널에서 normal모드 변경
+mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" }) -- 터미널에서 normal모드 변경
+mapKey("<leader>v", "", "n", { desc = "View" })                                    -- 터미널에서 normal모드 변경
 -- Custom mapping End
 
 
@@ -118,22 +124,22 @@ mapKey('<Leader>gdv', "<Cmd>Gvdiffsplit<CR>", "n", { desc = "Vsplit" })
 mapKey('<Leader>gdh', "<Cmd>Ghdiffsplit<CR>", "n", { desc = "Hsplit" })
 
 -- Java
-mapKey('<Leader>j', "", "n", { desc = "Java" })
-mapKey('<Leader>jm', "", "n", { desc = "Make" })
-mapKey('<Leader>jmv', "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
-mapKey('<Leader>jmm', "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
-mapKey('<Leader>jmf', "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Method" })
-mapKey('<Leader>jmc', "<Cmd>JavaRefactorExtractConstant<CR>", "n", { desc = "Constant" })
-mapKey('<Leader>jt', "", "n", { desc = "Test" })
-mapKey('<Leader>jtc', "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
-mapKey('<Leader>jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
-mapKey('<Leader>jtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
-mapKey('<Leader>jtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
-mapKey('<Leader>jf', "", "n", { desc = "Find" })
-mapKey('<Leader>jfg', "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
-mapKey('<Leader>jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
-mapKey('<Leader>jfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
-mapKey('<Leader>jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
+mapKey('<Leader>J', "", "n", { desc = "Java" })
+mapKey('<Leader>Jm', "", "n", { desc = "Make" })
+mapKey('<Leader>Jmv', "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
+mapKey('<Leader>Jmm', "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
+mapKey('<Leader>Jmf', "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Method" })
+mapKey('<Leader>Jmc', "<Cmd>JavaRefactorExtractConstant<CR>", "n", { desc = "Constant" })
+mapKey('<Leader>Jt', "", "n", { desc = "Test" })
+mapKey('<Leader>Jtc', "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
+mapKey('<Leader>Jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
+mapKey('<Leader>JtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
+mapKey('<Leader>JtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
+mapKey('<Leader>Jf', "", "n", { desc = "Find" })
+mapKey('<Leader>Jfg', "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
+mapKey('<Leader>Jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
+mapKey('<Leader>JfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
+mapKey('<Leader>Jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
 
 -- C
 mapKey('<Leader>C', "", "n", { desc = "C" })
@@ -141,13 +147,11 @@ mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
 mapKey('<Leader>Cr', common.c_run, "n", { desc = "Compile" })
 
 -- platformIO
-mapKey('<Leader>pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
-mapKey('<Leader>pm', "<Cmd>Piomon<CR>", "n", { desc = "PIO monitor" })
-mapKey("<leader>pi", "<Cmd>Pioinit<CR>", "n", { desc = "PIO init" }) -- 터미널 Open
+mapKey('<Leader>P', "", "n", { desc = "PlatformIO" })
+mapKey('<Leader>Pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
+mapKey('<Leader>Pm', "<Cmd>Piomon<CR>", "n", { desc = "PIO monitor" })
+mapKey("<leader>Pi", "<Cmd>Pioinit<CR>", "n", { desc = "PIO init" }) -- 터미널 Open
 
 -- neogen
 mapKey('<Leader>n', "", "n", { desc = "New" })
 mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })
-
--- DB
-mapKey('<Leader>oD', "<Cmd>DBUI<CR>", "n", { desc = "Database" })
