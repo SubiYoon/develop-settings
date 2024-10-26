@@ -1,7 +1,3 @@
--- local keymaps = require("config.keymaps")
-local builtin = require("telescope/builtin")
-local searchUtils = require("utils.searchUtils")
-
 return {
     {
         "folke/which-key.nvim",
@@ -10,24 +6,27 @@ return {
             local wk = require('which-key')
             wk.add(
                 {
-                    { "<leader>f",  group = "Search File" },
-                    { "<leader>ff", searchUtils.search_by_filetype,     desc = "Find File Type" },
-                    { '<Leader>fe', searchUtils.open_buffer_in_neotree, desc = "Find File Explorer" },
-                    -- { "<leader>ff", builtin.find_files,                         desc = "Find File" },
-                    { "<leader>fr", builtin.oldfiles,                   desc = "Recent File" },
-                    { "<leader>fw", builtin.live_grep,                  desc = "Find Word" },
-                    { "<leader>fb", builtin.buffers,                    desc = "Find Buffer" },
-                    { "<leader>ft", "<Cmd>TodoTelescope<CR>",           desc = "Find TODO List" },
-                    { "<leader>fh", builtin.help_tags,                  desc = "Help Tags" },
-                },
-                {
-                    -- Nested mappings are allowed and can be added in any order
-                    -- Most attributes can be inherited or overridden on any level
-                    -- There's no limit to the depth of nesting
-                    mode = { "n", "v" },                          -- NORMAL and VISUAL mode
-                    { "<leader>q", "<cmd>q<cr>", desc = "Quit" }, -- no need to specify mode since it's inherited
-                    { "<leader>w", "<cmd>w<cr>", desc = "Write" },
-                })
+                    { "<leader>f", group = "Search File" },
+                    { "<leader>J", group = "Java", icon = "☕️" },
+                    { '<Leader>Jt', group = "Test", icon = "🧪" },
+                    { '<Leader>Jm', group = "Make", icon = "🏗️" },
+                    { '<Leader>Jf', group = "Find" },
+                    { "<leader>v", group = "View", icon = "🗾" },
+                    { "<leader>N", group = "Npm", icon = "📦" },
+                    { "<leader>Nk", group = "Npm Kill", icon = "☠️" },
+                    { "<leader>r", group = "Re", icon = "♻️" },
+                    { "<leader>c", group = "Change", icon = "🌀" },
+                    { "<leader>fq", group = "Find Query File" },
+                    { "<leader>o", group = "Open", icon = "📖" },
+                    { "<leader>p", group = "Preview", icon = "👁️" },
+                    { '<Leader>n', group = "New", icon = "📝" },
+                    { '<Leader>C', group = "C", icon = "⚙️" },
+                    { '<Leader>P', group = "PlatformIO", icon = "🔧" },
+                    { "<leader>t", group = "Tab", icon = "🪟" },
+                    { '<Leader>g', group = "Git" },
+                    { '<Leader>d', group = "Debug" },
+                }
+            )
         end,
         opts = {
         },

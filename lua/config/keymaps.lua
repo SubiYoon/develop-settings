@@ -1,18 +1,9 @@
 local mapKey = require("utils/keyMapper").mapKey
+local builtin = require("telescope/builtin")
 local common = require("utils.commonUtils")
 local search = require("utils.searchUtils")
 local npm = require("utils.npmUtils")
 
--- Grouping Start
-mapKey("<leader>v", "", "n", { desc = "View" })
-mapKey("<leader>N", "", "n", { desc = "Npm" })
-mapKey("<leader>Nk", "", "n", { desc = "Npm Kill" })
-mapKey("<leader>r", "", "n", { desc = "Re" })
-mapKey("<leader>c", "", "n", { desc = "Change" })
-mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
-mapKey("<leader>o", "", "n", { desc = "Open" })
-mapKey("<leader>p", "", "n", { desc = "Preview" })
--- Grouping End
 
 -- Custom mapping Start
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
@@ -48,7 +39,6 @@ mapKey(">", ">gv", "v", { desc = "Increase indent for selected text" })
 -- Tab (bar) control
 mapKey("gT", "<Cmd>BufferPrevious<CR>", "n", { desc = "Previous buffer" })
 mapKey("gt", "<Cmd>BufferNext<CR>", "n", { desc = "Next buffer" })
-mapKey("<leader>t", "", "n", { desc = "Tab" })
 mapKey("<leader>t<", "<Cmd>BufferMovePrevious<CR>", "n", { desc = "Move to previous buffer" })
 mapKey("<leader>t>", "<Cmd>BufferMoveNext<CR>", "n", { desc = "Move to next buffer" })
 mapKey("<leader>t1", "<Cmd>BufferGoto 1<CR>", "n", { desc = "Go to buffer 1" })
@@ -103,7 +93,6 @@ mapKey('<F7>', function() require('dap').step_into() end, "n", { desc = "Debug: 
 mapKey('<F8>', function() require('dap').step_over() end, "n", { desc = "Debug: Step over" })
 mapKey('<F9>', function() require('dap').continue() end, "n", { desc = "Debug: Continue" })
 mapKey('<F10>', function() require('dap').step_back() end, "n", { desc = "Debug: Step back" })
-mapKey('<Leader>d', "", "n", { desc = "Debug" })
 mapKey('<Leader>od', function() require('dapui').toggle() end, "n", { desc = "Debug" })
 mapKey('<Leader>dd', function() require('dap').toggle_breakpoint() end, "n", { desc = "Debug: Toggle breakpoint" })
 mapKey('<Leader>dq', function() require('dap').terminate() end, "n", { desc = "Debug: Terminate" })
@@ -123,45 +112,48 @@ mapKey('<Leader>ds', function()
 end, "n", { desc = "Debug: Show scopes" })
 
 -- Git
-mapKey('<Leader>g', "", "n", { desc = "Git" })
 mapKey('<Leader>gb', "<Cmd>Git blame<CR>", "n", { desc = "Git Blame" })
 mapKey('<Leader>gp', "<Cmd>Gitsigns preview_hunk<CR>", "n", { desc = "Preview This Hunk" })
-mapKey('<Leader>gr', "", "n", { desc = "Reset" })
 mapKey('<Leader>grh', "<Cmd>Gitsigns reset_hunk<CR>", "n", { desc = "Reset This Hunk" })
 mapKey('<Leader>grb', "<Cmd>Gitsigns reset_buffer<CR>", "n", { desc = "Reset This Buffer" })
-mapKey('<Leader>gd', "", "n", { desc = "Diff" })
 mapKey('<Leader>gdv', "<Cmd>Gvdiffsplit<CR>", "n", { desc = "Vsplit" })
 mapKey('<Leader>gdh', "<Cmd>Ghdiffsplit<CR>", "n", { desc = "Hsplit" })
 
 -- Java
-mapKey('<Leader>J', "", "n", { desc = "Java" })
-mapKey('<Leader>Jm', "", "n", { desc = "Make" })
+--make
 mapKey('<Leader>Jmv', "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
 mapKey('<Leader>Jmm', "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
 mapKey('<Leader>Jmf', "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Method" })
 mapKey('<Leader>Jmc', "<Cmd>JavaRefactorExtractConstant<CR>", "n", { desc = "Constant" })
-mapKey('<Leader>Jt', "", "n", { desc = "Test" })
+--test
 mapKey('<Leader>Jtc', "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
 mapKey('<Leader>Jtm', "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
 mapKey('<Leader>JtC', "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
 mapKey('<Leader>JtM', "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
-mapKey('<Leader>Jf', "", "n", { desc = "Find" })
+--find
 mapKey('<Leader>Jfg', "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
 mapKey('<Leader>Jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
 mapKey('<Leader>JfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
 mapKey('<Leader>Jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
 
 -- C
-mapKey('<Leader>C', "", "n", { desc = "C" })
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
 mapKey('<Leader>Cr', common.c_run, "n", { desc = "Compile" })
 
 -- platformIO
-mapKey('<Leader>P', "", "n", { desc = "PlatformIO" })
 mapKey('<Leader>Pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
 mapKey('<Leader>Pm', "<Cmd>Piomon<CR>", "n", { desc = "PIO monitor" })
 mapKey("<leader>Pi", "<Cmd>Pioinit<CR>", "n", { desc = "PIO init" }) -- 터미널 Open
 
 -- neogen
-mapKey('<Leader>n', "", "n", { desc = "New" })
 mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })
+
+-- search File
+mapKey("<leader>ff", search.search_by_filetype, "n", { desc = "Find File Type" })
+mapKey('<Leader>fe', search.open_buffer_in_neotree, "n", { desc = "Find File Explorer" })
+-- mapKey("<leader>ff", builtin.find_files, "n", { desc = "Find File" })
+mapKey("<leader>fr", builtin.oldfiles, "n", { desc = "Recent File" })
+mapKey("<leader>fw", builtin.live_grep, "n", { desc = "Find Word" })
+mapKey("<leader>fb", builtin.buffers, "n", { desc = "Find Buffer" })
+mapKey("<leader>ft", "<Cmd>TodoTelescope<CR>", "n", { desc = "Find TODO List" })
+mapKey("<leader>fh", builtin.help_tags, "n", { desc = "Help Tags" })
