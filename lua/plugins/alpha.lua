@@ -20,12 +20,12 @@ return {
                 "                                                                           ",
                 "                                                                           ",
                 "                                                                           ",
-                "    gcc : single line comment                      Git(<leader>g)          ",
-                "    gc  : multi line comment                       Tab(<leader>t)          ",
-                "                                                   Debug(<leader>d)        ",
-                "    za  : single group fold/unfold                 Treesitter(<leader>f)   ",
-                "    zM  : all group fold                           C(<leader>C)            ",
-                "    zR  : all group unfold                         Java(<leader>J)         ",
+                "    gcc : single line comment                Git           (<leader>g)     ",
+                "    gc  : multi line comment                 Debug         (<leader>d)     ",
+                "                                             Java          (<leader>J)     ",
+                "    za  : single group fold/unfold           C             (<leader>C)     ",
+                "    zM  : all group fold                     PlatformIO    (<leader>P)     ",
+                "    zR  : all group unfold                   Npm           (<leader>N)     ",
             }
 
             -- set memu button
