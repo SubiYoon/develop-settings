@@ -24,8 +24,8 @@ return {
                 "    gc  : multi line comment                       Tab(<leader>t)          ",
                 "                                                   Debug(<leader>d)        ",
                 "    za  : single group fold/unfold                 Treesitter(<leader>f)   ",
-                "    zM  : all group fold                                                   ",
-                "    zR  : all group unfold                                                 ",
+                "    zM  : all group fold                           C(<leader>C)            ",
+                "    zR  : all group unfold                         Java(<leader>J)         ",
             }
 
             -- set memu button

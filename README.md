@@ -23,7 +23,7 @@ tags:
 
 ```bash
 # brew package
-brew install neovim ripgrep lazygit platformio arduino-cli
+brew install neovim ripgrep lazygit platformio arduino-cli ccls
 ```
 
 # 직접 설치
@@ -76,7 +76,7 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── platformio.lua # 개발환경 세팅해주는 플러그인
 │   │   │
-│   │   ├─── dressing.lua # select,insert 꾸미기
+│   │   ├─── dressing.lua # select, insert 꾸미기
 │   │   │
 │   │   ├─── notify.lua # 알림창
 │   │   │
@@ -92,17 +92,17 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── neogen.lua # 주석관련 플러그인
 │   │   │
-│   │   ├─── which-key.lua # keyMapping 사용시 목록 보여주는 플러그인
+│   │   ├─── which-key.lua # keyMapping 사용시 목록 보여주는 플러그인(그룹핑 아이콘용으로만 사용)
 │   │   │
 │   │   ├─── neo-tree.lua # filefolder 탐색기
 │   │   │
 │   │   ├─── nvim-cmp.lua # 문법 자동완성
 │   │   │
-│   │   ├─── nvim-dap-iu.lua # 디버깅
+│   │   ├─── nvim-dap-iu.lua # 디버깅 UI
 │   │   │
-│   │   ├─── nvim-dap-virtual-text.lua # 디버깅
+│   │   ├─── nvim-dap-virtual-text.lua # 디버깅 data preview
 │   │   │
-│   │   ├─── git-signs.lua # git 변경사항 실시간 반영
+│   │   ├─── git-signs.lua # git 변경사항 preview
 │   │   │
 │   │   ├─── fugitive.lua # git 명령어 실행가능하게 설정
 │   │   │
