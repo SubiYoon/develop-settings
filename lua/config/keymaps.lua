@@ -1,21 +1,31 @@
 local mapKey = require("utils/keyMapper").mapKey
 local common = require("utils.commonUtils")
 local search = require("utils.searchUtils")
+local npm = require("utils.npmUtils")
 
--- Custom mapping Start
+-- Grouping Start
+mapKey("<leader>v", "", "n", { desc = "View" })
+mapKey("<leader>N", "", "n", { desc = "Npm" })
+mapKey("<leader>Nk", "", "n", { desc = "Npm Kill" })
 mapKey("<leader>r", "", "n", { desc = "Re" })
 mapKey("<leader>c", "", "n", { desc = "Change" })
 mapKey("<leader>fq", '', "n", { desc = "Find Query File" })
+mapKey("<leader>o", "", "n", { desc = "Open" })
+mapKey("<leader>p", "", "n", { desc = "Preview" })
+-- Grouping End
+
+-- Custom mapping Start
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
 mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })                                     -- 현재 buffer 너비 조정
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })                                   -- 현재 buffer 높이 조정
-mapKey("<leader>o", "", "n", { desc = "Open" })
 mapKey('<Leader>oD', "<Cmd>DBUI<CR>", "n", { desc = "Database" })
-mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })           -- 터미널 Open
-mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })             -- 터미널에서 normal모드 변경
-mapKey("<leader>p", "", "n", { desc = "Preview" })                                 -- 터미널에서 normal모드 변경
-mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" }) -- 터미널에서 normal모드 변경
-mapKey("<leader>v", "", "n", { desc = "View" })                                    -- 터미널에서 normal모드 변경
+mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
+mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
+mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" })                           -- markdown 미리보기
+mapKey("<leader>Nr", npm.start_npm_script, "n", { desc = "Run" })                                            -- npm run
+mapKey("<leader>Nko", npm.kill_npm_script, "n", { desc = "Kill One" })                                       -- npm kill one
+mapKey("<leader>Nka", npm.kill_all_npm_scripts, "n", { desc = "Kill All" })                                  -- npm kill all
+mapKey("<leader>Ni", npm.npm_install, "n", { desc = "Install" })                                             -- npm install
 -- Custom mapping End
 
 
