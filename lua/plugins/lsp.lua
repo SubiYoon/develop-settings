@@ -29,9 +29,7 @@ return {
                 "vtsls",
                 "html",
                 "cssls",
-                "clangd",
                 "omnisharp",
-                "arduino_language_server",
                 "pylsp",
                 "sqls",
             },
@@ -58,20 +56,37 @@ return {
             -- crate keybinding... this
         end
 
-        local except_server = "cssls|omnisharp|arduino_language_server"
-
         -- Call setup on each LSP server
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 -- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
-                if not string.find(except_server, server_name) then
-                    lspconfig[server_name].setup({
-                        on_attach = lsp_attach,
-                        capabilities = lsp_capabilities,
-                    })
-                end
+                lspconfig[server_name].setup({
+                    on_attach = lsp_attach,
+                    capabilities = lsp_capabilities,
+                })
             end,
         })
+
+        -- vim.lsp.set_log_level("debug") -- 로그 레벨을 디버그로 설정
+
+        -- custom install lsp Start
+        lspconfig.ccls.setup {
+            cmd = { "ccls" }, -- ccls 실행 파일의 경로 (PATH에 추가되어 있어야 함)
+            init_options = {
+                cache = {
+                    directory = ".ccls-cache",
+                },
+            },
+            root_dir = function(fname)
+                return lspconfig.util.root_pattern(".ccls", "platformio.ini", ".git")(fname) or
+                    vim.loop.cwd() -- 기본적으로 현재 작업 디렉토리 사용
+            end,
+            on_attach = function(client, bufnr)
+                -- 여기에 추가적인 LSP 설정을 넣을 수 있습니다.
+            end,
+            capabilities = require('cmp_nvim_lsp').default_capabilities(), -- 자동 완성 기능 추가 시
+        }
+        -- custom install lsp End
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
