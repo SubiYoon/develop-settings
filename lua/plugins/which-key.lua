@@ -6,6 +6,7 @@ return {
             local wk = require('which-key')
             wk.add(
                 {
+                    -- group start
                     { "<leader>f", group = "Search File" },
                     { "<leader>J", group = "Java", icon = "☕️" },
                     { '<Leader>Jt', group = "Test", icon = "🧪" },
@@ -25,6 +26,11 @@ return {
                     { "<leader>t", group = "Tab", icon = "🪟" },
                     { '<Leader>g', group = "Git" },
                     { '<Leader>d', group = "Debug" },
+                    -- group end
+
+                    -- no setting group start
+                    { "<leader>m", "<cmd>MCstart<cr>", mode = 'n', icon = "🔍", desc = "Multicusor" }
+                    -- no setting group end
                 }
             )
         end,
