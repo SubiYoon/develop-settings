@@ -60,6 +60,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── alpha.lua # nvim 실행시 dashboard
 │   │   │
+│   │   ├─── colorizer.lua # color syntax highlight plugin
+│   │   │
 │   │   ├─── theme.lua # 에디터 테마
 │   │   │
 │   │   ├─── lsp.lua # language 문법 검사
