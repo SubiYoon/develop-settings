@@ -37,12 +37,6 @@ python3 get-platformio.py
 ```bash
 ├─── ftplugin
 │   │ 
-│   ├─── arduino.lua # lsp arduino설정 관련
-│   │ 
-│   ├─── c.lua # lsp C, C++설정 관련
-│   │ 
-│   ├─── csharp.lua # lsp C#설정 관련
-│   │ 
 │   └─── java.lua # lsp java설정 관련(project별 환경설정 방법 ':JavaProfile'로 설정)
 │    
 ├─── lua
@@ -113,6 +107,8 @@ python3 get-platformio.py
 │   │   ├─── nvim-treesitter.lua # syntax highlight 등 등
 │   │   │
 │   │   ├─── nnvim-ufo.lua # code를 펼치고/접는 기능(command -/+와 같은 기능)
+│   │   │
+│   │   ├─── session-manager.lua # 현재 상태 저장하는 플러그인
 │   │   │
 │   │   ├─── surround.lua # text를 특정 basket으로 감싸는 플러그인
 │   │   │

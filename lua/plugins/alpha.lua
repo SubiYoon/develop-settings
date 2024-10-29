@@ -30,6 +30,7 @@ return {
 
             -- set memu button
             dashboard.section.buttons.val = {
+                dashboard.button("s", "🔖  > Load Last Session", ":SessionManager load_current_dir_session<CR>"),
                 dashboard.button("n", "📝  > New file", ":ene <BAR> startinsert <CR>"),
                 dashboard.button("f", "📁  > Find file", ":Telescope find_files<CR>"),
                 dashboard.button("w", "🔍  > Find Word", ":Telescope live_grep <CR>"),
