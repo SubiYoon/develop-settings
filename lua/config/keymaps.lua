@@ -59,8 +59,8 @@ mapKey("<leader>t0", "<Cmd>BufferLast<CR>", "n", { desc = "Go to last buffer" })
 -- mapKey("<C-u>", "<Cmd>BufferGotoUnpinned<CR>", "n", { desc = "Go to unpinned buffer" })
 
 -- Close buffer
-mapKey("<leader>tc", "<Cmd>BufferClose<CR>", "n", { desc = "Close current buffer" })
-mapKey("<leader>tac", "<Cmd>BufferCloseAllButCurrent<CR>", "n", { desc = "Close all buffer" })
+mapKey("<leader>tcc", "<Cmd>BufferClose<CR>", "n", { desc = "Close current buffer" })
+mapKey("<leader>tca", "<Cmd>BufferCloseAllButCurrent<CR>", "n", { desc = "Close all buffer" })
 -- Wipeout buffer
 -- mapKey("<leader>w", "<Cmd>BufferWipeout<CR>", "n", { desc = "Wipeout current buffer" })
 -- Close commands
