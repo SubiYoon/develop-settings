@@ -14,13 +14,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     command = "stopinsert",
 })
--- xml에 쿼리문 자동 바인딩을 위한 파일타입 변경
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "xml",
-    callback = function()
-        vim.bo.filetype = "sql"
-    end,
-})
 -- lspconfig 경고모양 변경
 common.sign({ name = 'DiagnosticSignError', text = '🚨' })
 common.sign({ name = 'DiagnosticSignWarn', text = '⚠️' })
