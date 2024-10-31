@@ -118,6 +118,7 @@ mapKey('<Leader>grh', "<Cmd>Gitsigns reset_hunk<CR>", "n", { desc = "Reset This 
 mapKey('<Leader>grb', "<Cmd>Gitsigns reset_buffer<CR>", "n", { desc = "Reset This Buffer" })
 mapKey('<Leader>gdv', "<Cmd>Gvdiffsplit<CR>", "n", { desc = "Vsplit" })
 mapKey('<Leader>gdh', "<Cmd>Ghdiffsplit<CR>", "n", { desc = "Hsplit" })
+mapKey("<leader>gg", "<cmd>LazyGit<cr>", "n", { desc = "LazyGit" })
 
 -- Java
 --make
