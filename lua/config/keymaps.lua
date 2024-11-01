@@ -17,6 +17,7 @@ mapKey("<leader>Nr", npm.start_npm_script, "n", { desc = "Run" })               
 mapKey("<leader>Nko", npm.kill_npm_script, "n", { desc = "Kill One" })                                       -- npm kill one
 mapKey("<leader>Nka", npm.kill_all_npm_scripts, "n", { desc = "Kill All" })                                  -- npm kill all
 mapKey("<leader>Ni", npm.npm_install, "n", { desc = "Install" })                                             -- npm install
+mapKey("<leader>vm", "<cmd>MaximizerToggle<CR>", "n", { desc = "Buffer Maximizer" })                         -- buffer maximizer
 -- Custom mapping End
 
 
