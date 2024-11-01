@@ -9,6 +9,7 @@ return {
                 'javascript',
                 'html',
                 'lua',
+                'java',
                 -- html = { mode = 'background',  names = false,  rgb_fn = true,  },
             },
             { mode = 'background' })
