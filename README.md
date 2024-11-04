@@ -43,6 +43,10 @@ python3 get-platformio.py
 │   │ 
 │   ├─── config
 │   │   │
+│   │   ├─── secure
+│   │   │   │
+│   │   │   └─── dbSample.lua # DB관련 세팅방법 샘플파일
+│   │   │
 │   │   ├─── globals.lua # 전체 환경 설정
 │   │   │
 │   │   ├─── init.lua # 초기화 설정
@@ -77,6 +81,8 @@ python3 get-platformio.py
 │   │   ├─── notify.lua # 알림창
 │   │   │
 │   │   ├─── lazygit.lua # git GUI 플러그인
+│   │   │
+│   │   ├─── leetcode.lua # git GUI 플러그인
 │   │   │
 │   │   ├─── markdown.lua # markdown 작성 bowswer로 미리보기
 │   │   │
