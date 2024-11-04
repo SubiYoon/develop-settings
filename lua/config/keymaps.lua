@@ -11,6 +11,7 @@ mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" })        
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" })                                   -- 현재 buffer 높이 조정
 mapKey('<Leader>oD', "<Cmd>DBUIToggle<CR>", "n", { desc = "Database" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
+mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" })                                                -- 터미널 Open
 mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
 mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" })                           -- markdown 미리보기
 mapKey("<leader>Nr", npm.start_npm_script, "n", { desc = "Run" })                                            -- npm run
