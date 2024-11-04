@@ -18,7 +18,7 @@ return {
         ---@type lc.lang
         lang = "java",
 
-        cn = {     -- leetcode.cn
+        cn = { -- leetcode.cn
             enabled = false, ---@type boolean
             translator = true, ---@type boolean
             translate_problems = true, ---@type boolean
@@ -38,7 +38,12 @@ return {
         ---@type boolean
         logging = true,
 
-        injector = {}, ---@type table<lc.lang, lc.inject>
+        injector = {
+            ["java"] = {
+                before = "",
+                after = ""
+            }
+        }, ---@type table<lc.lang, lc.inject>
 
         cache = {
             update_interval = 60 * 60 * 24 * 7, ---@type integer 7 days

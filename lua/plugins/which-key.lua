@@ -25,6 +25,7 @@ return {
                     { '<Leader>P', group = "PlatformIO", icon = "🔧" },
                     { "<leader>t", group = "Tab", icon = "🪟" },
                     { "<leader>tc", group = "Tab Close", icon = "🪟" },
+                    { '<Leader>L', group = "Leetcode", icon = "🧠" },
                     { '<Leader>g', group = "Git" },
                     { '<Leader>d', group = "Debug" },
                     -- group end
