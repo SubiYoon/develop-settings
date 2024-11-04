@@ -26,7 +26,7 @@ return {
 
         ---@type lc.storage
         storage = {
-            home = vim.fn.stdpath("data") .. "/leetcode",
+            home = "~/Develop/Study/StudyList/LeetCode/동섭",
             cache = vim.fn.stdpath("cache") .. "/leetcode",
         },
 
