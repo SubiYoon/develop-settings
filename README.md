@@ -66,6 +66,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── colorizer.lua # color syntax highlight plugin
 │   │   │
+│   │   ├─── codeWindow.lua # mini code preview plugin
+│   │   │
 │   │   ├─── theme.lua # 에디터 테마
 │   │   │
 │   │   ├─── lsp.lua # language 문법 검사
