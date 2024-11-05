@@ -40,11 +40,11 @@ return {
             ensure_installed = {
                 "java-debug-adapter",
                 "java-test",
-                "google-java-format",
                 "prettier",
                 "prettierd",
                 "eslint",
                 "eslint_d",
+                "sql-formatter"
             },
         })
 

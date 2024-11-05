@@ -7,10 +7,11 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 javascript = {},
-                java = {},
+                java = { "astyle" },
                 css = { "prettierd", "prettier" },
                 vue = { "prettierd", "prettier" },
                 html = {},
+                sql = { "sql_formatter" },
             },
             format_on_save = {
                 timeout_ms = 500,
