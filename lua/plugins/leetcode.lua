@@ -26,7 +26,7 @@ return {
 
         ---@type lc.storage
         storage = {
-            home = "~/Develop/Study/StudyList/LeetCode/동섭",
+            home = "~/Develop/Study/StudyList/LeetCode/",
             cache = vim.fn.stdpath("cache") .. "/leetcode",
         },
 
@@ -103,6 +103,6 @@ return {
         theme = {},
 
         ---@type boolean
-        image_support = false,
+        image_support = true,
     },
 }
