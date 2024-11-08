@@ -124,6 +124,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── surround.lua # text를 특정 basket으로 감싸는 플러그인
 │   │   │
+│   │   ├─── symbols-outline.lua # 함수, 변수 등 한번에 볼 수 있는 플러그인(<leader>os : 커스텀함)
+│   │   │
 │   │   ├─── telescope-spring.lua # spring Request Mapping 검색
 │   │   │
 │   │   ├─── telescope.lua # 파일 검색

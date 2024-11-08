@@ -14,6 +14,7 @@ mapKey('<Leader>oD', "<Cmd>DBUIToggle<CR>", "n", { desc = "Database" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" })                                     -- 터미널 Open
 mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" })                                                -- LeetCode Open
 mapKey("<leader>om", codewindow.toggle_minimap, "n", { desc = "Mini Map" })                                  -- minimap Open
+mapKey("<leader>os", "<cmd>SymbolsOutline<CR>", "n", { desc = "SymbolsOutline" })                            -- SymbolsOutline Open
 mapKey("gm", codewindow.toggle_focus, "n", { desc = "Mini Map" })                                            -- minimap focus
 mapKey("<C-Space>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" })                                       -- 터미널에서 normal모드 변경
 mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" })                           -- markdown 미리보기

@@ -18,7 +18,7 @@ return {
                 show_cursor = true,                                                             -- Show the cursor position in the minimap
                 screen_bounds = 'lines',                                                        -- How the visible area is displayed, "lines": lines above and below, "background": background color
                 window_border = 'single',                                                       -- The border style of the floating window (accepts all usual options)
-                relative = 'win',                                                               -- What will be the minimap be placed relative to, "win": the current window, "editor": the entire editor
+                relative = 'editor',                                                            -- What will be the minimap be placed relative to, "win": the current window, "editor": the entire editor
                 events = { 'TextChanged', 'InsertLeave', 'DiagnosticChanged', 'FileWritePost' } -- Events that update the code window
             }
         )
