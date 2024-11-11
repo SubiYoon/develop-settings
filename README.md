@@ -86,6 +86,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── leetcode.lua # git GUI 플러그인
 │   │   │
+│   │   ├─── illuminate.lua # 같은 변수 및 심볼 하이라이트 플러그인
+│   │   │
 │   │   ├─── markdown.lua # markdown 작성 bowswer로 미리보기
 │   │   │
 │   │   ├─── noice.lua # message, cmdline, popupmenu UI
