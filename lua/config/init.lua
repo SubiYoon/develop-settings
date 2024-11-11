@@ -29,9 +29,10 @@ local opts = {}
 require("lazy").setup({
         { import = plugins },
         { import = language },
-    {import = secure}
+        { import = secure }
     },
     opts
 )
 
+require("config/dap-config")
 require("config/keymaps")

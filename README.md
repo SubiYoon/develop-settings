@@ -53,6 +53,8 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── keymaps.lua # 키맵핑 설정
 │   │   │
+│   │   ├─── dap-config.lua # 디버깅 설정(언어별)
+│   │   │
 │   │   └─── options.lua # 옵션 설정
 │   │ 
 │   ├─── plugins

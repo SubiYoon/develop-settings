@@ -44,7 +44,8 @@ return {
                 "prettierd",
                 "eslint",
                 "eslint_d",
-                "sql-formatter"
+                "sql-formatter",
+                "codelldb", -- C++ debug
             },
         })
 
