@@ -74,12 +74,11 @@ return {
         lspconfig.ccls.setup {
             cmd = { "ccls" }, -- ccls 실행 파일의 경로 (PATH에 추가되어 있어야 함)
             init_options = {
-                cache = {
-                    directory = ".ccls-cache",
-                },
+                cache = { directory = ".ccls-cache", },
+                clang = { extraArgs = { "-std=c11", "-std=c17" } },
             },
             root_dir = function(fname)
-                return lspconfig.util.root_pattern(".ccls", "platformio.ini", ".git")(fname) or
+                return lspconfig.util.root_pattern("compile_commands.json", ".ccls", "platformio.ini", ".git")(fname) or
                     vim.loop.cwd() -- 기본적으로 현재 작업 디렉토리 사용
             end,
             on_attach = function(client, bufnr)
