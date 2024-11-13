@@ -28,5 +28,5 @@ common.sign({ name = 'DiagnosticSignInfo', text = '🔍' })
 vim.api.nvim_set_hl(0, 'CodewindowWarn', { fg = '#ffff00' })      -- the color of the warning dots
 vim.api.nvim_set_hl(0, 'CodewindowError', { fg = '#ff0000' })     -- the color of the error dots
 vim.api.nvim_set_hl(0, 'CodewindowAddition', { fg = '#00ff00' })  -- the color of the addition git sign
-vim.api.nvim_set_hl(0, 'CodewindowDeletion', { fg = '#808080' })  -- the color of the deletion git sign
+vim.api.nvim_set_hl(0, 'CodewindowDeletion', { fg = '#cc0099' })  -- the color of the deletion git sign
 vim.api.nvim_set_hl(0, 'CodewindowUnderline', { fg = '#800000' }) -- the color of the underlines on the minimap
