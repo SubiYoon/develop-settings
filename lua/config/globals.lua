@@ -16,6 +16,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     command = "stopinsert",
 })
+
+-- VimLeavePre 이벤트에 함수 연결
+vim.api.nvim_create_autocmd("VimLeavePre", {
+    command = 'lua require("utils.npmUtils").kill_all_npm_scripts()',
+})
+
 -- lspconfig 경고모양 변경
 common.sign({ name = 'DiagnosticSignError', text = '🚨' })
 common.sign({ name = 'DiagnosticSignWarn', text = '⚠️' })
