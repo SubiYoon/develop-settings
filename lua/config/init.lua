@@ -17,12 +17,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('utils.commonUtils').install_ripgrep()
 require('utils.commonUtils').install_common_package()
-require("config/globals")
-require("config/options")
+require("config.globals")
+require("config.options")
 
 local plugins = "plugins"
-local language = "plugins/language"
-local secure = "config/secure"
+local language = "plugins.language"
+local secure = "config.secure"
 local opts = {}
 
 -- Setup lazy.nvim
@@ -34,5 +34,6 @@ require("lazy").setup({
     opts
 )
 
-require("config/dap-config")
-require("config/keymaps")
+require("config.dap-config")
+require("config.keymaps")
+require("config.autocmd")

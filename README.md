@@ -47,6 +47,8 @@ python3 get-platformio.py
 │   │   │   │
 │   │   │   └─── dbSample.lua # DB관련 세팅방법 샘플파일
 │   │   │
+│   │   ├─── autocmd.lua # 자동 동작 설정
+│   │   │
 │   │   ├─── globals.lua # 전체 환경 설정
 │   │   │
 │   │   ├─── init.lua # 초기화 설정
