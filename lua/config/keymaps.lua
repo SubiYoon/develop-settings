@@ -144,9 +144,9 @@ mapKey('<Leader>Jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request"
 mapKey('<Leader>JfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
 mapKey('<Leader>Jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
 
--- C
+-- C++
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
-mapKey('<Leader>Cr', common.c_run, "n", { desc = "Compile" })
+mapKey('<Leader>Cr', common.c_run, "n", { desc = "Run" })
 
 -- platformIO
 mapKey('<Leader>Pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
