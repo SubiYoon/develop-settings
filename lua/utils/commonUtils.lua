@@ -210,7 +210,7 @@ M.c_complie = function()
     local file = vim.api.nvim_buf_get_name(0)
 
     -- 파일이 .c 확장자인지 확인
-    if file:match("%.c$") then
+    if file:match("%.c$") or file:match("%.cpp$") then
         -- 현재 파일 저장
         vim.cmd('write')
 
@@ -230,7 +230,7 @@ M.c_complie = function()
             print("컴파일 실패:\n" .. result)
         end
     else
-        print("이 파일은 C 파일이 아닙니다.")
+        print("이 파일은 C 또는 C++ 파일이 아닙니다.")
     end
 end
 
@@ -245,14 +245,14 @@ M.c_run = function()
         file = vim.api.nvim_buf_get_name(0)
 
         -- 파일이 .c 확장자인지 확인
-        if file:match("%.c$") then
+        if file:match("%.c$") or file:match("%.cpp$") then
             -- 현재 파일 저장
             vim.cmd('write')
             -- 파일이름만 추출
             -- t: 경로에서 이름만 추출
             -- r: 이름에서 확장자 제거
         else
-            print("이 파일은 C 파일이 아닙니다.")
+            print("이 파일은 C 또는 C++ 파일이 아닙니다.")
         end
     end
 
@@ -265,7 +265,9 @@ M.c_run = function()
 
     -- gcc 명령어 실행
     local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-    local result = vim.fn.system(run_cmd)
+    -- local result = vim.fn.system(run_cmd)
+    -- Neovim의 터미널 창에서 실행
+    vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
 
     -- 컴파일 결과 출력
     if vim.v.shell_error == 0 then
