@@ -220,7 +220,7 @@ M.c_complie = function()
         local output_file = vim.fn.fnamemodify(file, ":t:r")
 
         -- gcc 명령어 실행
-        local compile_cmd = "clang " .. file .. " -o " .. vim.fn.getcwd() .. "/" .. output_file
+        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
         local result = vim.fn.system(compile_cmd)
 
         -- 컴파일 결과 출력

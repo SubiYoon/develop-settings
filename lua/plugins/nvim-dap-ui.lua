@@ -106,12 +106,12 @@ return {
 
         dap.listeners.before.event_terminated["dapui_config"] = function()
             -- Commented to prevent DAP UI from closing when unit tests finish
-            require('dapui').close()
+            -- require('dapui').close()
         end
 
         dap.listeners.before.event_exited["dapui_config"] = function()
             -- Commented to prevent DAP UI from closing when unit tests finish
-            require('dapui').close()
+            -- require('dapui').close()
         end
 
         -- Add dap configurations based on your language/adapter settings
