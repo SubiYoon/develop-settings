@@ -61,32 +61,58 @@ return {
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 -- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
-                lspconfig[server_name].setup({
-                    on_attach = lsp_attach,
-                    capabilities = lsp_capabilities,
-                })
+                if server_name ~= "clangd" then
+                    lspconfig[server_name].setup({
+                        on_attach = lsp_attach,
+                        capabilities = lsp_capabilities,
+                    })
+                end
             end,
         })
 
         -- vim.lsp.set_log_level("debug") -- 로그 레벨을 디버그로 설정
 
-        -- custom install lsp Start
-        lspconfig.ccls.setup {
-            cmd = { "ccls" }, -- ccls 실행 파일의 경로 (PATH에 추가되어 있어야 함)
-            init_options = {
-                cache = { directory = ".ccls-cache", },
-                clang = { extraArgs = { "-std=c11", "-std=c17" } },
-            },
-            root_dir = function(fname)
-                return lspconfig.util.root_pattern("compile_commands.json", ".ccls", "platformio.ini", ".git")(fname) or
-                    vim.loop.cwd() -- 기본적으로 현재 작업 디렉토리 사용
-            end,
-            on_attach = function(client, bufnr)
-                -- 여기에 추가적인 LSP 설정을 넣을 수 있습니다.
-            end,
-            capabilities = require('cmp_nvim_lsp').default_capabilities(), -- 자동 완성 기능 추가 시
-        }
-        -- custom install lsp End
+        -- C/C++ 선택 함수
+        local function select_lsp_by_platformio()
+            local project_root = vim.fn.getcwd()
+
+            -- platformio.ini 파일이 존재하면 ccls를 사용
+            if vim.fn.filereadable(project_root .. "/platformio.ini") == 1 then
+                return "ccls"
+            else
+                return "clangd"
+            end
+        end
+
+        local lsp_name = select_lsp_by_platformio()
+        if lsp_name == "ccls" then
+            lspconfig.ccls.setup {
+                cmd = { "ccls" }, -- ccls 실행 파일의 경로 (PATH에 추가되어 있어야 함)
+                init_options = {
+                    cache = { directory = ".ccls-cache", },
+                    clang = { extraArgs = { "-std=c11", "-std=c17" } },
+                },
+                root_dir = function(fname)
+                    return lspconfig.util.root_pattern(".ccls", "platformio.ini")(fname) or
+                        vim.loop.cwd() -- 기본적으로 현재 작업 디렉토리 사용
+                end,
+                on_attach = lsp_attach,
+                capabilities = require('cmp_nvim_lsp').default_capabilities(), -- 자동 완성 기능 추가 시
+            }
+        elseif lsp_name == "clangd" then
+            lspconfig.clangd.setup {
+                cmd = { "clangd", "--header-insertion=always" }, -- ccls 실행 파일의 경로 (PATH에 추가되어 있어야 함)
+                init_options = {
+                    clang = { extraArgs = { "-std=c11", "-std=c17" } },
+                },
+                root_dir = function(fname)
+                    return lspconfig.util.root_pattern("compile_commands.json", ".git")(fname) or
+                        vim.loop.cwd() -- 기본적으로 현재 작업 디렉토리 사용
+                end,
+                on_attach = lsp_attach,
+                capabilities = require('cmp_nvim_lsp').default_capabilities(), -- 자동 완성 기능 추가 시
+            }
+        end
 
         local open_floating_preview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
