@@ -236,44 +236,86 @@ end
 
 -- 현재 열려있는 파일의 컴파일한 파일을 찾아 실행
 M.c_run = function()
-    local input_file = vim.fn.input("input compile file path!! (default: root_dir)")
-    -- 현재 열려 있는 파일 경로
-    local file = nil
-    if input_file ~= "" then
-        file = vim.fn.getcwd() .. "/" .. input_file
-    else
-        file = vim.api.nvim_buf_get_name(0)
+    local file = vim.api.nvim_buf_get_name(0)
 
-        -- 파일이 .c 확장자인지 확인
-        if file:match("%.c$") or file:match("%.cpp$") then
-            -- 현재 파일 저장
-            vim.cmd('write')
-            -- 파일이름만 추출
-            -- t: 경로에서 이름만 추출
-            -- r: 이름에서 확장자 제거
+    -- 파일이 .c 또는 .cpp 확장자인지 확인
+    if file:match("%.c$") or file:match("%.cpp$") then
+        -- 현재 파일 저장
+        vim.cmd('write')
+
+        -- 파일이름만 추출 (확장자 제외)
+        local output_file = vim.fn.fnamemodify(file, ":t:r")
+
+        -- 컴파일 명령어 생성
+        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
+        local result = vim.fn.system(compile_cmd)
+
+        -- 컴파일 결과 출력
+        if vim.v.shell_error == 0 then
+            print("컴파일 성공: " .. output_file)
+
+            -- 컴파일된 파일 실행
+            local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+            vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
+
+            -- 실행 후 결과물 파일 삭제
+            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " .. vim.fn.getcwd() .. "/" .. output_file .. "')")
+            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
         else
-            print("이 파일은 C 또는 C++ 파일이 아닙니다.")
+            print("컴파일 실패:\n" .. result)
         end
-    end
-
-    local output_file = vim.fn.fnamemodify(file, ":t:r")
-
-    if output_file == "" then
-        print("파일이 존재하지 않습니다.")
-        return -1
-    end
-
-    -- gcc 명령어 실행
-    local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-    -- local result = vim.fn.system(run_cmd)
-    -- Neovim의 터미널 창에서 실행
-    vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
-
-    -- 컴파일 결과 출력
-    if vim.v.shell_error == 0 then
-        print("실행 성공: " .. output_file)
     else
-        print("컴파일 실패:\n" .. result)
+        print("이 파일은 C 또는 C++ 파일이 아닙니다.")
+    end
+end
+
+-- C 파일 컴파일 후 자동 실행
+M.c_debug = function()
+    local file = vim.api.nvim_buf_get_name(0)
+
+    -- 파일이 .c 또는 .cpp 확장자인지 확인
+    if file:match("%.c$") or file:match("%.cpp$") then
+        -- 현재 파일 저장
+        vim.cmd('write')
+
+        -- 파일 이름만 추출 (확장자 제외)
+        local output_file = vim.fn.fnamemodify(file, ":t:r")
+
+        -- 컴파일 명령어 생성
+        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
+        local result = vim.fn.system(compile_cmd)
+
+        -- 컴파일 결과 출력
+        if vim.v.shell_error == 0 then
+            print("컴파일 성공: " .. output_file)
+
+            -- 컴파일된 파일 경로를 nvim-dap에 자동으로 전달하고 실행
+            local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+
+            -- dap-continue 실행 전에 파일 경로를 설정
+            local dap_config = {
+                type = "codelldb",
+                request = "launch",
+                name = "Launch Program",
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                args = {},
+                program = run_cmd, -- 자동으로 컴파일된 파일 경로 입력
+            }
+
+            -- DAP 세션을 시작하고 실행
+            require("dap").run(dap_config)
+
+            -- 실행 후 결과물 파일 삭제
+            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " .. vim.fn.getcwd() .. "/" .. output_file .. "')")
+            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
+        else
+            print("컴파일 실패:\n" .. result)
+        end
+    else
+        print("이 파일은 C 또는 C++ 파일이 아닙니다.")
     end
 end
 

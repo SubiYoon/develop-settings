@@ -147,6 +147,7 @@ mapKey('<Leader>Jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Requ
 -- C++
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
 mapKey('<Leader>Cr', common.c_run, "n", { desc = "Run" })
+mapKey('<Leader>Cd', common.c_debug, "n", { desc = "Debug" })
 
 -- platformIO
 mapKey('<Leader>Pr', "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
