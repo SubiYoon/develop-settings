@@ -206,29 +206,61 @@ end
 
 -- C언어 컴파일
 M.c_complie = function()
-    -- 현재 열려 있는 파일 경로
     local file = vim.api.nvim_buf_get_name(0)
 
-    -- 파일이 .c 확장자인지 확인
+    -- 파일이 .c 또는 .cpp 확장자인지 확인
     if file:match("%.c$") or file:match("%.cpp$") then
         -- 현재 파일 저장
         vim.cmd('write')
 
-        -- 파일이름만 추출
-        -- t: 경로에서 이름만 추출
-        -- r: 이름에서 확장자 제거
-        local output_file = vim.fn.fnamemodify(file, ":t:r")
+        -- 현재 파일의 디렉토리 가져오기
+        local dir = vim.fn.fnamemodify(file, ":h")
 
-        -- gcc 명령어 실행
-        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
-        local result = vim.fn.system(compile_cmd)
+        -- 소스 파일을 저장할 테이블
+        local sources = {}
 
-        -- 컴파일 결과 출력
-        if vim.v.shell_error == 0 then
-            print("컴파일 성공: " .. output_file)
-        else
-            print("컴파일 실패:\n" .. result)
+        -- 터미널 출력 내용을 처리하는 콜백 함수
+        local function on_stdout(_, data, _)
+            if data then
+                for _, line in ipairs(data) do
+                    if line ~= "" then
+                        table.insert(sources, line)
+                    end
+                end
+            end
         end
+
+        -- `find` 명령 실행
+        local sources_cmd = { "find", dir, "-type", "f", "-name", "*.c", "-o", "-name", "*.cpp" }
+        vim.fn.jobstart(sources_cmd, {
+            stdout_buffered = true, -- 출력이 버퍼링된 상태로 처리
+            on_stdout = on_stdout,  -- 표준 출력 시 실행할 함수
+            on_exit = function()
+                -- 소스 파일이 없으면 종료
+                if #sources == 0 then
+                    print("컴파일할 .c 또는 .cpp 파일이 없습니다.")
+                    return
+                end
+
+                -- 소스 파일을 공백으로 구분된 문자열로 변환
+                local sources_str = table.concat(sources, " ")
+                print("컴파일할 파일들: " .. sources_str)
+
+                -- 파일 이름만 추출 (확장자 제외)
+                local output_file = vim.fn.fnamemodify(file, ":t:r")
+
+                -- 컴파일 명령어 생성
+                local compile_cmd = "clang " .. sources_str .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
+                local result = vim.fn.system(compile_cmd)
+
+                -- 컴파일 결과 출력
+                if vim.v.shell_error == 0 then
+                    print("컴파일 성공: " .. output_file)
+                else
+                    print("컴파일 실패:\n" .. result)
+                end
+            end,
+        })
     else
         print("이 파일은 C 또는 C++ 파일이 아닙니다.")
     end
@@ -243,28 +275,64 @@ M.c_run = function()
         -- 현재 파일 저장
         vim.cmd('write')
 
-        -- 파일이름만 추출 (확장자 제외)
-        local output_file = vim.fn.fnamemodify(file, ":t:r")
+        -- 현재 파일의 디렉토리 가져오기
+        local dir = vim.fn.fnamemodify(file, ":h")
 
-        -- 컴파일 명령어 생성
-        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
-        local result = vim.fn.system(compile_cmd)
+        -- 소스 파일을 저장할 테이블
+        local sources = {}
 
-        -- 컴파일 결과 출력
-        if vim.v.shell_error == 0 then
-            print("컴파일 성공: " .. output_file)
-
-            -- 컴파일된 파일 실행
-            local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-            vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
-
-            -- 실행 후 결과물 파일 삭제
-            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " .. vim.fn.getcwd() .. "/" .. output_file .. "')")
-            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
-                vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
-        else
-            print("컴파일 실패:\n" .. result)
+        -- 터미널 출력 내용을 처리하는 콜백 함수
+        local function on_stdout(_, data, _)
+            if data then
+                for _, line in ipairs(data) do
+                    if line ~= "" then
+                        table.insert(sources, line)
+                    end
+                end
+            end
         end
+
+        -- `find` 명령 실행
+        local sources_cmd = { "find", dir, "-type", "f", "-name", "*.c", "-o", "-name", "*.cpp" }
+        vim.fn.jobstart(sources_cmd, {
+            stdout_buffered = true, -- 출력이 버퍼링된 상태로 처리
+            on_stdout = on_stdout,  -- 표준 출력 시 실행할 함수
+            on_exit = function()
+                -- 소스 파일이 없으면 종료
+                if #sources == 0 then
+                    print("컴파일할 .c 또는 .cpp 파일이 없습니다.")
+                    return
+                end
+
+                -- 소스 파일을 공백으로 구분된 문자열로 변환
+                local sources_str = table.concat(sources, " ")
+                print("컴파일할 파일들: " .. sources_str)
+
+                -- 파일 이름만 추출 (확장자 제외)
+                local output_file = vim.fn.fnamemodify(file, ":t:r")
+
+                -- 컴파일 명령어 생성
+                local compile_cmd = "clang " .. sources_str .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
+                local result = vim.fn.system(compile_cmd)
+
+                -- 컴파일 결과 출력
+                if vim.v.shell_error == 0 then
+                    print("컴파일 성공: " .. output_file)
+
+                    -- 컴파일된 파일 실행
+                    local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+                    vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
+
+                    -- 실행 후 결과물 파일 삭제
+                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
+                        vim.fn.getcwd() .. "/" .. output_file .. "')")
+                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                        vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
+                else
+                    print("컴파일 실패:\n" .. result)
+                end
+            end,
+        })
     else
         print("이 파일은 C 또는 C++ 파일이 아닙니다.")
     end
@@ -279,41 +347,77 @@ M.c_debug = function()
         -- 현재 파일 저장
         vim.cmd('write')
 
-        -- 파일 이름만 추출 (확장자 제외)
-        local output_file = vim.fn.fnamemodify(file, ":t:r")
+        -- 현재 파일의 디렉토리 가져오기
+        local dir = vim.fn.fnamemodify(file, ":h")
 
-        -- 컴파일 명령어 생성
-        local compile_cmd = "clang " .. file .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
-        local result = vim.fn.system(compile_cmd)
+        -- 소스 파일을 저장할 테이블
+        local sources = {}
 
-        -- 컴파일 결과 출력
-        if vim.v.shell_error == 0 then
-            print("컴파일 성공: " .. output_file)
-
-            -- 컴파일된 파일 경로를 nvim-dap에 자동으로 전달하고 실행
-            local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-
-            -- dap-continue 실행 전에 파일 경로를 설정
-            local dap_config = {
-                type = "codelldb",
-                request = "launch",
-                name = "Launch Program",
-                cwd = '${workspaceFolder}',
-                stopOnEntry = false,
-                args = {},
-                program = run_cmd, -- 자동으로 컴파일된 파일 경로 입력
-            }
-
-            -- DAP 세션을 시작하고 실행
-            require("dap").run(dap_config)
-
-            -- 실행 후 결과물 파일 삭제
-            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " .. vim.fn.getcwd() .. "/" .. output_file .. "')")
-            vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
-                vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
-        else
-            print("컴파일 실패:\n" .. result)
+        -- 터미널 출력 내용을 처리하는 콜백 함수
+        local function on_stdout(_, data, _)
+            if data then
+                for _, line in ipairs(data) do
+                    if line ~= "" then
+                        table.insert(sources, line)
+                    end
+                end
+            end
         end
+
+        -- `find` 명령 실행
+        local sources_cmd = { "find", dir, "-type", "f", "-name", "*.c", "-o", "-name", "*.cpp" }
+        vim.fn.jobstart(sources_cmd, {
+            stdout_buffered = true, -- 출력이 버퍼링된 상태로 처리
+            on_stdout = on_stdout,  -- 표준 출력 시 실행할 함수
+            on_exit = function()
+                -- 소스 파일이 없으면 종료
+                if #sources == 0 then
+                    print("컴파일할 .c 또는 .cpp 파일이 없습니다.")
+                    return
+                end
+
+                -- 소스 파일을 공백으로 구분된 문자열로 변환
+                local sources_str = table.concat(sources, " ")
+                print("컴파일할 파일들: " .. sources_str)
+
+                -- 파일 이름만 추출 (확장자 제외)
+                local output_file = vim.fn.fnamemodify(file, ":t:r")
+
+                -- 컴파일 명령어 생성
+                local compile_cmd = "clang " .. sources_str .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
+                local result = vim.fn.system(compile_cmd)
+
+                -- 컴파일 결과 출력
+                if vim.v.shell_error == 0 then
+                    print("컴파일 성공: " .. output_file)
+
+                    -- 컴파일된 파일 경로를 nvim-dap에 자동으로 전달하고 실행
+                    local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+
+                    -- dap-continue 실행 전에 파일 경로를 설정
+                    local dap_config = {
+                        type = "codelldb",
+                        request = "launch",
+                        name = "Launch Program",
+                        cwd = '${workspaceFolder}',
+                        stopOnEntry = false,
+                        args = {},
+                        program = run_cmd, -- 자동으로 컴파일된 파일 경로 입력
+                    }
+
+                    -- DAP 세션을 시작하고 실행
+                    require("dap").run(dap_config)
+
+                    -- 실행 후 결과물 파일 삭제
+                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
+                        vim.fn.getcwd() .. "/" .. output_file .. "')")
+                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                        vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
+                else
+                    print("컴파일 실패:\n" .. result)
+                end
+            end,
+        })
     else
         print("이 파일은 C 또는 C++ 파일이 아닙니다.")
     end
