@@ -304,33 +304,41 @@ M.c_run = function()
                     return
                 end
 
-                -- 소스 파일을 공백으로 구분된 문자열로 변환
-                local sources_str = table.concat(sources, " ")
-                print("컴파일할 파일들: " .. sources_str)
-
                 -- 파일 이름만 추출 (확장자 제외)
                 local output_file = vim.fn.fnamemodify(file, ":t:r")
+                local output_file_path = vim.fn.getcwd() .. "/" .. output_file
+                local dSYM_path = output_file_path .. ".dSYM"
 
-                -- 컴파일 명령어 생성
-                local compile_cmd = "clang " .. sources_str .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
-                local result = vim.fn.system(compile_cmd)
-
-                -- 컴파일 결과 출력
-                if vim.v.shell_error == 0 then
-                    print("컴파일 성공: " .. output_file)
-
-                    -- 컴파일된 파일 실행
-                    local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-                    vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
-
-                    -- 실행 후 결과물 파일 삭제
-                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
-                        vim.fn.getcwd() .. "/" .. output_file .. "')")
-                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
-                        vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
+                -- 기존에 이미 컴파일된 파일과 .dSYM 폴더가 존재하는지 확인
+                if vim.fn.glob(output_file_path) ~= "" and vim.fn.isdirectory(dSYM_path) == 1 then
+                    print("컴파일이 존재하여 과정을 스킵힙니다.")
                 else
-                    print("컴파일 실패:\n" .. result)
+                    -- 소스 파일을 공백으로 구분된 문자열로 변환
+                    local sources_str = table.concat(sources, " ")
+                    print("컴파일할 파일들: " .. sources_str)
+
+                    -- 컴파일 명령어 생성
+                    local compile_cmd = "clang " .. sources_str .. " -g -o " .. output_file_path
+                    local result = vim.fn.system(compile_cmd)
+
+                    -- 컴파일 결과 출력
+                    if vim.v.shell_error == 0 then
+                        print("컴파일 성공: " .. output_file)
+                    else
+                        print("컴파일 실패:\n" .. result)
+                        return
+                    end
                 end
+
+                -- 컴파일된 파일 실행
+                local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+                vim.cmd("botright split | resize 15 | terminal " .. run_cmd)
+
+                -- 실행 후 결과물 파일 삭제
+                vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
+                    vim.fn.getcwd() .. "/" .. output_file .. "')")
+                vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                    vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
             end,
         })
     else
@@ -376,46 +384,54 @@ M.c_debug = function()
                     return
                 end
 
-                -- 소스 파일을 공백으로 구분된 문자열로 변환
-                local sources_str = table.concat(sources, " ")
-                print("컴파일할 파일들: " .. sources_str)
-
                 -- 파일 이름만 추출 (확장자 제외)
                 local output_file = vim.fn.fnamemodify(file, ":t:r")
+                local output_file_path = vim.fn.getcwd() .. "/" .. output_file
+                local dSYM_path = output_file_path .. ".dSYM"
 
-                -- 컴파일 명령어 생성
-                local compile_cmd = "clang " .. sources_str .. " -g -o " .. vim.fn.getcwd() .. "/" .. output_file
-                local result = vim.fn.system(compile_cmd)
-
-                -- 컴파일 결과 출력
-                if vim.v.shell_error == 0 then
-                    print("컴파일 성공: " .. output_file)
-
-                    -- 컴파일된 파일 경로를 nvim-dap에 자동으로 전달하고 실행
-                    local run_cmd = vim.fn.getcwd() .. "/" .. output_file
-
-                    -- dap-continue 실행 전에 파일 경로를 설정
-                    local dap_config = {
-                        type = "codelldb",
-                        request = "launch",
-                        name = "Launch Program",
-                        cwd = '${workspaceFolder}',
-                        stopOnEntry = false,
-                        args = {},
-                        program = run_cmd, -- 자동으로 컴파일된 파일 경로 입력
-                    }
-
-                    -- DAP 세션을 시작하고 실행
-                    require("dap").run(dap_config)
-
-                    -- 실행 후 결과물 파일 삭제
-                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
-                        vim.fn.getcwd() .. "/" .. output_file .. "')")
-                    vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
-                        vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
+                -- 기존에 이미 컴파일된 파일과 .dSYM 폴더가 존재하는지 확인
+                if vim.fn.glob(output_file_path) ~= "" and vim.fn.isdirectory(dSYM_path) == 1 then
+                    print("컴파일이 존재하여 과정을 스킵힙니다.")
                 else
-                    print("컴파일 실패:\n" .. result)
+                    -- 소스 파일을 공백으로 구분된 문자열로 변환
+                    local sources_str = table.concat(sources, " ")
+                    print("컴파일할 파일들: " .. sources_str)
+
+                    -- 컴파일 명령어 생성
+                    local compile_cmd = "clang " .. sources_str .. " -g -o " .. output_file_path
+                    local result = vim.fn.system(compile_cmd)
+
+                    -- 컴파일 결과 출력
+                    if vim.v.shell_error == 0 then
+                        print("컴파일 성공: " .. output_file)
+                    else
+                        print("컴파일 실패:\n" .. result)
+                        return
+                    end
                 end
+
+                -- 디버깅을 실행하기 위해 컴파일된 파일 경로를 nvim-dap에 자동으로 전달
+                local run_cmd = vim.fn.getcwd() .. "/" .. output_file
+
+                -- dap-continue 실행 전에 파일 경로를 설정
+                local dap_config = {
+                    type = "codelldb",
+                    request = "launch",
+                    name = "Launch Program",
+                    cwd = '${workspaceFolder}',
+                    stopOnEntry = false,
+                    args = {},
+                    program = run_cmd, -- 자동으로 컴파일된 파일 경로 입력
+                }
+
+                -- DAP 세션을 시작하고 실행
+                require("dap").run(dap_config)
+
+                -- 실행 후 결과물 파일 삭제
+                vim.cmd("autocmd TermClose * silent! lua os.execute('rm -f " ..
+                    vim.fn.getcwd() .. "/" .. output_file .. "')")
+                vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " ..
+                    vim.fn.getcwd() .. "/" .. output_file .. ".dSYM')")
             end,
         })
     else
