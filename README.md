@@ -33,6 +33,15 @@ curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/pla
 python3 get-platformio.py
 ```
 
+# option키를 Meta 키로 설정
+### iTerm2
+* iTerm2를 열고, Preferences > Profiles > Keys 탭으로 이동합니다.
+* Left Option Key와 Right Option Key를 Esc+로 설정합니다.
+
+### macOS 기본 터미널
+* 터미널을 열고, Preferences > Profiles > Keyboard 탭으로 이동합니다.
+* Use Option as Meta Key를 활성화합니다.
+
 # 폴더 구조
 ```bash
 ├─── ftplugin

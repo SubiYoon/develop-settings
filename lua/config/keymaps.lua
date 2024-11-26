@@ -25,7 +25,6 @@ mapKey("<leader>Ni", npm.npm_install, "n", { desc = "Install" })                
 mapKey("<leader>vm", "<cmd>MaximizerToggle<CR>", "n", { desc = "Buffer Maximizer" })                         -- buffer maximizer
 -- Custom mapping End
 
-
 -- Neotree toggle
 mapKey("<leader>e", ":Neotree toggle<cr>", "n", { desc = "Toggle Neotree" })
 
@@ -127,7 +126,7 @@ mapKey('<Leader>gdv', "<Cmd>Gvdiffsplit<CR>", "n", { desc = "Vsplit" })
 mapKey('<Leader>gdh', "<Cmd>Ghdiffsplit<CR>", "n", { desc = "Hsplit" })
 mapKey("<leader>gg", "<cmd>LazyGit<cr>", "n", { desc = "LazyGit" })
 
--- Java
+-- Java Start
 --make
 mapKey('<Leader>Jmv', "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
 mapKey('<Leader>Jmm', "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
@@ -143,6 +142,7 @@ mapKey('<Leader>Jfg', "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" }
 mapKey('<Leader>Jfp', "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
 mapKey('<Leader>JfP', "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
 mapKey('<Leader>Jfd', "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
+-- Java End
 
 -- C++
 mapKey('<Leader>Cc', common.c_complie, "n", { desc = "Compile" })
@@ -160,7 +160,6 @@ mapKey('<Leader>nd', common.new_doc, "n", { desc = "Documentation" })
 -- search File
 mapKey("<leader>ff", search.search_by_filetype, "n", { desc = "Find File Type" })
 mapKey('<Leader>fe', search.open_buffer_in_neotree, "n", { desc = "Find File Explorer" })
--- mapKey("<leader>ff", builtin.find_files, "n", { desc = "Find File" })
 mapKey("<leader>fr", builtin.oldfiles, "n", { desc = "Recent File" })
 mapKey("<leader>fw", builtin.live_grep, "n", { desc = "Find Word" })
 mapKey("<leader>fb", builtin.buffers, "n", { desc = "Find Buffer" })

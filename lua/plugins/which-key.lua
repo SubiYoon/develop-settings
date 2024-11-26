@@ -28,11 +28,8 @@ return {
                     { '<Leader>L', group = "Leetcode", icon = "🧠" },
                     { '<Leader>g', group = "Git" },
                     { '<Leader>d', group = "Debug" },
+                    { '<Leader>m', group = "Multi cusors", icon = "⌨️" },
                     -- group end
-
-                    -- no setting group start
-                    { "<leader>m", "<cmd>MCstart<cr>", mode = 'n', icon = "🔍", desc = "Multicusor" }
-                    -- no setting group end
                 }
             )
         end,
