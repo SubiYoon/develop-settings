@@ -74,11 +74,11 @@ local config = {
             format = {
                 enabled = true,
                 -- Formatting works by default, but you can refer to a specific file/URL if you choose
-                -- settings = {
-                --     url = "file:///" ..
-                --         home .. "/.local/share/nvim/mason/packages/google-java-format/google-java-format*.jar",
-                --     profile = "GoogleStyle",
-                -- },
+                settings = {
+                    url = "file:///" ..
+                        home .. "/.local/share/nvim/mason/packages/google-java-format/google-java-format*.jar",
+                    profile = "GoogleStyle",
+                },
             },
             inlayHints = {
                 parameterNames = {

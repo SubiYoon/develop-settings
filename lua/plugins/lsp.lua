@@ -38,6 +38,7 @@ return {
 
         require("mason-tool-installer").setup({
             ensure_installed = {
+                "google-java-format",
                 "java-debug-adapter",
                 "java-test",
                 "prettier",
