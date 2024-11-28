@@ -48,6 +48,7 @@ return {
 				"sql-formatter",
 				"stylua",
 				"codelldb", -- C++ debug
+				"clang-format",
 			},
 		})
 
