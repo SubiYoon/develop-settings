@@ -40,14 +40,44 @@ M.install_common_package = function()
 
 	-- 설치 확인 함수
 	local function is_installed(command)
-		return os.execute("command -v " .. command .. " >/dev/null 2>&1") == 0
+		local handle = vim.loop.spawn("command", {
+			args = { "-v", command },
+			stdio = { nil, vim.loop.new_pipe(false), vim.loop.new_pipe(false) },
+			on_exit = function(code, signal)
+				return code == 0
+			end,
+		})
+		return handle
+	end
+
+	-- 비동기 실행 함수
+	local function run_async(command, callback)
+		local handle = vim.loop.spawn(command, {
+			args = {},
+			stdio = { nil, vim.loop.new_pipe(false), vim.loop.new_pipe(false) },
+			on_exit = function(code, signal)
+				if callback then
+					callback(code, signal)
+				end
+			end,
+		})
+
+		if not handle then
+			print("Failed to start process for: " .. command)
+		end
 	end
 
 	-- macOS 설치 함수
 	local function install_on_mac(tool, brew_package)
 		if not is_installed(tool) then
 			print("Installing " .. tool .. " via Homebrew...")
-			os.execute("brew install " .. brew_package .. " >/dev/null 2>&1")
+			run_async("brew", function(code, signal)
+				if code == 0 then
+					print(tool .. " installed successfully.")
+				else
+					print("Failed to install " .. tool)
+				end
+			end)
 		else
 			-- print(tool .. " is already installed.")
 		end
@@ -59,7 +89,13 @@ M.install_common_package = function()
 			local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '"
 				.. command
 				.. "' -NoNewWindow -RedirectStandardOutput $null"
-			os.execute('powershell -Command "' .. powershell_command .. '"')
+			run_async('powershell -Command "' .. powershell_command .. '"', function(code, signal)
+				if code == 0 then
+					print(tool .. " installed successfully.")
+				else
+					print("Failed to install " .. tool)
+				end
+			end)
 		end
 
 		if not is_installed(tool) then
@@ -95,56 +131,98 @@ M.install_ripgrep = function()
 	-- OS 감지
 	local uname = vim.loop.os_uname().sysname
 
+	local function run_async(command, callback)
+		vim.loop.spawn(command, {
+			args = {},
+			stdout = vim.loop.new_pipe(false),
+			stderr = vim.loop.new_pipe(false),
+			detached = true,
+		}, function(code, signal)
+			if code == 0 then
+				print("Command completed successfully.")
+			else
+				print("Command failed with code:", code, "and signal:", signal)
+			end
+			if callback then
+				callback()
+			end
+		end)
+	end
+
 	if uname == "Darwin" then
 		-- macOS
 		-- brew 설치 확인
-		local brew_installed = os.execute("command -v brew >/dev/null 2>&1")
-		if brew_installed ~= 0 then
-			print("Homebrew not found, installing Homebrew...")
-			os.execute(
-				'/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-			)
-		else
-			-- print("Homebrew is already installed.")
+		local function check_and_install_brew()
+			local brew_installed = vim.fn.system("command -v brew >/dev/null 2>&1")
+			if vim.v.shell_error ~= 0 then
+				print("Homebrew not found, installing Homebrew...")
+				run_async("/bin/bash", function()
+					vim.fn.system(
+						'/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+					)
+				end)
+			else
+				-- print("Homebrew is already installed.")
+			end
 		end
 
-		-- ripgrep 설치 확인
-		local rg_installed = os.execute("command -v rg >/dev/null 2>&1")
-		if rg_installed ~= 0 then
-			print("Installing ripgrep via Homebrew...")
-			os.execute("brew install ripgrep")
-		else
-			-- print("Ripgrep is already installed.")
+		local function check_and_install_ripgrep()
+			local rg_installed = vim.fn.system("command -v rg >/dev/null 2>&1")
+			if vim.v.shell_error ~= 0 then
+				print("Installing ripgrep via Homebrew...")
+				run_async("brew", function()
+					vim.fn.system("brew install ripgrep")
+				end)
+			else
+				-- print("Ripgrep is already installed.")
+			end
 		end
+
+		check_and_install_brew()
+		check_and_install_ripgrep()
 	elseif uname:find("Windows") then
 		-- Windows
 		print("Detected Windows")
 
 		-- 관리 권한으로 명령 실행 함수
-		local function run_as_admin(command)
+		local function run_as_admin(command, callback)
 			local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '" .. command .. "'"
-			os.execute('powershell -Command "' .. powershell_command .. '"')
+			vim.fn.system('powershell -Command "' .. powershell_command .. '"')
+			if callback then
+				callback()
+			end
 		end
 
 		-- chocolatey 설치 확인
-		local choco_installed = os.execute("choco -v >/dev/null 2>&1")
-		if choco_installed ~= 0 then
-			print("Chocolatey not found, installing Chocolatey as Administrator...")
-			run_as_admin(
-				"Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
-			)
-		else
-			-- print("Chocolatey is already installed.")
+		local function check_and_install_choco()
+			local choco_installed = vim.fn.system("choco -v >/dev/null 2>&1")
+			if vim.v.shell_error ~= 0 then
+				print("Chocolatey not found, installing Chocolatey as Administrator...")
+				run_as_admin(
+					"Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
+					function()
+						print("Chocolatey installation command executed.")
+					end
+				)
+			else
+				-- print("Chocolatey is already installed.")
+			end
 		end
 
-		-- ripgrep 설치 확인
-		local rg_installed = os.execute("rg --version >/dev/null 2>&1")
-		if rg_installed ~= 0 then
-			print("Installing ripgrep via Chocolatey as Administrator...")
-			run_as_admin("choco install ripgrep -y")
-		else
-			-- print("Ripgrep is already installed.")
+		local function check_and_install_ripgrep()
+			local rg_installed = vim.fn.system("rg --version >/dev/null 2>&1")
+			if vim.v.shell_error ~= 0 then
+				print("Installing ripgrep via Chocolatey as Administrator...")
+				run_as_admin("choco install ripgrep -y", function()
+					print("Ripgrep installation command executed.")
+				end)
+			else
+				-- print("Ripgrep is already installed.")
+			end
 		end
+
+		check_and_install_choco()
+		check_and_install_ripgrep()
 	else
 		print("Unsupported OS: " .. uname)
 	end
@@ -360,14 +438,14 @@ M.c_run = function()
 
 								-- 실행 후 결과물 파일 삭제
 								vim.cmd(
-									"autocmd TermClose * silent! lua os.execute('rm -f "
+									"autocmd TermClose * silent! lua require('utils.commonUtils').async_remove_file('"
 										.. vim.fn.getcwd()
 										.. "/"
 										.. output_file
 										.. "')"
 								)
 								vim.cmd(
-									"autocmd TermClose * silent! lua os.execute('rm -rf "
+									"autocmd TermClose * silent! lua require('utils.commonUtils').async_remove_file('"
 										.. vim.fn.getcwd()
 										.. "/"
 										.. output_file
@@ -468,9 +546,15 @@ M.c_debug = function()
 
 								-- 실행 후 결과물 파일 삭제
 								vim.cmd(
-									"autocmd TermClose * silent! lua os.execute('rm -f " .. output_file_path .. "')"
+									"autocmd TermClose * silent! lua require('utils.commonUtils').async_remove_file('"
+										.. output_file_path
+										.. "')"
 								)
-								vim.cmd("autocmd TermClose * silent! lua os.execute('rm -rf " .. dSYM_path .. "')")
+								vim.cmd(
+									"autocmd TermClose * silent! lua require('utils.commonUtils').async_remove_file('"
+										.. dSYM_path
+										.. "')"
+								)
 							else
 								print("컴파일 실패. 오류 코드를 확인하세요.")
 							end
@@ -491,6 +575,19 @@ M.c_debug = function()
 	else
 		print("이 파일은 C 또는 C++ 파일이 아닙니다.")
 	end
+end
+
+-- 파일 삭제를 비동기적으로 실행
+M.async_remove_file = function(file_path)
+	vim.fn.jobstart({ "rm", "-rf", file_path }, {
+		on_exit = function(_, code)
+			if code == 0 then
+				print(file_path .. " 삭제 완료.")
+			else
+				print("파일 삭제 실패: " .. file_path)
+			end
+		end,
+	})
 end
 
 return M
