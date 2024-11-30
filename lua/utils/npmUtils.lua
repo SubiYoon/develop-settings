@@ -1,10 +1,13 @@
 local M = {}
-M.npm_pids = {} -- 각 프로젝트의 PID 저장 테이블
+local toggleterm = require("toggleterm.terminal").Terminal
+M.npm_pids = M.npm_pids or {} -- npm 스크립트별 Job ID 저장
+M.npm_terminals = M.npm_terminals or {} -- 프로젝트 경로별 터미널 관리
+M.terminal_buffers = M.terminal_buffers or {} -- 출력 데이터를 위한 버퍼 관리
 
 -- npm install 함수
 M.npm_install = function()
 	-- npm 프로젝트 경로 입력 받기
-	local path = vim.fn.input("Enter npm project path: ")
+	local path = vim.fn.input("Enter npm project path (ex: ./tset1) ")
 
 	if path == "" then
 		print("Path is required.")
@@ -37,32 +40,19 @@ M.npm_install = function()
 			end
 
 			-- 터미널 창 닫기
-			if term_win and vim.api.nvim_win_is_valid(term_win) then
-				vim.api.nvim_win_close(term_win, true)
-			end
+			-- if term_win and vim.api.nvim_win_is_valid(term_win) then
+			-- 	vim.api.nvim_win_close(term_win, true)
+			-- end
 		end,
 	})
 
 	-- 터미널 창을 사용자가 이동할 수 있도록 설정
 	vim.api.nvim_set_current_win(term_win)
 end
--- M.npm_install = function()
---     -- npm 프로젝트 경로 입력 받기
---     local path = vim.fn.input("Enter npm project path!!")
---
---     if path == "" then
---         print("Path is required.")
---         return
---     end
---
---     -- npm install 실행
---     local result = vim.fn.system("cd " .. path .. " && npm install")
---     print(result)
--- end
 
--- npm run 스크립트 비동기 실행 및 PID 저장
+-- npm 스크립트 실행 함수
 M.start_npm_script = function()
-	local path = vim.fn.input("Enter npm project path (e.g., ./test1): ")
+	local path = vim.fn.input("Enter npm project path (ex: ./test1): ")
 	local script_cmd = vim.fn.input("Enter script command (default: dev): ")
 
 	if path == "" then
@@ -74,97 +64,124 @@ M.start_npm_script = function()
 		script_cmd = "dev"
 	end
 
-	-- 비동기적으로 npm run 스크립트 실행
-	local handle = vim.loop.spawn("npm", {
-		args = { "run", script_cmd },
-		cwd = path,
-		detached = true,
-	}, function(code, signal)
-		print("NPM script finished with code:", code, "signal:", signal)
-	end)
+	-- npm 실행 명령어 설정
+	local cmd = { "npm", "run", script_cmd }
 
-	if handle then
-		M.npm_pids[path] = handle:get_pid() -- 경로를 키로 사용하여 PID 저장
-		print("Started npm script in " .. path .. " with PID: " .. M.npm_pids[path])
+	-- 출력 데이터를 저장할 새로운 버퍼 생성
+	local buf_nr = vim.api.nvim_create_buf(false, true)
+	M.terminal_buffers[path] = buf_nr
+
+	-- 비동기적으로 npm run 스크립트 실행
+	local job_id = vim.fn.jobstart(cmd, {
+		cwd = path, -- 실행 경로 설정
+		on_exit = function(_, code, signal)
+			print("NPM script finished with code:", code, "signal:", signal)
+			-- 작업 종료 시 PID 및 터미널 정보 삭제
+			M.npm_pids[path] = nil
+			M.npm_terminals[path] = nil
+			M.terminal_buffers[path] = nil
+		end,
+		on_stderr = function(_, data)
+			if data then
+				for _, line in ipairs(data) do
+					if line ~= "" then
+						-- 터미널 버퍼에 실시간 출력
+						vim.api.nvim_buf_set_lines(M.terminal_buffers[path], -1, -1, false, { "Error: " .. line })
+					end
+				end
+			end
+		end,
+		on_stdout = function(_, data)
+			if data then
+				for _, line in ipairs(data) do
+					if line ~= "" then
+						-- 터미널 버퍼에 실시간 출력
+						vim.api.nvim_buf_set_lines(M.terminal_buffers[path], -1, -1, false, { line })
+					end
+				end
+			end
+		end,
+	})
+
+	if job_id > 0 then
+		M.npm_pids[path] = job_id -- 경로를 키로 사용하여 Job ID 저장
+
+		-- 해당 경로의 터미널 생성 및 관리
+		if not M.npm_terminals[path] then
+			M.npm_terminals[path] = toggleterm:new({
+				cmd = "", -- 초기 명령어 없이 생성
+				close_on_exit = false,
+				auto_scroll = true,
+				direction = "horizontal", -- 터미널 방향: 하단 창
+				size = 15, -- 터미널 창 크기 (15라인)
+				on_open = function(term)
+					-- 터미널이 열리면 출력 데이터를 설정한 버퍼로 연동
+					vim.api.nvim_win_set_buf(term.window, M.terminal_buffers[path])
+				end,
+			})
+		end
+
+		print("Started npm script in " .. path .. " with Job ID: " .. job_id)
 	else
 		print("Failed to start npm script in " .. path)
 	end
 end
 
--- 특정 경로의 npm run 스크립트 종료
-M.kill_npm_script = function()
-	local path = vim.fn.input("Enter npm project path to kill (e.g., ./test1): ")
-	local pid = M.npm_pids[path]
+-- 터미널 출력 창 열기 함수
+M.open_npm_terminal = function()
+	local path = vim.fn.input("Enter npm project path to view logs (ex: ./test) ")
 
-	if not pid then
-		print("No running npm script found for " .. path)
+	if not M.npm_terminals[path] then
+		print("No active terminal for this path: " .. path)
 		return
 	end
 
-	-- 비동기적으로 자식 프로세스 종료
-	local kill_cmd = "kill -9 " .. pid
-	local handle = vim.loop.spawn("sh", {
-		args = { "-c", kill_cmd },
-		detached = true,
-	}, function(code, signal)
-		print("Kill command finished with code:", code, "signal:", signal)
-	end)
-
-	if handle then
-		print("Stopped npm script in " .. path .. " with PID: " .. pid)
-		M.npm_pids[path] = nil -- PID 정보 삭제
+	-- 터미널 창을 하단 15라인 크기로 열기
+	local term = M.npm_terminals[path]
+	-- 열려 있는 터미널이 있다면, 기존 터미널 옆에 `vsplit`로 열기
+	if vim.fn.bufexists(term.buffer) == 1 then
+		-- `vsplit`으로 현재 터미널 창을 열기
+		vim.cmd("vsplit")
+		vim.api.nvim_win_set_buf(0, term.buffer)
 	else
-		print("Failed to kill npm script in " .. path)
+		-- 새로 터미널을 열기
+		term:toggle()
 	end
 end
--- M.kill_npm_script = function()
--- 	local path = vim.fn.input("Enter npm project path to kill (e.g., ./test1): ")
--- 	local pid = M.npm_pids[path]
---
--- 	if not pid then
--- 		print("No running npm script found for " .. path)
--- 		return
--- 	end
---
--- 	-- 자식 프로세스 종료
--- 	local kill_cmd = "pkill -P " .. pid -- 부모 PID의 자식 프로세스 모두 종료
--- 	vim.fn.system(kill_cmd)
--- 	print("Stopped npm script in " .. path .. " with PID: " .. pid)
--- 	M.npm_pids[path] = nil -- PID 정보 삭제
--- end
+
+-- 특정 경로의 npm run 스크립트 종료
+M.kill_npm_script = function()
+	local path = vim.fn.input("Enter npm project path to stop (ex: ./test1): ")
+
+	if path == "" or not M.npm_pids[path] then
+		print("No running npm script found for the given path.")
+		return
+	end
+
+	-- 실행 중인 Job ID 종료
+	local job_id = M.npm_pids[path]
+	vim.fn.jobstop(job_id)
+	M.npm_pids[path] = nil
+	print("Stopped npm script in " .. path)
+end
 
 -- 모든 npm 스크립트를 종료하는 함수
 M.kill_all_npm_scripts = function()
-	for path, pid in pairs(M.npm_pids) do
-		if pid then
-			-- PID를 이용해 비동기적으로 프로세스 종료
-			local kill_cmd = "kill -9 " .. pid
-			local handle = vim.loop.spawn("sh", {
-				args = { "-c", kill_cmd },
-				detached = true,
-			}, function(code, signal)
-				print("Kill command finished for path:", path, "with code:", code, "signal:", signal)
-			end)
+	if not next(M.npm_pids) then
+		print("No running npm scripts to stop.")
+		return
+	end
 
-			if handle then
-				print("Stopped npm script in " .. path .. " with PID: " .. pid)
-				M.npm_pids[path] = nil -- PID 정보 삭제
-			else
-				print("Failed to kill npm script in " .. path)
-			end
+	for path, job_id in pairs(M.npm_pids) do
+		if job_id then
+			-- 실행 중인 Job ID 종료
+			vim.fn.jobstop(job_id)
+			print("Stopped npm script in " .. path .. " (Job ID: " .. job_id .. ")")
+			M.npm_pids[path] = nil -- Job ID 정보 삭제
+		else
+			print("No valid Job ID found for path: " .. path)
 		end
 	end
 end
-
--- M.kill_all_npm_scripts = function()
--- 	for path, pid in pairs(M.npm_pids) do
--- 		if pid then
--- 			-- PID를 이용해 프로세스 종료
--- 			local result = vim.fn.system("kill " .. pid)
--- 			print("Stopped npm script in " .. path .. " with PID: " .. pid)
--- 			M.npm_pids[path] = nil -- PID 정보 삭제
--- 		end
--- 	end
--- end
 
 return M
