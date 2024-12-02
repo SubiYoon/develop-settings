@@ -114,6 +114,7 @@ M.install_common_package = function()
 		install_on_mac("arduino-cli", "arduino-cli")
 		install_on_mac("ccls", "ccls")
 		install_on_mac("go", "go")
+		install_on_mac("luarocks", "luarocks")
 	elseif uname:find("Windows") then
 		-- Windows
 		install_on_windows("lazygit", "lazygit")
@@ -122,6 +123,7 @@ M.install_common_package = function()
 		install_on_windows("arduino-cli", "arduino-cli")
 		install_on_windows("ccls", "ccls")
 		install_on_windows("go", "go")
+		install_on_windows("luarocks", "luarocks")
 	else
 		print("Unsupported OS: " .. uname)
 	end

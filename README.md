@@ -15,6 +15,7 @@ tags:
 |pagkage|desc|
 |---|---|
 |neovim|에디터|
+|luarocks|필수 설치|
 |ripgrep|검색|
 |lazygit|git UI|
 |platformio|project init setting|
