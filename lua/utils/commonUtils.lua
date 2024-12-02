@@ -590,4 +590,34 @@ M.async_remove_file = function(file_path)
 	})
 end
 
+--- 해당 폴더의 retun정보를 취합하여 가져오는 함수
+---@param directory string 폴더 위치 root는 .config/nvim/lua
+---@return table 취합한 테이블 주소
+M.load_config_folder = function(directory)
+	local home = os.getenv("HOME")
+	-- config.secure 폴더 내의 Lua 파일을 읽어와서 테이블을 반환하는 함수
+	local result = {}
+
+	-- 폴더 내 모든 Lua 파일을 가져옵니다.
+	local files = vim.fn.globpath(home .. "/.config/nvim/lua/" .. directory, "*.lua", false, true)
+
+	-- 각 Lua 파일을 로드하고 테이블을 병합합니다.
+	for _, file in ipairs(files) do
+		local config = dofile(file) -- Lua 파일 실행 (테이블 반환)
+
+		-- config가 테이블인지 확인 후 병합합니다.
+		if type(config) == "table" then
+			-- 테이블 병합: config 테이블을 result 테이블에 합칩니다.
+			for key, value in pairs(config) do
+				result[key] = value
+			end
+		else
+			-- 테이블이 아닌 경우 경고 메시지 출력 (선택 사항)
+			print("Warning: " .. file .. " returned a non-table value.")
+		end
+	end
+
+	return result
+end
+
 return M

@@ -54,7 +54,9 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── secure
 │   │   │   │
-│   │   │   └─── dbSample.lua # DB관련 세팅방법 샘플파일
+│   │   │   └─── db # DB정보 폴더
+│   │   │       │
+│   │   │       └─── README.md # DB관련 세팅방법
 │   │   │
 │   │   ├─── autocmd.lua # 자동 동작 설정
 │   │   │
