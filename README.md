@@ -59,6 +59,10 @@ python3 get-platformio.py
 │   │   │       │
 │   │   │       └─── README.md # DB관련 세팅방법
 │   │   │
+│   │   ├─── snippets # snippet 설정 파일
+│   │   │   │
+│   │   │   └─── java.lua # java관련 스니핏 파일
+│   │   │
 │   │   ├─── autocmd.lua # 자동 동작 설정
 │   │   │
 │   │   ├─── globals.lua # 전체 환경 설정

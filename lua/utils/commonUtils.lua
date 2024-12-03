@@ -16,6 +16,13 @@ M.mapKey = function(from, to, mode, opts)
 	vim.keymap.set(mode, from, to, options)
 end
 
+--- 상위, 하위 폴더를 전부 생성하는 함수(동기적으로 동작)
+---@param path string 생성할 폴더
+M.create_directory = function(path)
+	local command = "mkdir -p " .. path -- Unix/Linux 시스템용 명령어
+	os.execute(command)
+end
+
 --- lsp 경고별 모양 설정 함수
 --- @param opts table {name : 경고이름, text : 아이콘}
 M.sign = function(opts)
@@ -640,6 +647,43 @@ M.load_config_folder = function(directory)
 	end
 
 	return result
+end
+
+--- config/snippets 폴더 안의 파일 목록을 가져와서 출력하는 함수
+---@param root_path string lua하위의 첫번째 폴더(config: ~/.config/nvim, data: ~/.local/share/nvim )
+---@param search_path string 그외 나머지 path ('/'로 시작해야함)
+---@param is_delete_ext boolean 확장자 제거 여부
+---@param is_only_name boolean 이름만 추출할건지 여부
+---@return filenames table 목록 리스트
+M.list_files = function(root_path, search_path, is_delete_ext, is_only_name)
+	-- config/snippets 폴더 경로
+	local snippet_dir = vim.fn.stdpath(root_path) .. search_path
+
+	-- 디렉토리가 존재하는지 확인
+	if vim.fn.isdirectory(snippet_dir) == 0 then
+		print("Directory not found: " .. snippet_dir)
+		return
+	end
+
+	-- 디렉토리 내 파일 목록을 가져오기
+	local files = vim.fn.globpath(snippet_dir, "*", false, true)
+	-- 파일이 없으면 출력
+	if #files == 0 then
+		print("No files found in the snippets directory.")
+		return
+	end
+
+	-- 파일명만 추출하여 리스트로 반환
+	local filenames = {}
+	for _, file in ipairs(files) do
+		local filename = vim.fn.fnamemodify(file, ":t") -- 경로에서 파일명만 추출
+		if is_delete_ext then
+			filename = vim.fn.fnamemodify(filename, ":r")
+		end
+		table.insert(filenames, filename)
+	end
+
+	return filenames
 end
 
 return M

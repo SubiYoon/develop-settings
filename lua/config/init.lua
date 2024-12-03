@@ -31,5 +31,8 @@ require("lazy").setup({
 }, opts)
 
 require("config.dap-config")
+for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/snippets", true, true)) do
+	require("config.snippets." .. file)
+end
 require("config.keymaps")
 require("config.autocmd")
