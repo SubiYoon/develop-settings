@@ -26,9 +26,6 @@ return {
 
 		---@type lc.storage
 		storage = {
-			config = function()
-				require("utils.commonUtils").create_directory(os.getenv("HOME") .. "/Develop/Study/StudyList/LeetCode/")
-			end,
 			home = os.getenv("HOME") .. "/Develop/Study/StudyList/LeetCode/",
 			cache = vim.fn.stdpath("cache") .. "/leetcode",
 		},

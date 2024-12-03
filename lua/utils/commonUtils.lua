@@ -16,13 +16,6 @@ M.mapKey = function(from, to, mode, opts)
 	vim.keymap.set(mode, from, to, options)
 end
 
---- 상위, 하위 폴더를 전부 생성하는 함수(동기적으로 동작)
----@param path string 생성할 폴더
-M.create_directory = function(path)
-	local command = "mkdir -p " .. path -- Unix/Linux 시스템용 명령어
-	os.execute(command)
-end
-
 --- lsp 경고별 모양 설정 함수
 --- @param opts table {name : 경고이름, text : 아이콘}
 M.sign = function(opts)
