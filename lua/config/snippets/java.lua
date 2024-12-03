@@ -96,11 +96,7 @@ local function create_arg_constructor(args)
 			else
 				for temp_index = #params + 1, all_arg_count do
 					table.insert(nodes, t(", "))
-					print(all_arg_type_list)
-					print(#params + 1)
-					print(temp_index)
-					print(vim.inspect(all_arg_type_list))
-					print(all_arg_type_list[temp_index])
+
 					if all_arg_type_list[temp_index] == "String" then
 						table.insert(nodes, t('""'))
 					elseif all_arg_type_list[temp_index] == "byte" then
