@@ -4,7 +4,7 @@ M.npm_pids = M.npm_pids or {} -- npm 스크립트별 Job ID 저장
 M.npm_terminals = M.npm_terminals or {} -- 프로젝트 경로별 터미널 관리
 M.terminal_buffers = M.terminal_buffers or {} -- 출력 데이터를 위한 버퍼 관리
 
--- npm install 함수
+--- npm install 함수
 M.npm_install = function()
 	-- npm 프로젝트 경로 입력 받기
 	local path = vim.fn.input("Enter npm project path (ex: ./tset1) ")
@@ -50,7 +50,7 @@ M.npm_install = function()
 	vim.api.nvim_set_current_win(term_win)
 end
 
--- npm 스크립트 실행 함수
+--- npm 스크립트 실행 함수
 M.start_npm_script = function()
 	local path = vim.fn.input("Enter npm project path (ex: ./test1): ")
 	local script_cmd = vim.fn.input("Enter script command (default: dev): ")
@@ -127,7 +127,7 @@ M.start_npm_script = function()
 	end
 end
 
--- 터미널 출력 창 열기 함수
+--- 터미널 출력 창 열기 함수
 M.open_npm_terminal = function()
 	local path = vim.fn.input("Enter npm project path to view logs (ex: ./test) ")
 
@@ -149,7 +149,7 @@ M.open_npm_terminal = function()
 	end
 end
 
--- 특정 경로의 npm run 스크립트 종료
+--- 특정 경로의 npm run 스크립트 종료
 M.kill_npm_script = function()
 	local path = vim.fn.input("Enter npm project path to stop (ex: ./test1): ")
 
@@ -165,7 +165,7 @@ M.kill_npm_script = function()
 	print("Stopped npm script in " .. path)
 end
 
--- 모든 npm 스크립트를 종료하는 함수
+--- 모든 npm 스크립트를 종료하는 함수
 M.kill_all_npm_scripts = function()
 	if not next(M.npm_pids) then
 		print("No running npm scripts to stop.")

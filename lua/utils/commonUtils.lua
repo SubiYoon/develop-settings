@@ -1,6 +1,7 @@
 local M = {}
 
--- lsp 경고별 모양 설정 함수
+--- lsp 경고별 모양 설정 함수
+--- @param opts table {name : 경고이름, text : 아이콘}
 M.sign = function(opts)
 	vim.fn.sign_define(opts.name, {
 		texthl = opts.name,
@@ -9,7 +10,7 @@ M.sign = function(opts)
 	})
 end
 
--- tab의 너비 조절
+--- tab의 너비 조절
 M.widthResize = function()
 	local width = vim.fn.input("input change size!!")
 
@@ -21,7 +22,7 @@ M.widthResize = function()
 	vim.cmd("vertical resize " .. width)
 end
 
--- tab의 높이 조절
+--- tab의 높이 조절
 M.heightResize = function()
 	local height = vim.fn.input("input change size!!")
 
@@ -129,6 +130,7 @@ M.install_common_package = function()
 	end
 end
 
+--- OS감지하여 ripgrep 설치
 M.install_ripgrep = function()
 	-- OS 감지
 	local uname = vim.loop.os_uname().sysname
@@ -230,6 +232,7 @@ M.install_ripgrep = function()
 	end
 end
 
+--- custom document 생성
 M.new_doc = function()
 	local doc_type = vim.fn.input("c: class, f: function, F: file, t: type")
 	if doc_type == "c" then
@@ -248,7 +251,7 @@ M.new_doc = function()
 	vim.cmd("Neogen " .. doc_type)
 end
 
--- 터미널을 20% 하단에 열고 닫는 토글 기능 설정
+--- 터미널을 20% 하단에 열고 닫는 토글 기능 설정
 M.toggle_terminal = function(size)
 	local term_buf = vim.fn.bufnr("term://*")
 
@@ -287,7 +290,7 @@ M.toggle_terminal = function(size)
 	end
 end
 
--- C언어 컴파일
+--- main파일 컴파일
 M.c_complie = function()
 	local file = vim.api.nvim_buf_get_name(0)
 
@@ -374,7 +377,7 @@ M.c_complie = function()
 	end
 end
 
--- 현재 열려있는 파일의 컴파일한 파일을 찾아 실행
+--- 현재 열려있는 파일의 컴파일한 후 실행
 M.c_run = function()
 	local file = vim.api.nvim_buf_get_name(0)
 
@@ -473,7 +476,7 @@ M.c_run = function()
 	end
 end
 
--- C 파일 컴파일 후 자동 실행
+--- C 파일 컴파일 후 자동 실행
 M.c_debug = function()
 	local file = vim.api.nvim_buf_get_name(0)
 
@@ -579,7 +582,8 @@ M.c_debug = function()
 	end
 end
 
--- 파일 삭제를 비동기적으로 실행
+--- 파일 삭제를 비동기적으로 실행
+---@param file_path string path
 M.async_remove_file = function(file_path)
 	vim.fn.jobstart({ "rm", "-rf", file_path }, {
 		on_exit = function(_, code)

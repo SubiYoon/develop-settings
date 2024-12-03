@@ -1,6 +1,6 @@
 local M = {}
 
--- mapper.xml 파일에서 id 속성 값 찾는 함수
+--- 커서가 위치한 쿼리가 작성된 xml파일 탐색
 M.open_mapper_xml = function()
 	-- 커서 위치의 단어를 가져옴
 	local selected_text = vim.fn.expand("<cword>")
@@ -58,7 +58,7 @@ M.open_mapper_xml = function()
 	end
 end
 
--- 사용자로부터 확장자를 입력받아 검색하는 함수
+--- 확장자를 입력받아 파일 검색
 M.search_by_filetype = function()
 	local type = vim.fn.input("input file type!! (a: all)")
 
@@ -75,6 +75,7 @@ M.search_by_filetype = function()
 	end
 end
 
+--- 현재 열려있는 파일 위치 검색
 M.open_buffer_in_neotree = function()
 	local current_buffer = vim.api.nvim_get_current_buf()
 	local buffer_name = vim.api.nvim_buf_get_name(current_buffer)
