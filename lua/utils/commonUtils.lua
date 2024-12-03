@@ -1,5 +1,21 @@
 local M = {}
 
+--- 키맵핑 함수
+---@param from string 입력키
+---@param to any 동작키
+---@param mode any 모드설정 (n, x, t, ...)
+---@param opts table {desc = ${맵핑 설명}}
+M.mapKey = function(from, to, mode, opts)
+	local options = { noremap = true, silent = true } -- 노멀 모드에서만 맵핑
+	mode = mode or "n"
+
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+
+	vim.keymap.set(mode, from, to, options)
+end
+
 --- lsp 경고별 모양 설정 함수
 --- @param opts table {name : 경고이름, text : 아이콘}
 M.sign = function(opts)

@@ -1,4 +1,4 @@
-local mapKey = require("utils/keyMapper").mapKey
+local mapKey = require("utils.commonUtils").mapKey
 local builtin = require("telescope/builtin")
 local common = require("utils.commonUtils")
 local search = require("utils.searchUtils")
