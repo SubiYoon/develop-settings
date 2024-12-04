@@ -102,9 +102,11 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── notify.lua # 알림창
 │   │   │
+│   │   ├─── lazy-reload.lua # 플러그인 reload without neovim restart
+│   │   │
 │   │   ├─── lazygit.lua # git GUI 플러그인
 │   │   │
-│   │   ├─── leetcode.lua # git GUI 플러그인
+│   │   ├─── leetcode.lua # leetcode 플러그인
 │   │   │
 │   │   ├─── illuminate.lua # 같은 변수 및 심볼 하이라이트 플러그인
 │   │   │
