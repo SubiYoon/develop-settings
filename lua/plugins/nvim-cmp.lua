@@ -90,15 +90,15 @@ return {
 					end, { "i", "s" }), -- insert 모드 및 선택 모드에서 작동
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip", priority = 1000, max_item_count = 10 },
 					{
 						name = "nvim_lsp",
-						priority = 500,
+						max_item_count = 10,
 						filter = function(entry)
 							-- LSP 항목이 있으면 제외하거나 특정 조건에 맞는 항목만 남기기
 							return false -- LSP 항목을 아예 제외
 						end,
 					},
+					{ name = "luasnip", max_item_count = 10 },
 					{ name = "buffer", max_item_count = 10 },
 					{ name = "path", max_item_count = 10 },
 					{ name = "cmdline", max_item_count = 10 },
