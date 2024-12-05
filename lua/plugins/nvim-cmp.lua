@@ -67,27 +67,27 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					-- Tab 키 설정: 자동완성 메뉴가 열려 있으면 자동완성 선택, 아니면 LuaSnip 노드 이동
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item() -- 자동완성 메뉴에서 다음 항목으로 이동
-						elseif require("luasnip").expand_or_jumpable() then
-							require("luasnip").expand_or_jump() -- LuaSnip의 다음 노드로 이동
-						else
-							fallback() -- 기본 동작 (예: 입력)
-						end
-					end, { "i", "s" }), -- insert 모드 및 선택 모드에서 작동
-
-					-- Shift+Tab: 자동완성 메뉴에서 이전 항목으로 이동, LuaSnip 노드에서 이전으로 이동
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item() -- 자동완성 메뉴에서 이전 항목으로 이동
-						elseif require("luasnip").jumpable(-1) then
-							require("luasnip").jump(-1) -- LuaSnip에서 이전 노드로 이동
-						else
-							fallback() -- 기본 동작
-						end
-					end, { "i", "s" }), -- insert 모드 및 선택 모드에서 작동
+					-- -- Tab 키 설정: 자동완성 메뉴가 열려 있으면 자동완성 선택, 아니면 LuaSnip 노드 이동
+					-- ["<Tab>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() then
+					-- 		cmp.select_next_item() -- 자동완성 메뉴에서 다음 항목으로 이동
+					-- 	elseif require("luasnip").expand_or_jumpable() then
+					-- 		require("luasnip").expand_or_jump() -- LuaSnip의 다음 노드로 이동
+					-- 	else
+					-- 		fallback() -- 기본 동작 (예: 입력)
+					-- 	end
+					-- end, { "i", "s" }), -- insert 모드 및 선택 모드에서 작동
+					--
+					-- -- Shift+Tab: 자동완성 메뉴에서 이전 항목으로 이동, LuaSnip 노드에서 이전으로 이동
+					-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() then
+					-- 		cmp.select_prev_item() -- 자동완성 메뉴에서 이전 항목으로 이동
+					-- 	elseif require("luasnip").jumpable(-1) then
+					-- 		require("luasnip").jump(-1) -- LuaSnip에서 이전 노드로 이동
+					-- 	else
+					-- 		fallback() -- 기본 동작
+					-- 	end
+					-- end, { "i", "s" }), -- insert 모드 및 선택 모드에서 작동
 				}),
 				sources = cmp.config.sources({
 					{
