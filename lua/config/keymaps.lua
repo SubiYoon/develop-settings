@@ -9,7 +9,6 @@ local dap_ui_widgets = require("dap.ui.widgets")
 local dapui = require("dapui")
 
 -- Custom mapping Start
-mapKey("<leader>rl", "<cmd>lua require('lazy-reload').feed()<cr>", "n", { desc = "Reload a plugin" })
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
 mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" }) -- 현재 buffer 너비 조정
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" }) -- 현재 buffer 높이 조정
