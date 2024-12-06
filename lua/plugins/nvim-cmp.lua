@@ -114,10 +114,10 @@ return {
 						end,
 					},
 					{ name = "luasnip", max_item_count = 15 },
-					{ name = "buffer", max_item_count = 15 },
 					{ name = "path", max_item_count = 15 },
-					{ name = "cmdline", max_item_count = 15 },
 					{ name = "vim-dadbod-completion", max_item_count = 15 },
+					{ name = "buffer", max_item_count = 15 },
+					{ name = "cmdline", max_item_count = 15 },
 				}),
 			})
 
