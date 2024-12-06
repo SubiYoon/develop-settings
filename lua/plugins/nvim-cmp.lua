@@ -121,16 +121,8 @@ return {
 				}),
 			})
 
-			-- `/` cmdline setup.
-			cmp.setup.cmdline({ "/" }, {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
-			})
-			-- `?` cmdline setup.
-			cmp.setup.cmdline({ "?" }, {
-				mapping = cmp.mapping.preset.cmdline(),
+			-- `/, ?` search cmdline setup.
+			cmp.setup.cmdline({ "/", "?" }, {
 				sources = {
 					{ name = "buffer" },
 				},
@@ -142,6 +134,11 @@ return {
 				}, {
 					{ name = "cmdline" }, -- 명령어 기반 완성
 				}),
+				mapping = {
+					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+				},
 			})
 
 			-- 항목 텍스트 색상
