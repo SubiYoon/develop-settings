@@ -39,7 +39,7 @@ mapKey("<leader>h", ":nohlsearch<CR>", "n", { desc = "Clear search highlight" })
 mapKey("<", "<gv", "v", { desc = "Decrease indent for selected text" })
 mapKey(">", ">gv", "v", { desc = "Increase indent for selected text" })
 
--- Tab (bar) control
+-- Tab (bar) control Start
 mapKey("gT", "<Cmd>BufferPrevious<CR>", "n", { desc = "Previous buffer" })
 mapKey("gt", "<Cmd>BufferNext<CR>", "n", { desc = "Next buffer" })
 mapKey("<leader>t<", "<Cmd>BufferMovePrevious<CR>", "n", { desc = "Move to previous buffer" })
@@ -54,34 +54,16 @@ mapKey("<leader>t7", "<Cmd>BufferGoto 7<CR>", "n", { desc = "Go to buffer 7" })
 mapKey("<leader>t8", "<Cmd>BufferGoto 8<CR>", "n", { desc = "Go to buffer 8" })
 mapKey("<leader>t9", "<Cmd>BufferGoto 9<CR>", "n", { desc = "Go to buffer 9" })
 mapKey("<leader>t0", "<Cmd>BufferLast<CR>", "n", { desc = "Go to last buffer" })
-
--- Pin/unpin buffer
--- mapKey("<A-p>", "<Cmd>BufferPin<CR>", "n", { desc = "Pin current buffer" })
--- Goto pinned/unpinned buffer
--- mapKey("<C-p>", "<Cmd>BufferGotoPinned<CR>", "n", { desc = "Go to pinned buffer" })
--- mapKey("<C-u>", "<Cmd>BufferGotoUnpinned<CR>", "n", { desc = "Go to unpinned buffer" })
-
 -- Close buffer
 mapKey("<leader>tcc", "<Cmd>BufferClose<CR>", "n", { desc = "Close current buffer" })
 mapKey("<leader>tca", "<Cmd>BufferCloseAllButCurrent<CR>", "n", { desc = "Close all buffer" })
--- Wipeout buffer
--- mapKey("<leader>w", "<Cmd>BufferWipeout<CR>", "n", { desc = "Wipeout current buffer" })
--- Close commands
--- mapKey("<leader>cl", "<Cmd>BufferClosetllButCurrent<CR>", "n", { desc = "Close all but current" })
--- mapKey("<leader>cp", "<Cmd>BufferClosetllButPinned<CR>", "n", { desc = "Close all but pinned" })
--- mapKey("<leader>cu", "<Cmd>BufferClosetllButCurrentOrPinned<CR>", "n", { desc = "Close all but current or pinned" })
--- mapKey("<leader>cll", "<Cmd>BufferCloseBuffersLeft<CR>", "n", { desc = "Close buffers to the left" })
--- mapKey("<leader>clr", "<Cmd>BufferCloseBuffersRight<CR>", "n", { desc = "Close buffers to the right" })
-
 -- Magic buffer-picking mode
--- mapKey("<C-p>", "<Cmd>BufferPick<CR>", "n", { desc = "Pick a buffer" })
-
+mapKey("<Leader>tp", "<Cmd>BufferPick<CR>", "n", { desc = "Pick a buffer" })
 -- Sort automatically by...
-mapKey("<Space>tb", "<Cmd>BufferOrderByBufferNumber<CR>", "n", { desc = "Sort by buffer number" })
-mapKey("<Space>tn", "<Cmd>BufferOrderByName<CR>", "n", { desc = "Sort by name" })
-mapKey("<Space>td", "<Cmd>BufferOrderByDirectory<CR>", "n", { desc = "Sort by directory" })
-mapKey("<Space>tl", "<Cmd>BufferOrderByLanguage<CR>", "n", { desc = "Sort by language" })
-mapKey("<Space>tw", "<Cmd>BufferOrderByWindowNumber<CR>", "n", { desc = "Sort by window number" })
+mapKey("<Leader>tn", "<Cmd>BufferOrderByName<CR>", "n", { desc = "Sort by name" })
+mapKey("<Leader>td", "<Cmd>BufferOrderByDirectory<CR>", "n", { desc = "Sort by directory" })
+mapKey("<Leader>tl", "<Cmd>BufferOrderByLanguage<CR>", "n", { desc = "Sort by language" })
+-- Tab (bar) control End
 
 -- LSP
 mapKey("K", vim.lsp.buf.hover, "n", { desc = "LSP hover" })

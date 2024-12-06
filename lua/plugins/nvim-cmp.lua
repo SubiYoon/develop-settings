@@ -107,17 +107,17 @@ return {
 				sources = cmp.config.sources({
 					{
 						name = "nvim_lsp",
-						max_item_count = 10,
+						max_item_count = 15,
 						filter = function(entry)
 							-- LSP 항목이 있으면 제외하거나 특정 조건에 맞는 항목만 남기기
 							return false -- LSP 항목을 아예 제외
 						end,
 					},
-					{ name = "luasnip", max_item_count = 10 },
-					{ name = "buffer", max_item_count = 10 },
-					{ name = "path", max_item_count = 10 },
-					{ name = "cmdline", max_item_count = 10 },
-					{ name = "vim-dadbod-completion" },
+					{ name = "luasnip", max_item_count = 15 },
+					{ name = "buffer", max_item_count = 15 },
+					{ name = "path", max_item_count = 15 },
+					{ name = "cmdline", max_item_count = 15 },
+					{ name = "vim-dadbod-completion", max_item_count = 15 },
 				}),
 			})
 
