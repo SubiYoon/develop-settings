@@ -116,6 +116,7 @@ mapKey("<Leader>Jtc", "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Cur
 mapKey("<Leader>Jtm", "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
 mapKey("<Leader>JtC", "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
 mapKey("<Leader>JtM", "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
+mapKey("<Leader>Jtv", "<Cmd>JavaTestViewLastReport<CR>", "n", { desc = "View Test Result" })
 --find
 mapKey("<Leader>Jfg", "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
 mapKey("<Leader>Jfp", "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
