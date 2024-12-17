@@ -51,7 +51,11 @@ M.create_test_file = function()
 	local test_method_template = [[
     @Test
     void %s() {
-        // TODO: 테스트 로직 작성
+        //given
+
+        //when
+
+        //then
     }
     ]]
 
