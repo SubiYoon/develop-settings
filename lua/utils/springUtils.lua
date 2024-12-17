@@ -77,7 +77,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+// SpringBootTest를 사용할거면 주석 해제(현 시점 JUnit 사용)
+// @SpringBootTest
 class %sTest {
 
 %s
