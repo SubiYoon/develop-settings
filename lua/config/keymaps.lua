@@ -7,6 +7,7 @@ local codewindow = require("codewindow")
 local dap = require("dap")
 local dap_ui_widgets = require("dap.ui.widgets")
 local dapui = require("dapui")
+local spring = require("utils.springUtils")
 
 -- Custom mapping Start
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
@@ -108,9 +109,10 @@ mapKey("<leader>gg", "<cmd>LazyGit<cr>", "n", { desc = "LazyGit" })
 -- Java Start
 --make
 mapKey("<Leader>Jmv", "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
-mapKey("<Leader>Jmm", "<Cmd>JavaRefactorExtractMethod<CR>", "n", { desc = "Method" })
-mapKey("<Leader>Jmf", "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Method" })
-mapKey("<Leader>Jmc", "<Cmd>JavaRefactorExtractConstant<CR>", "n", { desc = "Constant" })
+mapKey("<Leader>Jmm", "<Cmd>JavaRefactorExtractMethod<CR>", { "n", "v" }, { desc = "Method" })
+mapKey("<Leader>Jmf", "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Field" })
+mapKey("<Leader>Jmc", "<Cmd>JavaRefactorExtractConstant<CR>", { "n", "v" }, { desc = "Constant" })
+mapKey("<Leader>Jmt", spring.create_test_file, { "n", "v" }, { desc = "Test Class" })
 --test
 mapKey("<Leader>Jtc", "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
 mapKey("<Leader>Jtm", "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
