@@ -53,9 +53,12 @@ M.create_test_file = function()
     void %s() {
         //given
 
+
         //when
 
+
         //then
+
     }
     ]]
 
