@@ -55,9 +55,13 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── secure
 │   │   │   │
+│   │   │   ├─── dap # DAP정보 폴더
+│   │   │   │   │
+│   │   │   │   └─── README.md # DAP관련 샘플
+│   │   │   │
 │   │   │   └─── db # DB정보 폴더
 │   │   │       │
-│   │   │       └─── README.md # DB관련 세팅방법
+│   │   │       └─── README.md # DB관련 샘플
 │   │   │
 │   │   ├─── snippets # snippet 설정 파일
 │   │   │   │
@@ -71,7 +75,7 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── keymaps.lua # 키맵핑 설정
 │   │   │
-│   │   ├─── dap-config.lua # 디버깅 설정(언어별)
+│   │   ├─── global-dap-config.lua # 디버깅 설정(언어별)
 │   │   │
 │   │   └─── options.lua # 옵션 설정
 │   │ 

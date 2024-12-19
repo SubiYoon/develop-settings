@@ -30,7 +30,10 @@ require("lazy").setup({
 	{ import = language },
 }, opts)
 
-require("config.dap-config")
+require("config.global-dap-config")
+for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/secure/dap", true, true)) do
+	require("config.secure.dap." .. file)
+end
 for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/snippets", true, true)) do
 	require("config.snippets." .. file)
 end

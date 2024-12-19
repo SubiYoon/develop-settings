@@ -670,10 +670,12 @@ M.list_files = function(root_path, search_path, is_delete_ext, is_only_name)
 	local filenames = {}
 	for _, file in ipairs(files) do
 		local filename = vim.fn.fnamemodify(file, ":t") -- 경로에서 파일명만 추출
-		if is_delete_ext then
-			filename = vim.fn.fnamemodify(filename, ":r")
+		if filename ~= "README.md" then -- README.md 파일 제외
+			if is_delete_ext then
+				filename = vim.fn.fnamemodify(filename, ":r")
+			end
+			table.insert(filenames, filename)
 		end
-		table.insert(filenames, filename)
 	end
 
 	return filenames
