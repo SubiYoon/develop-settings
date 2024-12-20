@@ -105,6 +105,10 @@ let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
 xmap <leader>cec :action ExtractClass<CR>
 let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
 
+" Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
+nnoremap <leader>T :action RunClass<CR>
+let g:WhichKeyDesc_test = '<leader>T 🧪Test'
+
 " 버퍼 간 이동 매핑
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
