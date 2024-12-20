@@ -49,6 +49,8 @@ python3 get-platformio.py
 │   │ 
 │   └─── java.lua # lsp java설정 관련(project별 환경설정 방법 ':JavaProfile'로 설정)
 │    
+├─── ideavim # IntelliJ vim 설정파일 및 수동 설치 플러그인
+│    
 ├─── lua
 │   │ 
 │   ├─── config
