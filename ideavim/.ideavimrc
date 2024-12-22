@@ -63,8 +63,8 @@ nnoremap <leader>fw :action FindInPath<CR>
 let g:WhichKeyDesc_file_word = '<leader>fw 📂Find Word'
 
 " Project tree 오픈
-let g:WhichKeyDesc_project = '<leader>e 🗂️Toggle Project'
-nnoremap <leader>e :NERDTreeToggle<CR>
+let g:WhichKeyDesc_project = '<leader>e 🗂️Focus Project'
+nnoremap <leader>e :NERDTree<CR>
 
 " ToolWindow 관련 키맵핑
 let g:WhichKeyDesc_open = '<leader>o 🗃️Open'
@@ -112,6 +112,13 @@ let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
 nnoremap <leader>T :action RunClass<CR>
 let g:WhichKeyDesc_test = '<leader>T 🧪Test'
+
+" Folding / Expanding
+let g:WhichKeyDesc_block = '<leader>z 🧱block'
+nnoremap <leader>zc :action CollapseRegionRecursively<CR>
+let g:WhichKeyDesc_block_folding = '<leader>zc 🧱Close'
+nnoremap <leader>zo :action ExpandRegionRecursively<CR>
+let g:WhichKeyDesc_block_expanding = '<leader>zo 🧱Open'
 
 " 버퍼 간 이동 매핑
 nnoremap <C-h> <C-w>h
