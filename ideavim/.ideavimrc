@@ -104,7 +104,7 @@ let g:WhichKeyDesc_create_getter = '<leader>cg 🔨Getter'
 nnoremap <leader>cs :action GenerateSetter<CR>
 let g:WhichKeyDesc_create_setter = '<leader>cs 🔨Setter'
 nnoremap <leader>ct :action GotoTest<CR>
-let g:WhichKeyDesc_create_setter = '<leader>ct 🔨Test Class'
+let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
 let g:WhichKeyDesc_create_extract = '<leader>ce 🔨Extract'
 xmap <leader>cem :action ExtractMethod<CR>
 let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
