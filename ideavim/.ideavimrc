@@ -26,7 +26,8 @@ set argtextobj "dia: delete an argument, cia: change inner argument
 
 " which-key setting
 set which-key
-set notimeout
+set notimeout " 키입력 제한시간 해제
+" set ttimeoutlen=50 " 키입력 제한시간 설정
 let g:WhichKey_FontSize = 15
 
 " Tab관련 키맵핑
@@ -56,11 +57,11 @@ nnoremap <leader>tca :action CloseAllEditorsButActive<CR>
 let g:WhichKeyDesc_tab_close_all = '<leader>tca 🗑️Tab Close All'
 
 " Search 관련 키맵핑
-let g:WhichKeyDesc_file = '<leader>f 📂Search File'
+let g:WhichKeyDesc_find = '<leader>f 📂Find'
 nnoremap <leader>ff :action GotoFile<CR>
-let g:WhichKeyDesc_file_name = '<leader>ff 📂Find Name'
+let g:WhichKeyDesc_find_file_name = '<leader>ff 📂File By Name'
 nnoremap <leader>fw :action FindInPath<CR>
-let g:WhichKeyDesc_file_word = '<leader>fw 📂Find Word'
+let g:WhichKeyDesc_find_file_word = '<leader>fw 📂File By Word'
 
 " Project tree 오픈
 let g:WhichKeyDesc_project = '<leader>e 🗂️Focus Project'
