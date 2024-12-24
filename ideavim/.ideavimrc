@@ -87,11 +87,23 @@ nnoremap <leader>dd :action ToggleLineBreakpoint<CR>
 let g:WhichKeyDesc_debug_breakpoint = '<leader>dd 🐞Breakpoint'
 nnoremap <leader>dh :action QuickEvaluateExpression<CR>
 let g:WhichKeyDesc_debug_hober = '<leader>dh 🐞Hover'
+nnoremap <leader>dv :action ViewBreakpoints<CR>
+let g:WhichKeyDesc_debug_breakpoints = '<leader>dv 🐞View Breakpoints'
 
 " Re 키맵핑
 let g:WhichKeyDesc_re = '<leader>r ♻️Re'
 let g:WhichKeyDesc_re_name = '<leader>rn 🪪Name'
 nnoremap <leader>rn :action RenameElement<CR>
+
+" Switcher
+let g:WhichKeyDesc_switcher = '<leader>s ♻️Switcher'
+nnoremap <leader>s :action Switcher<CR>
+
+" Git
+let g:WhichKeyDesc_git = '<leader>g 🐈Git'
+let g:WhichKeyDesc_git_reset = '<leader>gr 🐈Reset'
+nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
+let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐈Hunk'
 
 " Create 관련 키맵핑
 let g:WhichKeyDesc_create = '<leader>c 🔨Create'
