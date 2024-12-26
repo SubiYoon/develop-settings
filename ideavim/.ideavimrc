@@ -14,6 +14,10 @@ source ~/.vimrc
 set scrolloff=5
 set noinsertmode
 
+" upper/lower case ignore
+set ignorecase
+set smartcase
+
 " Beep disable
 set visualbell
 set noerrorbells
