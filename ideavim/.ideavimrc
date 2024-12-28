@@ -127,8 +127,10 @@ nnoremap <leader>ct :action GotoTest<CR>
 let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
 let g:WhichKeyDesc_create_extract = '<leader>ce 🔨Extract'
 xmap <leader>cem :action ExtractMethod<CR>
+nnoremap <leader>cem :action ExtractMethod<CR>
 let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
 xmap <leader>cec :action ExtractClass<CR>
+nnoremap <leader>cec :action ExtractClass<CR>
 let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
