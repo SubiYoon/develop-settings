@@ -86,11 +86,11 @@ nnoremap <leader>oT :action ActivateTODOToolWindow<CR>
 let g:WhichKeyDesc_open_todo = '<leader>oT ☑️TODO'
 nnoremap <leader>os :action ActivateStructureToolWindow<CR>
 let g:WhichKeyDesc_open_Structure = '<leader>os 🧾Structure'
+nnoremap <leader>od :action ActivateDebugToolWindow<CR>
+let g:WhichKeyDesc_open_debug = '<leader>od 🐞Debug'
 
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'
-nnoremap <leader>do :action ActivateDebugToolWindow<CR>
-let g:WhichKeyDesc_debug_open = '<leader>do 🐞Open'
 nnoremap <leader>dd :action ToggleLineBreakpoint<CR>
 let g:WhichKeyDesc_debug_breakpoint = '<leader>dd 🐞Breakpoint'
 nnoremap <leader>dh :action QuickEvaluateExpression<CR>
