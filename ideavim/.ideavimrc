@@ -109,6 +109,8 @@ nnoremap <leader>s :action Switcher<CR>
 
 " Git
 let g:WhichKeyDesc_git = '<leader>g 🐈Git'
+nnoremap <leader>gm :action Vcs.QuickListPopupAction<CR>
+let g:WhichKeyDesc_git_menu = '<leader>gm 🐈Menu'
 let g:WhichKeyDesc_git_reset = '<leader>gr 🐈Reset'
 nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐈Hunk'
