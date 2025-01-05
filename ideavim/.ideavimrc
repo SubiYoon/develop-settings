@@ -67,7 +67,7 @@ let g:WhichKeyDesc_tab_close_all = '<leader>tca 🗑️Tab Close All'
 
 " Search 관련 키맵핑
 let g:WhichKeyDesc_find = '<leader>f 📂Find'
-nnoremap <leader>ff :action GotoFile<CR>
+map <leader>ff :action GotoFile<CR>
 let g:WhichKeyDesc_find_file_name = '<leader>ff 📂File By Name'
 map <leader>fw :action FindInPath<CR>
 let g:WhichKeyDesc_find_file_word = '<leader>fw 📂File By Word'
@@ -109,8 +109,6 @@ nnoremap <leader>s :action Switcher<CR>
 
 " Git
 let g:WhichKeyDesc_git = '<leader>g 🐈Git'
-nnoremap <leader>gm :action Vcs.QuickListPopupAction<CR>
-let g:WhichKeyDesc_git_menu = '<leader>gm 🐈Menu'
 let g:WhichKeyDesc_git_reset = '<leader>gr 🐈Reset'
 nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐈Hunk'
@@ -128,11 +126,9 @@ let g:WhichKeyDesc_create_setter = '<leader>cs 🔨Setter'
 nnoremap <leader>ct :action GotoTest<CR>
 let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
 let g:WhichKeyDesc_create_extract = '<leader>ce 🔨Extract'
-xmap <leader>cem :action ExtractMethod<CR>
-nnoremap <leader>cem :action ExtractMethod<CR>
+map <leader>cem :action ExtractMethod<CR>
 let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
-xmap <leader>cec :action ExtractClass<CR>
-nnoremap <leader>cec :action ExtractClass<CR>
+map <leader>cec :action ExtractClass<CR>
 let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
