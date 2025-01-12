@@ -137,10 +137,7 @@ nnoremap <leader>ca :action ShowIntentionActions<CR>
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
 let g:WhichKeyDesc_test = '<leader>T 🧪Test'
-nnoremap <leader>Tr :action RunClass<CR>
-let g:WhichKeyDesc_test_run = '<leader>Tr 🧪Run'
-nnoremap <leader>Td :action Debug<CR>
-let g:WhichKeyDesc_test_debug = '<leader>Td 🧪Debug'
+nnoremap <leader>T :action Debug<CR>
 
 " Folding / Expanding
 let g:WhichKeyDesc_block = '<leader>z 🧱block'
