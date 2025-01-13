@@ -97,6 +97,8 @@ nnoremap <leader>dh :action QuickEvaluateExpression<CR>
 let g:WhichKeyDesc_debug_hober = '<leader>dh 🐞Hover'
 nnoremap <leader>dv :action ViewBreakpoints<CR>
 let g:WhichKeyDesc_debug_breakpoints = '<leader>dv 🐞View Breakpoints'
+nnoremap <leader>dr :action ChooseDebugConfiguration<CR>
+let g:WhichKeyDesc_debug_run = '<leader>dr 🐞Run'
 
 " Re 키맵핑
 let g:WhichKeyDesc_re = '<leader>r ♻️Re'
@@ -136,8 +138,8 @@ let g:WhichKeyDesc_code_action = '<leader>ca 🧨Code Action'
 nnoremap <leader>ca :action ShowIntentionActions<CR>
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
+nnoremap <leader>T :action RunClass<CR>
 let g:WhichKeyDesc_test = '<leader>T 🧪Test'
-nnoremap <leader>T :action Debug<CR>
 
 " Folding / Expanding
 let g:WhichKeyDesc_block = '<leader>z 🧱block'
