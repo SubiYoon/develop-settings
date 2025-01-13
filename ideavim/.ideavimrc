@@ -99,6 +99,9 @@ nnoremap <leader>dv :action ViewBreakpoints<CR>
 let g:WhichKeyDesc_debug_breakpoints = '<leader>dv 🐞View Breakpoints'
 nnoremap <leader>dr :action ChooseDebugConfiguration<CR>
 let g:WhichKeyDesc_debug_run = '<leader>dr 🐞Run'
+nnoremap <leader>ds :action Stop<CR>
+let g:WhichKeyDesc_debug_stop = '<leader>ds 🐞Stop'
+
 
 " Re 키맵핑
 let g:WhichKeyDesc_re = '<leader>r ♻️Re'
