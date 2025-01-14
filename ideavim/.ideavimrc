@@ -102,7 +102,6 @@ let g:WhichKeyDesc_debug_run = '<leader>dr 🐞Run'
 nnoremap <leader>ds :action Stop<CR>
 let g:WhichKeyDesc_debug_stop = '<leader>ds 🐞Stop'
 
-
 " Re 키맵핑
 let g:WhichKeyDesc_re = '<leader>r ♻️Re'
 let g:WhichKeyDesc_re_name = '<leader>rn 🪪Name'
@@ -113,10 +112,16 @@ let g:WhichKeyDesc_switcher = '<leader>s ♻️Switcher'
 nnoremap <leader>s :action Switcher<CR>
 
 " Git
-let g:WhichKeyDesc_git = '<leader>g 🐈Git'
-let g:WhichKeyDesc_git_reset = '<leader>gr 🐈Reset'
+let g:WhichKeyDesc_git = '<leader>g 🐙Git'
+let g:WhichKeyDesc_git_menu = '<leader>gg 🐙Menu'
+nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>:action ActivateCommitToolWindow<CR>
+let g:WhichKeyDesc_git_commit = '<leader>gc 🐙Commit'
+nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
+let g:WhichKeyDesc_git_history = '<leader>gh 🐙History'
+nnoremap <leader>gh :action ActivateVersionControlToolWindow<CR>
+let g:WhichKeyDesc_git_reset = '<leader>gr 🐙Reset'
+let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐙Hunk'
 nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
-let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐈Hunk'
 
 " Create 관련 키맵핑
 let g:WhichKeyDesc_create = '<leader>c 🔨Create'
