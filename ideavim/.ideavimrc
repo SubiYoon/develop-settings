@@ -145,6 +145,13 @@ let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
 let g:WhichKeyDesc_code_action = '<leader>ca 🧨Code Action'
 nnoremap <leader>ca :action ShowIntentionActions<CR>
 
+" Hide Action
+let g:WhichKeyDesc_hide = '<leader>h 🫥Hide'
+let g:WhichKeyDesc_hide_all = '<leader>ha 🫥All'
+nnoremap <leader>ha :action HideAllWindows<CR>
+let g:WhichKeyDesc_hide_side = '<leader>hs 🫥Side'
+nnoremap <leader>hs :action HideSideWindows<CR>
+
 " buffer Maximize
 let g:WhichKeyDesc_maximize_buffer = '<leader>m 🖥️Maximize Buffer'
 nnoremap <leader>m :action MaximizeEditorInSplit<CR>
