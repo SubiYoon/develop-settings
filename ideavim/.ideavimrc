@@ -129,6 +129,8 @@ nnoremap <leader>cv :action IntroduceVariable<CR>
 let g:WhichKeyDesc_create_variable = '<leader>cv 🔨Variable'
 nnoremap <leader>cc :action GenerateConstructor<CR>
 let g:WhichKeyDesc_create_constructor = '<leader>cc 🔨Constructor'
+nnoremap <leader>cb :action GenerateGetterAndSetter<CR>
+let g:WhichKeyDesc_create_getter_and_setter = '<leader>cb 🔨Getter And Setter'
 nnoremap <leader>cg :action GenerateGetter<CR>
 let g:WhichKeyDesc_create_getter = '<leader>cg 🔨Getter'
 nnoremap <leader>cs :action GenerateSetter<CR>
