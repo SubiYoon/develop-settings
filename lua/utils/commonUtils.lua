@@ -68,9 +68,9 @@ M.install_common_package = function()
 	end
 
 	-- 비동기 실행 함수
-	local function run_async(command, callback)
+	local function run_async(command, args, callback)
 		local handle = vim.loop.spawn(command, {
-			args = {},
+			args = args or {},
 			stdio = { nil, vim.loop.new_pipe(false), vim.loop.new_pipe(false) },
 			on_exit = function(code, signal)
 				if callback then
@@ -88,15 +88,13 @@ M.install_common_package = function()
 	local function install_on_mac(tool, brew_package)
 		if not is_installed(tool) then
 			print("Installing " .. tool .. " via Homebrew...")
-			run_async("brew", function(code, signal)
+			run_async("brew", { "install", brew_package }, function(code, signal)
 				if code == 0 then
 					print(tool .. " installed successfully.")
 				else
 					print("Failed to install " .. tool)
 				end
 			end)
-		else
-			-- print(tool .. " is already installed.")
 		end
 	end
 
@@ -106,7 +104,7 @@ M.install_common_package = function()
 			local powershell_command = "Start-Process powershell -Verb runAs -ArgumentList '"
 				.. command
 				.. "' -NoNewWindow -RedirectStandardOutput $null"
-			run_async('powershell -Command "' .. powershell_command .. '"', function(code, signal)
+			run_async('powershell', { "-Command", powershell_command }, function(code, signal)
 				if code == 0 then
 					print(tool .. " installed successfully.")
 				else
@@ -118,8 +116,20 @@ M.install_common_package = function()
 		if not is_installed(tool) then
 			print("Installing " .. tool .. " via Chocolatey as Administrator...")
 			run_as_admin("choco install " .. choco_package .. " -y")
-		else
-			-- print(tool .. " is already installed.")
+		end
+	end
+
+	-- Linux 설치 함수
+	local function install_on_linux(tool, apt_package)
+		if not is_installed(tool) then
+			print("Installing " .. tool .. " via apt...")
+			run_async("sudo", { "apt", "install", "-y", apt_package }, function(code, signal)
+				if code == 0 then
+					print(tool .. " installed successfully.")
+				else
+					print("Failed to install " .. tool)
+				end
+			end)
 		end
 	end
 
@@ -141,6 +151,15 @@ M.install_common_package = function()
 		install_on_windows("ccls", "ccls")
 		install_on_windows("go", "go")
 		install_on_windows("luarocks", "luarocks")
+	elseif uname == "Linux" then
+		-- Linux (Ubuntu/Debian 계열)
+		install_on_linux("lazygit", "lazygit")
+		install_on_linux("rg", "ripgrep")
+		install_on_linux("platformio", "platformio")
+		install_on_linux("arduino-cli", "arduino-cli")
+		install_on_linux("ccls", "ccls")
+		install_on_linux("go", "golang-go")
+		install_on_linux("luarocks", "luarocks")
 	else
 		print("Unsupported OS: " .. uname)
 	end
