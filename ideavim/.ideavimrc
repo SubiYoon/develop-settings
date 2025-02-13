@@ -84,12 +84,15 @@ nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 let g:WhichKeyDesc_open_terminal = '<leader>ot 🏗️terminal'
 nnoremap <leader>oT :action ActivateTODOToolWindow<CR>
 let g:WhichKeyDesc_open_todo = '<leader>oT ☑️TODO'
-nnoremap <leader>os :action ActivateStructureToolWindow<CR>
-let g:WhichKeyDesc_open_Structure = '<leader>os 🧾Structure'
+nnoremap <leader>oS :action ActivateStructureToolWindow<CR>
+let g:WhichKeyDesc_open_Structure = '<leader>oS 🧾Structure'
 nnoremap <leader>od :action ActivateDebugToolWindow<CR>
 let g:WhichKeyDesc_open_debug = '<leader>od 🐞Debug'
 nnoremap <leader>or :action ActivateRunToolWindow<CR>
 let g:WhichKeyDesc_Run = '<leader>or ▶︎ Run'
+nnoremap <leader>os :action ActivateServicesToolWindow<CR>
+let g:WhichKeyDesc_Service = '<leader>os ⚙️ Service'
+
 
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'
