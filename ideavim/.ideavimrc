@@ -140,17 +140,14 @@ nnoremap <leader>cg :action GenerateGetter<CR>
 let g:WhichKeyDesc_create_getter = '<leader>cg 🔨Getter'
 nnoremap <leader>cs :action GenerateSetter<CR>
 let g:WhichKeyDesc_create_setter = '<leader>cs 🔨Setter'
+nnoremap <leader>ce :action GenerateEquals<CR>
+let g:WhichKeyDesc_create_euqals = '<leader>ce 🔨Equals'
 nnoremap <leader>ct :action GotoTest<CR>
 let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
-let g:WhichKeyDesc_create_extract = '<leader>ce 🔨Extract'
-map <leader>cem :action ExtractMethod<CR>
-let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
-map <leader>cec :action ExtractClass<CR>
-let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
-
-" Code Action
-let g:WhichKeyDesc_code_action = '<leader>ca 🧨Code Action'
-nnoremap <leader>ca :action ShowIntentionActions<CR>
+map <leader>cm ExtractMethod<CR>
+let g:WhichKeyDesc_extract_method = '<leader>cm 🔨Extract Method'
+map <leader>cC :action ExtractClass<CR>
+let g:WhichKeyDesc_extract_class = '<leader>cC 🔨Extract Class'
 
 " Hide Action
 let g:WhichKeyDesc_hide = '<leader>h 🫥Hide'
@@ -159,9 +156,14 @@ nnoremap <leader>ha :action HideAllWindows<CR>
 let g:WhichKeyDesc_hide_side = '<leader>hs 🫥Side'
 nnoremap <leader>hs :action HideSideWindows<CR>
 
+
+" Code Action
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+let g:WhichKeyDesc_code_action = '<leader>ca 🚨Code Action'
+
 " buffer Maximize
-let g:WhichKeyDesc_maximize_buffer = '<leader>m 🖥️Maximize Buffer'
 nnoremap <leader>m :action MaximizeEditorInSplit<CR>
+let g:WhichKeyDesc_maximize_buffer = '<leader>m 🖥️Maximize Buffer'
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
 nnoremap <leader>T :action RunClass<CR>
