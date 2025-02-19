@@ -130,7 +130,7 @@ nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 
 " Create 관련 키맵핑
 let g:WhichKeyDesc_create = '<leader>c 🔨Create'
-nnoremap <leader>cv :action IntroduceVariable<CR>
+map <leader>cv :action IntroduceVariable<CR>
 let g:WhichKeyDesc_create_variable = '<leader>cv 🔨Variable'
 nnoremap <leader>cc :action GenerateConstructor<CR>
 let g:WhichKeyDesc_create_constructor = '<leader>cc 🔨Constructor'
