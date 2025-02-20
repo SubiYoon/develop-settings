@@ -132,6 +132,8 @@ nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 let g:WhichKeyDesc_create = '<leader>c 🔨Create'
 map <leader>cv :action IntroduceVariable<CR>
 let g:WhichKeyDesc_create_variable = '<leader>cv 🔨Variable'
+map <leader>cp :action IntroduceParameter<CR>
+let g:WhichKeyDesc_create_parameter = '<leader>cp 🔨Parameter'
 nnoremap <leader>cc :action GenerateConstructor<CR>
 let g:WhichKeyDesc_create_constructor = '<leader>cc 🔨Constructor'
 nnoremap <leader>cb :action GenerateGetterAndSetter<CR>
