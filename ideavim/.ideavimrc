@@ -144,7 +144,7 @@ nnoremap <leader>ce :action GenerateEquals<CR>
 let g:WhichKeyDesc_create_euqals = '<leader>ce 🔨Equals'
 nnoremap <leader>ct :action GotoTest<CR>
 let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
-map <leader>cm ExtractMethod<CR>
+map <leader>cm :action ExtractMethod<CR>
 let g:WhichKeyDesc_extract_method = '<leader>cm 🔨Extract Method'
 map <leader>cC :action ExtractClass<CR>
 let g:WhichKeyDesc_extract_class = '<leader>cC 🔨Extract Class'
