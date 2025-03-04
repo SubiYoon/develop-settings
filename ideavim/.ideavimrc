@@ -186,6 +186,9 @@ let g:WhichKeyDesc_block_folding = '<leader>zc 🧱Close'
 nnoremap <leader>zo :action ExpandRegionRecursively<CR>
 let g:WhichKeyDesc_block_expanding = '<leader>zo 🧱Open'
 
+" Go to Implemetation
+nnoremap gi :action GotoImplementation<CR>
+
 " 버퍼 간 이동 매핑
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
