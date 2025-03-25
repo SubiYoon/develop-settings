@@ -126,8 +126,10 @@ nnoremap <leader>s :action Switcher<CR>
 
 " Git
 let g:WhichKeyDesc_git = '<leader>g 🐙Git'
-let g:WhichKeyDesc_git_menu = '<leader>gg 🐙Menu'
+let g:WhichKeyDesc_git_show = '<leader>gg 🐙Show'
 nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>:action ActivateCommitToolWindow<CR>
+let g:WhichKeyDesc_git_menu = '<leader>gm 🐙Menu'
+nnoremap <leader>gm :action Git.Menu<CR>
 let g:WhichKeyDesc_git_commit = '<leader>gc 🐙Commit'
 nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
 let g:WhichKeyDesc_git_history = '<leader>gh 🐙History'
