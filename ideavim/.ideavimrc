@@ -170,7 +170,7 @@ nnoremap <leader>hs :action HideSideWindows<CR>
 
 
 " Code Action
-nnoremap <leader>ca :action ShowIntentionActions<CR>
+map <leader>ca :action ShowIntentionActions<CR>
 let g:WhichKeyDesc_code_action = '<leader>ca 🚨Code Action'
 
 " buffer Maximize
