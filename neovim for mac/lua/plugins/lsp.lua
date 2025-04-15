@@ -32,6 +32,7 @@ return {
 				"omnisharp",
 				"pylsp",
 				"sqls",
+				"helm_ls",
 			},
 			automatic_installation = true,
 		})

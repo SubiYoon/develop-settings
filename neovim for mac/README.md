@@ -3,6 +3,12 @@ tags:
   - Tools
   - NeoVim Install
 ---
+
+# 심볼 링크 걸기
+```bash
+ln -s '/Users/ABCD/Library/Mobile Documents/com~apple~CloudDocs/DevelopSettings/neovim for mac' ~/.config/nvim
+```
+
 # 기본 환경
 * homebrew
 * mac OS
@@ -146,7 +152,7 @@ python3 get-platformio.py
 │   │   │
 │   │   ├─── ts-autotag.lua # markup 태그 autoclose
 │   │   │
-│   │   ├─── nnvim-ufo.lua # code를 펼치고/접는 기능(command -/+와 같은 기능)
+│   │   ├─── nvim-ufo.lua # code를 펼치고/접는 기능(command -/+와 같은 기능)
 │   │   │
 │   │   ├─── session-manager.lua # 현재 상태 저장하는 플러그인
 │   │   │

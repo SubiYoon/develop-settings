@@ -35,12 +35,6 @@ set notimeout " 키입력 제한시간 해제
 " set ttimeoutlen=50 " 키입력 제한시간 설정
 let g:WhichKey_FontSize = 15
 
-" set how the elements should be ordered
-let g:WhichKey_SortOrder = "by_key_prefix_first"
-
-" set if the sorting should be case-sensitive or not
-let g:WhichKey_SortCaseSensitive = "false"
-
 " clipboard copy
 vmap <leader>y "+y
 let g:WhichKeyDesc_clipboard_copy = '<leader>y 📋copy clipboard'
@@ -77,8 +71,6 @@ map <leader>ff :action GotoFile<CR>
 let g:WhichKeyDesc_find_file_name = '<leader>ff 📂File By Name'
 map <leader>fw :action FindInPath<CR>
 let g:WhichKeyDesc_find_file_word = '<leader>fw 📂File By Word'
-map <leader>fr :action RecentFiles<CR>
-let g:WhichKeyDesc_find_file_recent = '<leader>fr 📂File By Recent'
 
 " Project tree 오픈
 let g:WhichKeyDesc_project = '<leader>e 🗂️Focus Project'
@@ -92,18 +84,10 @@ nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 let g:WhichKeyDesc_open_terminal = '<leader>ot 🏗️terminal'
 nnoremap <leader>oT :action ActivateTODOToolWindow<CR>
 let g:WhichKeyDesc_open_todo = '<leader>oT ☑️TODO'
-nnoremap <leader>oS :action ActivateStructureToolWindow<CR>
-let g:WhichKeyDesc_open_Structure = '<leader>oS 🧾Structure'
+nnoremap <leader>os :action ActivateStructureToolWindow<CR>
+let g:WhichKeyDesc_open_Structure = '<leader>os 🧾Structure'
 nnoremap <leader>od :action ActivateDebugToolWindow<CR>
 let g:WhichKeyDesc_open_debug = '<leader>od 🐞Debug'
-nnoremap <leader>or :action ActivateRunToolWindow<CR>
-let g:WhichKeyDesc_Run = '<leader>or ▶︎ Run'
-nnoremap <leader>os :action ActivateServicesToolWindow<CR>
-let g:WhichKeyDesc_Service = '<leader>os ⚙️ Service'
-nnoremap <leader>om :action ActivateMavenToolWindow<CR>
-let g:WhichKeyDesc_Maven = '<leader>om ✔️ Maven'
-nnoremap <leader>og :action ActivateGradleToolWindow<CR>
-let g:WhichKeyDesc_Gradle = '<leader>og 🐘 Gradle'
 
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'
@@ -141,26 +125,25 @@ nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 
 " Create 관련 키맵핑
 let g:WhichKeyDesc_create = '<leader>c 🔨Create'
-map <leader>cv :action IntroduceVariable<CR>
+nnoremap <leader>cv :action IntroduceVariable<CR>
 let g:WhichKeyDesc_create_variable = '<leader>cv 🔨Variable'
-map <leader>cp :action IntroduceParameter<CR>
-let g:WhichKeyDesc_create_parameter = '<leader>cp 🔨Parameter'
 nnoremap <leader>cc :action GenerateConstructor<CR>
 let g:WhichKeyDesc_create_constructor = '<leader>cc 🔨Constructor'
-nnoremap <leader>cb :action GenerateGetterAndSetter<CR>
-let g:WhichKeyDesc_create_getter_and_setter = '<leader>cb 🔨Getter And Setter'
 nnoremap <leader>cg :action GenerateGetter<CR>
 let g:WhichKeyDesc_create_getter = '<leader>cg 🔨Getter'
 nnoremap <leader>cs :action GenerateSetter<CR>
 let g:WhichKeyDesc_create_setter = '<leader>cs 🔨Setter'
-nnoremap <leader>ce :action GenerateEquals<CR>
-let g:WhichKeyDesc_create_euqals = '<leader>ce 🔨Equals'
 nnoremap <leader>ct :action GotoTest<CR>
 let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
-map <leader>cm :action ExtractMethod<CR>
-let g:WhichKeyDesc_extract_method = '<leader>cm 🔨Extract Method'
-map <leader>cC :action ExtractClass<CR>
-let g:WhichKeyDesc_extract_class = '<leader>cC 🔨Extract Class'
+let g:WhichKeyDesc_create_extract = '<leader>ce 🔨Extract'
+map <leader>cem :action ExtractMethod<CR>
+let g:WhichKeyDesc_create_extract_method = '<leader>cem 🔨Method'
+map <leader>cec :action ExtractClass<CR>
+let g:WhichKeyDesc_create_extract_class = '<leader>cec 🔨Class'
+
+" Code Action
+let g:WhichKeyDesc_code_action = '<leader>ca 🧨Code Action'
+nnoremap <leader>ca :action ShowIntentionActions<CR>
 
 " Hide Action
 let g:WhichKeyDesc_hide = '<leader>h 🫥Hide'
@@ -169,14 +152,9 @@ nnoremap <leader>ha :action HideAllWindows<CR>
 let g:WhichKeyDesc_hide_side = '<leader>hs 🫥Side'
 nnoremap <leader>hs :action HideSideWindows<CR>
 
-
-" Code Action
-map <leader>ca :action ShowIntentionActions<CR>
-let g:WhichKeyDesc_code_action = '<leader>ca 🚨Code Action'
-
 " buffer Maximize
-nnoremap <leader>m :action MaximizeEditorInSplit<CR>
 let g:WhichKeyDesc_maximize_buffer = '<leader>m 🖥️Maximize Buffer'
+nnoremap <leader>m :action MaximizeEditorInSplit<CR>
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
 nnoremap <leader>T :action RunClass<CR>
@@ -188,9 +166,6 @@ nnoremap <leader>zc :action CollapseRegionRecursively<CR>
 let g:WhichKeyDesc_block_folding = '<leader>zc 🧱Close'
 nnoremap <leader>zo :action ExpandRegionRecursively<CR>
 let g:WhichKeyDesc_block_expanding = '<leader>zo 🧱Open'
-
-" Go to Implemetation
-nnoremap gi :action GotoImplementation<CR>
 
 " 버퍼 간 이동 매핑
 nnoremap <C-h> <C-w>h
