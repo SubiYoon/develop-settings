@@ -100,7 +100,10 @@ nnoremap <leader>or :action ActivateRunToolWindow<CR>
 let g:WhichKeyDesc_Run = '<leader>or ▶︎ Run'
 nnoremap <leader>os :action ActivateServicesToolWindow<CR>
 let g:WhichKeyDesc_Service = '<leader>os ⚙️ Service'
-
+nnoremap <leader>om :action ActivateMavenToolWindow<CR>
+let g:WhichKeyDesc_Maven = '<leader>om ✔️ Maven'
+nnoremap <leader>og :action ActivateGradleToolWindow<CR>
+let g:WhichKeyDesc_Gradle = '<leader>og 🐘 Gradle'
 
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'
@@ -126,10 +129,8 @@ nnoremap <leader>s :action Switcher<CR>
 
 " Git
 let g:WhichKeyDesc_git = '<leader>g 🐙Git'
-let g:WhichKeyDesc_git_show = '<leader>gg 🐙Show'
+let g:WhichKeyDesc_git_menu = '<leader>gg 🐙Menu'
 nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>:action ActivateCommitToolWindow<CR>
-let g:WhichKeyDesc_git_menu = '<leader>gm 🐙Menu'
-nnoremap <leader>gm :action Git.Menu<CR>
 let g:WhichKeyDesc_git_commit = '<leader>gc 🐙Commit'
 nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
 let g:WhichKeyDesc_git_history = '<leader>gh 🐙History'
