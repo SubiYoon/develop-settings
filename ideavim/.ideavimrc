@@ -104,6 +104,9 @@ nnoremap <leader>om :action ActivateMavenToolWindow<CR>
 let g:WhichKeyDesc_Maven = '<leader>om ✔️ Maven'
 nnoremap <leader>og :action ActivateGradleToolWindow<CR>
 let g:WhichKeyDesc_Gradle = '<leader>og 🐘 Gradle'
+nnoremap <leader>oc :action ActivateCascadeToolWindow<CR>
+let g:WhichKeyDesc_Cascade = '<leader>oc 💨 CasCade'
+
 
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'

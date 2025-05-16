@@ -3,25 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AI Prompt</key>
-	<string>If you don't believe 90% of what you've gathered is accurate, say so in the first sentence.
-Use honorifics.
-Use emojis to increase visibility.
-You must provide examples of what you're answering.
-Provide at least one rationale for your answer.
-Answers that have a result value, such as code, problem, or course, should also tell you the process of solving it.
-If your answer is code, be sure to include a comment.
-For all coding-related answers, please write your code with scalability in mind.
-Don't use emoji when writing code.Developer.
-JavaDeveloper.
-Web developer.
-InfraDevelopers.
-BackEnd developers.
-Using IntelliJ.
-Window OS.
-Mac OS.
-Korean.
-Not majoring in computer science.
-Good at math.</string>
+	<string>Return commands suitable for copy/pasting into \(shell) on \(uname). Do NOT include commentary NOR Markdown triple-backtick code blocks as your whole response will be copied into my terminal automatically.
+
+The script should do this: \(ai.prompt)</string>
 	<key>AiMaxTokens</key>
 	<integer>128000</integer>
 	<key>AiModel</key>
@@ -936,84 +920,6 @@ Engage Artificial Intelligence</string>
 					<key>Version</key>
 					<integer>2</integer>
 				</dict>
-				<key>0x61-0x40000-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x01</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-				<key>0x63-0x40000-0x8</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x03</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-				<key>0x68-0x40000-0x4</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x08</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-				<key>0x6a-0x40000-0x26</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x0a</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-				<key>0x6b-0x40000-0x28</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x0B</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-				<key>0x6c-0x40000-0x25</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>0</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x0C</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
 			</dict>
 			<key>Link Color</key>
 			<dict>
@@ -1452,6 +1358,14 @@ Engage Artificial Intelligence</string>
 					<string>{p3#6e6ee6e64d4d,}</string>
 					<key>regex</key>
 					<string>\bSucceeded\b</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>HighlightTrigger</string>
+					<key>parameter</key>
+					<string>{#a30a0a,}</string>
+					<key>regex</key>
+					<string>\bCrashLoopBackOff\b</string>
 				</dict>
 			</array>
 			<key>Unicode Normalization</key>
