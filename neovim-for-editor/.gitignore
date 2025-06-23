@@ -1,7 +1,0 @@
-.DS_Store
-lazy-lock.json
-
-/lua/config/secure/db/*
-!/lua/config/secure/db/README.md
-/lua/config/secure/dap/*
-!/lua/config/secure/dap/README.md
