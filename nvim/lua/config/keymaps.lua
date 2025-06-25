@@ -155,3 +155,20 @@ mapKey("<leader>LS", "<Cmd>Leet Submit<CR>", "n", { desc = "Submit" })
 mapKey("<leader>Lc", "<Cmd>Leet console<CR>", "n", { desc = "Console" })
 mapKey("<leader>Lt", "<Cmd>Leet tabs<CR>", "n", { desc = "Tabs" })
 mapKey("<leader>Lm", "<Cmd>Leet menu<CR>", "n", { desc = "Menu" })
+
+-- Windsurf
+mapKey("<F7>", function()
+  return vim.fn["codeium#Complete"]()
+end, "i", { desc = "Windsurf" }) -- 제안
+
+mapKey("<F8>", function()
+  return vim.fn["codeium#CycleCompletions"](-1)
+end, "i", { desc = "Previous" }) -- 이전 제안
+
+mapKey("<F9>", function()
+  return vim.fn["codeium#CycleCompletions"](1)
+end, "i", { desc = "Next" }) -- 다음 제안
+
+mapKey("<F10>", function()
+  return vim.fn["codeium#Clear"]()
+end, "i", { desc = "Clear" }) -- 제안 삭제
