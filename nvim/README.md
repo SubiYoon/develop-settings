@@ -20,3 +20,9 @@ python3 get-platformio.py
 * 터미널을 열고, Preferences > Profiles > Keyboard 탭으로 이동
 * Use Option as Meta Key를 활성화
 
+### avante 셋팅
+- 아래 폴더 접근 후 make명령으로 빌드해주어야 함.
+```bash
+cd ~/.local/share/nvim/lazy/avante.nvim
+make
+```

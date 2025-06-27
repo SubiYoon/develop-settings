@@ -1,0 +1,41 @@
+{
+    "Java Class": {
+        "prefix": "class",
+        "body": [
+            "package ${1:com.example.package};",
+            "",
+            "public class ${2:ClassName} {",
+            "    ${3:// fields and methods}",
+            "}"
+        ],
+        "description": "Create a Java class skeleton"
+    },
+    "Java Interface": {
+        "prefix": "interface",
+        "body": [
+            "package ${1:com.example.package};",
+            "",
+            "public interface ${2:InterfaceName} {",
+            "    ${3:// method declarations}",
+            "}"
+        ],
+        "description": "Create a Java interface skeleton"
+    },
+    "Java Record": {
+        "prefix": "record",
+        "body": [
+            "package ${1:com.example.package};",
+            "",
+            "public record ${2:RecordName}(${3:Type arg}) {",
+            "    public ${2:RecordName}(${3:Type arg}) {",
+            "        this(${4:args});",
+            "    }",
+            "",
+            "    public ${2:RecordName}(${5:Type args}) {",
+            "        ${6:// constructor body}",
+            "    }",
+            "}"
+        ],
+        "description": "Create a Java record skeleton"
+    }
+}
