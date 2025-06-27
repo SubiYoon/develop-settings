@@ -172,3 +172,7 @@ end, "i", { desc = "Next" }) -- 다음 제안
 mapKey("<F10>", function()
   return vim.fn["codeium#Clear"]()
 end, "i", { desc = "Clear" }) -- 제안 삭제
+
+-- just
+mapKey("<leader>js", "<Cmd>JustSelect<CR>", "n", { desc = "JustSelect" })
+mapKey("<leader>jS", "<Cmd>JustStop<CR>", "n", { desc = "JustStop" })

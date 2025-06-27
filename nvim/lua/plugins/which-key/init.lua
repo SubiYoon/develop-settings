@@ -31,6 +31,7 @@ return {
         { "<Leader>s", group = "Smart", icon = "🧠" },
         { "<Leader>q", group = "Session", icon = "🎟️" },
         { "<Leader>u", group = "Settings", icon = "⚙️" },
+        { "<Leader>j", group = "Just(NPM)", icon = "📦" },
         -- group end
       })
     end,
