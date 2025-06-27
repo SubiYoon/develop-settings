@@ -186,6 +186,8 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "js-debug-adapter", -- JavaScript/Node.js DAP 어댑터
+        "codelldb", -- C/C++ DAP 어댑터
       },
     },
   },
