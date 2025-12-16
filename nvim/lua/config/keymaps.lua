@@ -2,7 +2,7 @@ local mapKey = require("utils.commonUtils").mapKey
 local builtin = require("telescope/builtin")
 local common = require("utils.commonUtils")
 local search = require("utils.searchUtils")
-local codewindow = require("codewindow")
+local neominimap = require("neominimap.api")
 local dap = require("dap")
 local dap_ui_widgets = require("dap.ui.widgets")
 local dapui = require("dapui")
@@ -15,12 +15,11 @@ mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" }) -- �
 mapKey("<Leader>oD", "<Cmd>DBUIToggle<CR>", "n", { desc = "Database" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" }) -- 터미널 Open
 mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" }) -- LeetCode Open
-mapKey("<leader>om", codewindow.toggle_minimap, "n", { desc = "Mini Map" }) -- minimap Open
+mapKey("<leader>om", neominimap.toggle, "n", { desc = "Mini Map" }) -- minimap Open
 mapKey("<leader>os", "<cmd>SymbolsOutline<CR>", "n", { desc = "SymbolsOutline" }) -- SymbolsOutline Open
-mapKey("gm", codewindow.toggle_focus, "n", { desc = "Mini Map" }) -- minimap focus
-mapKey("<C-n>", [[<C-\><C-n>]], "t", { desc = "Terminal Escape" }) -- 터미널에서 normal모드 변경
+mapKey("<C-n>", [[<C-\><C-n>]], { "t", "i", "v" }, { desc = "Terminal Escape" }) -- 터미널에서 normal모드 변경
 mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" }) -- markdown 미리보기
-mapKey("<leader>vm", "<cmd>MaximizerToggle<CR>", "n", { desc = "Buffer Maximizer" }) -- buffer maximizer
+mapKey("<leader>m", "<cmd>FocusMaxOrEqual<CR>", "n", { desc = "Buffer Maximizer" }) -- buffer maximizer
 -- Custom mapping End
 
 -- Pane navigation
@@ -120,6 +119,9 @@ mapKey("<Leader>Jfg", "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" }
 mapKey("<Leader>Jfp", "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
 mapKey("<Leader>JfP", "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
 mapKey("<Leader>Jfd", "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
+--build tools task
+mapKey("<Leader>JGr", spring.run_gradle_task, "n", { desc = "Run Gradle Task" })
+mapKey("<Leader>JMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
 -- Java End
 
 -- C++
@@ -176,3 +178,9 @@ end, "i", { desc = "Clear" }) -- 제안 삭제
 -- just
 mapKey("<leader>js", "<Cmd>JustSelect<CR>", "n", { desc = "JustSelect" })
 mapKey("<leader>jS", "<Cmd>JustStop<CR>", "n", { desc = "JustStop" })
+
+-- http
+mapKey("<leader>hr", "<Cmd>Rest run<CR>", "n", { desc = "Rest Run" })
+mapKey("<leader>hl", "<Cmd>Rest logs<CR>", "n", { desc = "Rest Logs" })
+mapKey("<leader>hc", "<Cmd>Rest cookies<CR>", "n", { desc = "Rest Cookies" })
+mapKey("<leader>he", "<Cmd>Telescope rest select_env<CR>", "n", { desc = "Rest Env Select" })

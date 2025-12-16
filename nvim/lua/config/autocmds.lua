@@ -1,3 +1,5 @@
+-- local codewindow = require("codewindow")
+
 -- 파일을 열었을 때 자동으로 Normal 모드로 전환
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
@@ -53,5 +55,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = 4 -- 탭 너비 (탭 문자는 너비 4로 표시)
     vim.opt_local.shiftwidth = 4 -- 자동 들여쓰기 너비
     vim.opt_local.softtabstop = 4 -- 인서트 모드 탭 감도
+  end,
+})
+
+-- claude code 실행시 codewindow close
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(args)
+    local bufname = vim.api.nvim_buf_get_name(args.buf)
+    if bufname:find("claude") then
+      -- codewindow.close_minimap()
+    end
   end,
 })

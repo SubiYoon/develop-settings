@@ -4,19 +4,19 @@ return {
   opts = {}, -- This causes the plugin setup function to be called
   keys = {
     {
-      "<M-k>",
+      "<A-k>",
       "<Cmd>MultipleCursorsAddUp<CR>",
       mode = { "n", "i", "x" },
       desc = "Add cursor and move up",
     },
     {
-      "<M-j>",
+      "<A-j>",
       "<Cmd>MultipleCursorsAddDown<CR>",
       mode = { "n", "i", "x" },
       desc = "Add cursor and move down",
     },
     {
-      "<M-LeftMouse>", -- 이유는 모르겠으나... command + LeftMouse로 동작
+      "<A-LeftMouse>", -- 이유는 모르겠으나... command + LeftMouse로 동작
       "<Cmd>MultipleCursorsMouseAddDelete<CR>",
       mode = { "n", "i" },
       desc = "Add or remove cursor",

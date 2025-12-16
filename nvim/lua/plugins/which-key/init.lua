@@ -8,6 +8,8 @@ return {
         -- group start
         { "<leader>f", group = "Search File" },
         { "<leader>J", group = "Java", icon = "☕️" },
+        { "<leader>JG", group = "Gradle", icon = "🐘" },
+        { "<leader>JM", group = "Maven", icon = "✔︎" },
         { "<Leader>Jt", group = "Test", icon = "🧪" },
         { "<Leader>Jm", group = "Make", icon = "🏗️" },
         { "<Leader>Jf", group = "Find" },
@@ -26,12 +28,13 @@ return {
         { "<Leader>g", group = "Git" },
         { "<Leader>d", group = "Debug" },
         { "<Leader>m", group = "Multi cusors", icon = "⌨️" },
-        { "<Leader>a", group = "chatGPT", icon = "🤖" },
+        { "<Leader>a", group = "AI/Claude Code", icon = "🤖" },
         { "<Leader>b", group = "Buffer", icon = "🗒️" },
         { "<Leader>s", group = "Smart", icon = "🧠" },
         { "<Leader>q", group = "Session", icon = "🎟️" },
         { "<Leader>u", group = "Settings", icon = "⚙️" },
         { "<Leader>j", group = "Just(NPM)", icon = "📦" },
+        { "<Leader>h", group = "Http", icon = "🌐" },
         -- group end
       })
     end,

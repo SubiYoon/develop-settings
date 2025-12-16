@@ -94,4 +94,42 @@ class %sTest {
   api.nvim_command("edit " .. test_file_path)
 end
 -- Make Java Spring Boot Test Class End
+
+-- Build Tool Run Task Start
+local function prompt_input(label, callback)
+  vim.ui.input({ prompt = label .. ": " }, function(input)
+    if input and input ~= "" then
+      callback(input)
+    else
+      vim.notify("❌ Task name is required.", vim.log.levels.ERROR)
+    end
+  end)
+end
+
+-- 하단 20% 비율로 터미널 열기 함수
+local function open_terminal_with_command(cmd)
+  -- 전체 라인 수의 20% 계산
+  local height = math.floor(vim.o.lines * 0.2)
+
+  -- 아래쪽에 split 창 만들고 터미널 실행
+  vim.cmd(height .. "split")
+  vim.cmd("terminal " .. cmd)
+
+  -- 터미널 모드 진입
+  vim.cmd("startinsert")
+end
+
+function M.run_gradle_task()
+  prompt_input("Enter Task Name", function(task_name)
+    open_terminal_with_command("./gradlew " .. task_name)
+  end)
+end
+
+function M.run_maven_task()
+  prompt_input("Enter Task Name", function(task_name)
+    open_terminal_with_command("./mvnw " .. task_name)
+  end)
+end
+-- Build Tool Rund Task End
+
 return M

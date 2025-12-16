@@ -6,12 +6,28 @@
 	<string>Return commands suitable for copy/pasting into \(shell) on \(uname). Do NOT include commentary NOR Markdown triple-backtick code blocks as your whole response will be copied into my terminal automatically.
 
 The script should do this: \(ai.prompt)</string>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>0</integer>
 	<key>AiMaxTokens</key>
-	<integer>128000</integer>
+	<integer>400000</integer>
 	<key>AiModel</key>
-	<string>gpt-4o-mini</string>
+	<string>gpt-5.1</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>128000</integer>
 	<key>AitermURL</key>
-	<string>https://api.openai.com/v1/completions</string>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AitermUseLegacyAPI</key>
 	<false/>
 	<key>AlwaysOpenWindowAtStartup</key>
@@ -366,6 +382,8 @@ The script should do this: \(ai.prompt)</string>
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>028E0381-4266-4907-91C6-634FCBA0CAB9</string>
+	<key>Default Browser Profile Guid</key>
+	<string>028E0381-4266-4907-91C6-634FCBA0CAB9</string>
 	<key>DisablePotentiallyInsecureEscapeSequences</key>
 	<false/>
 	<key>GlobalKeyMap</key>
@@ -409,6 +427,19 @@ The script should do this: \(ai.prompt)</string>
 			<integer>32</integer>
 			<key>Text</key>
 			<string></string>
+		</dict>
+		<key>0xd-0x20000-0x24</key>
+		<dict>
+			<key>Action</key>
+			<integer>12</integer>
+			<key>Keycode</key>
+			<integer>13</integer>
+			<key>Modifiers</key>
+			<integer>131072</integer>
+			<key>Text</key>
+			<string>\n</string>
+			<key>Version</key>
+			<integer>1</integer>
 		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
@@ -505,6 +536,8 @@ The script should do this: \(ai.prompt)</string>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>ASCII Ligatures</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
 			<false/>
@@ -843,6 +876,8 @@ The script should do this: \(ai.prompt)</string>
 			<string>028E0381-4266-4907-91C6-634FCBA0CAB9</string>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -1379,6 +1414,8 @@ Engage Artificial Intelligence</string>
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
