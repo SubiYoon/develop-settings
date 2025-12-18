@@ -15,7 +15,7 @@ opt.smartcase = true -- 대소문자가 섞여있으면 구분함
 
 -- visual
 opt.number = true
-opt.relativenumber = true -- 상대적인 줄 number가 표시
+opt.relativenumber = false -- 상대적인 줄 number가 표시
 opt.termguicolors = true
 opt.signcolumn = "yes"
 

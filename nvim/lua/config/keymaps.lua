@@ -18,8 +18,8 @@ mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" }) -- LeetCode Open
 mapKey("<leader>om", neominimap.toggle, "n", { desc = "Mini Map" }) -- minimap Open
 mapKey("<leader>os", "<cmd>SymbolsOutline<CR>", "n", { desc = "SymbolsOutline" }) -- SymbolsOutline Open
 mapKey("<C-n>", [[<C-\><C-n>]], { "t", "i", "v" }, { desc = "Terminal Escape" }) -- 터미널에서 normal모드 변경
-mapKey("<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" }) -- markdown 미리보기
-mapKey("<leader>m", "<cmd>FocusMaxOrEqual<CR>", "n", { desc = "Buffer Maximizer" }) -- buffer maximizer
+mapKey("<leader>M", "<Cmd>MarkdownPreviewToggle<CR>", "n", { desc = "Markdown" }) -- markdown 미리보기
+mapKey("<leader>m", "<cmd>Maximize<CR>", "n", { desc = "Buffer Maximizer" }) -- buffer maximizer
 -- Custom mapping End
 
 -- Pane navigation
@@ -184,3 +184,31 @@ mapKey("<leader>hr", "<Cmd>Rest run<CR>", "n", { desc = "Rest Run" })
 mapKey("<leader>hl", "<Cmd>Rest logs<CR>", "n", { desc = "Rest Logs" })
 mapKey("<leader>hc", "<Cmd>Rest cookies<CR>", "n", { desc = "Rest Cookies" })
 mapKey("<leader>he", "<Cmd>Telescope rest select_env<CR>", "n", { desc = "Rest Env Select" })
+
+-- Molten-nvim (Jupyter in Neovim) Start
+-- 1. 초기화 및 커널 관리
+mapKey("<leader>pi", ":MoltenInit<CR>", "n", { desc = "Initialize Kernel" }) -- 현재 버퍼용 커널 초기화
+mapKey("<leader>ps", ":MoltenInit shared<CR>", "n", { desc = "Initialize Shared Kernel" }) -- 이미 실행 중인 커널 공유
+mapKey("<leader>pI", ":MoltenInfo<CR>", "n", { desc = "Molten Info" }) -- 커널 상태 및 정보 확인
+mapKey("<leader>pr", ":MoltenRestart<CR>", "n", { desc = "Restart Kernel" }) -- 커널 재시작
+mapKey("<leader>pq", ":MoltenDeinit<CR>", "n", { desc = "De-initialize Molten" }) -- 커널 및 인스턴스 종료
+
+-- 2. 코드 실행 (Evaluate)
+mapKey("<leader>pl", ":MoltenEvaluateLine<CR>", "n", { desc = "Evaluate Line" }) -- 현재 줄 실행
+mapKey("<leader>pv", ":<C-u>MoltenEvaluateVisual<CR>gv", "v", { desc = "Evaluate Visual" }) -- 선택 영역 실행 (gv로 영역 유지)
+mapKey("<leader>pO", ":MoltenEvaluateOperator<CR>", "n", { desc = "Evaluate Operator" }) -- 연산자 대기 실행
+mapKey("<leader>pC", ":MoltenReevaluateCell<CR>", "n", { desc = "Re-evaluate Cell" }) -- 현재 셀 재실행
+mapKey("<leader>pS", ":MoltenInterrupt<CR>", "n", { desc = "Stop Kernel" }) -- 실행 중인 코드 강제 중단
+
+-- 3. 결과창 제어 및 포커싱 (Output)
+mapKey("<leader>po", ":MoltenShowOutput<CR>", "n", { desc = "Show Output" }) -- 결과창 열기
+mapKey("<leader>pc", ":MoltenHideOutput<CR>", "n", { desc = "Hide Output" }) -- 결과창 숨기기
+-- 공식 문서 권장 사항에 따라 noautocmd를 사용하여 결과창으로 포커스 이동
+mapKey("<leader>pf", ":noautocmd MoltenEnterOutput<CR>", "n", { desc = "Focus Output Window" })
+mapKey("<leader>pd", ":MoltenDelete<CR>", "n", { desc = "Delete Cell Output" }) -- 활성화된 셀의 결과 삭제
+
+-- 4. 네비게이션 및 기타
+mapKey("<leader>pn", ":MoltenNext<CR>", "n", { desc = "Next Cell" }) -- 다음 셀로 이동
+mapKey("<leader>pb", ":MoltenPrev<CR>", "n", { desc = "Previous Cell" }) -- 이전 셀로 이동
+mapKey("<leader>pB", ":MoltenOpenInBrowser<CR>", "n", { desc = "Open in Browser" }) -- HTML 결과를 브라우저에서 열기
+-- Molten-nvim End

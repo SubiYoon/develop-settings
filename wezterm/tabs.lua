@@ -1,7 +1,3 @@
--- ===========================
---  TAB BAR (화려한 스타일)
--- ===========================
-
 local wezterm = require("wezterm")
 local module = {}
 
@@ -55,12 +51,12 @@ function module.apply_to_config(config)
 			["nvim"] = { icon = "📝", color = colors.teal },
 			["vim"] = { icon = "📝", color = colors.teal },
 			["vi"] = { icon = "📝", color = colors.teal },
-			["node"] = { icon = "", color = colors.green },
-			["python"] = { icon = "", color = colors.yellow },
-			["docker"] = { icon = "", color = colors.blue },
+			["node"] = { icon = "📦", color = colors.green },
+			["python"] = { icon = "🐍", color = colors.yellow },
+			["docker"] = { icon = "🐳", color = colors.blue },
 			["kubectl"] = { icon = "󱃾", color = colors.blue },
 			["cargo"] = { icon = "", color = colors.peach },
-			["npm"] = { icon = "", color = colors.red },
+			["npm"] = { icon = "📦", color = colors.red },
 			["brew"] = { icon = "󰳤", color = colors.yellow },
 			["ssh"] = { icon = "󰣀", color = colors.pink },
 			["btop"] = { icon = "", color = colors.red },

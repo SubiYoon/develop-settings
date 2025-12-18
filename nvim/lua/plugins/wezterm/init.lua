@@ -1,4 +1,4 @@
 return {
-  "declancm/maximize.nvim",
+  "willothy/wezterm.nvim",
   config = true,
 }

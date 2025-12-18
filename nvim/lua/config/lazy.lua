@@ -32,7 +32,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
@@ -54,6 +54,10 @@ require("lazy").setup({
   },
 })
 
-for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/secure/dap", true, true)) do
-  require("config.secure.dap." .. file)
-end
+-- 파이썬 가상환경 적용
+vim.g.python3_host_prog = os.getenv("HOME") .. "/.nvim-python/bin/python3"
+
+-- 반복문으로 특정 폴더의 .lua파일을 불러온다.
+-- for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/secure/dap", true, true)) do
+-- require("config.secure.dap." .. file)
+-- end
