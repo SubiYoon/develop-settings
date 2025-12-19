@@ -45,6 +45,9 @@ function module.apply_to_config(config)
 
 	-- 확인 프롬프트 비활성화
 	config.window_close_confirmation = "NeverPrompt"
+
+	config.initial_cols = 300
+	config.initial_rows = 60
 end
 
 return module
