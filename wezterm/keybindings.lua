@@ -34,25 +34,25 @@ function module.apply_to_config(config)
       action = wezterm.action.SendString('\x1bk'),
     },
 
-    -- 윈도우 네비게이션 (Ctrl+Mod+h/j/k/l)
+    -- 윈도우 네비게이션 (Ctrl+Cmd+h/j/k/l) - Linux에서 Cmd는 Super키
     {
       key = 'h',
-      mods = 'CTRL|' .. MOD,
+      mods = 'CTRL|CMD',
       action = wezterm.action.ActivatePaneDirection('Left'),
     },
     {
       key = 'j',
-      mods = 'CTRL|' .. MOD,
+      mods = 'CTRL|CMD',
       action = wezterm.action.ActivatePaneDirection('Down'),
     },
     {
       key = 'k',
-      mods = 'CTRL|' .. MOD,
+      mods = 'CTRL|CMD',
       action = wezterm.action.ActivatePaneDirection('Up'),
     },
     {
       key = 'l',
-      mods = 'CTRL|' .. MOD,
+      mods = 'CTRL|CMD',
       action = wezterm.action.ActivatePaneDirection('Right'),
     },
 
