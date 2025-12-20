@@ -7,9 +7,10 @@ return {
     servers = {
       -- pyright will be automatically installed with mason and loaded with lspconfig
       pyright = {
-        -- 비활성화
         enabled = true,
       },
+      jdtls = {},
+      lua_ls = {},
       ruff = {
         enabled = false,
       },
