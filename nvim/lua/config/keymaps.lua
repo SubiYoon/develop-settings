@@ -12,7 +12,9 @@ local spring = require("utils.springUtils")
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
 mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" }) -- 현재 buffer 너비 조정
 mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" }) -- 현재 buffer 높이 조정
-mapKey("<Leader>oD", "<Cmd>DBUIToggle<CR>", "n", { desc = "Database" })
+mapKey("<Leader>oD", function()
+  require("dbee").toggle()
+end, "n", { desc = "Open Selector" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" }) -- 터미널 Open
 mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" }) -- LeetCode Open
 mapKey("<leader>om", neominimap.toggle, "n", { desc = "Mini Map" }) -- minimap Open
@@ -138,9 +140,9 @@ mapKey("<leader>Pi", "<Cmd>Pioinit<CR>", "n", { desc = "PIO init" }) -- 터미�
 mapKey("<Leader>nd", common.new_doc, "n", { desc = "Documentation" })
 
 -- search File
-mapKey("<leader>ff", search.search_by_filetype, "n", { desc = "Find File Type" })
+mapKey("<leader>ff", search.search_by_filetype, { "n", "v" }, { desc = "Find File Type" })
 mapKey("<leader>fr", builtin.oldfiles, "n", { desc = "Recent File" })
-mapKey("<leader>fw", builtin.live_grep, "n", { desc = "Find Word" })
+mapKey("<leader>fw", builtin.live_grep, { "n", "v" }, { desc = "Find Word" })
 mapKey("<leader>fb", builtin.buffers, "n", { desc = "Find Buffer" })
 mapKey("<leader>ft", "<Cmd>TodoTelescope<CR>", "n", { desc = "Find TODO List" })
 mapKey("<leader>fh", builtin.help_tags, "n", { desc = "Help Tags" })

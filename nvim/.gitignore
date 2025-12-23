@@ -7,3 +7,6 @@ foo.*
 *.log
 data
 
+# dbee 연결 정보 (민감한 정보 포함)
+connections.json
+

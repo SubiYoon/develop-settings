@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    ensure_installed = { "java", "python", "lua", "javascript", "typescript", "tsx", "c", "cpp", "markdown", "markdown_inline" },
+    ensure_installed = { "java", "python", "lua", "javascript", "typescript", "tsx", "c", "cpp", "markdown", "markdown_inline", "sql" },
     highlight = {
       enable = true,
       -- disable = function(lang, buf)

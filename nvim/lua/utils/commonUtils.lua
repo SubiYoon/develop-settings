@@ -681,4 +681,46 @@ M.list_files = function(root_path, search_path, is_delete_ext, is_only_name)
 	return filenames
 end
 
+--- 명령어 선택기 - 이름과 명령어 쌍을 받아 선택 UI를 표시
+---@param items table {name1, cmd1, name2, cmd2, ...} 형태의 배열
+M.command_selector = function(items)
+	-- items를 파싱해서 {name, cmd} 쌍으로 변환
+	local options = {}
+	for i = 1, #items, 2 do
+		if items[i] and items[i + 1] then
+			table.insert(options, {
+				name = items[i],
+				cmd = items[i + 1],
+			})
+		end
+	end
+
+	-- 이름 목록 추출
+	local names = {}
+	for _, opt in ipairs(options) do
+		table.insert(names, opt.name)
+	end
+
+	-- vim.ui.select로 선택 UI 표시
+	vim.ui.select(names, {
+		prompt = "Select command:",
+	}, function(choice)
+		if choice then
+			for _, opt in ipairs(options) do
+				if opt.name == choice then
+					-- 명령어 실행
+					if type(opt.cmd) == "function" then
+						opt.cmd()
+					elseif type(opt.cmd) == "string" then
+						-- <Cmd>, <cmd>, : 형태의 키 시퀀스 지원
+						local keys = vim.api.nvim_replace_termcodes(opt.cmd, true, false, true)
+						vim.api.nvim_feedkeys(keys, "n", false)
+					end
+					break
+				end
+			end
+		end
+	end)
+end
+
 return M

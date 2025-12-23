@@ -14,6 +14,20 @@ return {
       ruff = {
         enabled = false,
       },
+      -- SQL LSP
+      sqls = {
+        settings = {
+          sqls = {
+            -- DB 연결은 DBee와 별도로 설정하거나 비워둠
+            -- connections = {
+            --   {
+            --     driver = "mysql",
+            --     dataSourceName = "user:password@tcp(localhost:3306)/dbname",
+            --   },
+            -- },
+          },
+        },
+      },
     },
   },
 }
