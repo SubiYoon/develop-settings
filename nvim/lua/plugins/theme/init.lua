@@ -1,12 +1,27 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
+    "LazyVim/LazyVim",
     opts = {
-      transparent = true, -- 배경을 투명하게 설정
-      styles = {
-        sidebars = "transparent", -- 네오빔 트리 등 사이드바 투명화
-        floats = "transparent", -- 부동 창 투명화
+      colorscheme = "catppuccin",
+    },
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      flavour = "mocha",
+      transparent_background = true, -- disables setting the background color.
+      float = {
+        transparent = true, -- enable transparent floating windows
+        solid = true, -- use solid styling for floating windows, see |winborder|
+      },
+      color_overrides = {},
+      highlight_overrides = {
+        mocha = function(colors)
+          return {
+            WinSeparator = { fg = "orange", bold = true },
+          }
+        end,
       },
     },
   },
