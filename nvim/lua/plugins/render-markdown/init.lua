@@ -5,6 +5,8 @@ return {
       sign = false,
       width = "block",
       right_pad = 1,
+      highlight = "", -- 코드 블록 배경 비활성화
+      highlight_inline = "", -- 인라인 코드 배경 비활성화
     },
     heading = {
       sign = false,
