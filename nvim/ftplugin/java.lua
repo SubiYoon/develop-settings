@@ -9,10 +9,7 @@ local bundles = {
   vim.fn.glob(vim.env.HOME .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"),
 }
 
-vim.list_extend(
-  bundles,
-  vim.split(vim.fn.glob(vim.env.HOME .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n")
-)
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 
@@ -34,11 +31,11 @@ local config = {
     "java.base/java.util=ALL-UNNAMED",
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. home .. ".local/share/nvim/mason/packages/lombok-nightly/lombok.jar",
+    "-javaagent:" .. home .. "/.local/share/nvim/mason/packages/lombok-nightly/lombok.jar",
     "-jar",
     vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
-    home .. "/.local/share/nvim/mason/packages/jdtls/config_mac",
+    home .. "/.local/share/nvim/mason/packages/jdtls/config_mac_arm",
     "-Djasypt.encryptor.password=ThisblogisABCD'sPersonalProjectwithPortFolio",
     "-data",
     workspace_dir,

@@ -116,11 +116,6 @@ mapKey("<Leader>Jtm", "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Cu
 mapKey("<Leader>JtC", "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
 mapKey("<Leader>JtM", "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
 mapKey("<Leader>Jtv", "<Cmd>JavaTestViewLastReport<CR>", "n", { desc = "View Test Result" })
---find
-mapKey("<Leader>Jfg", "<Cmd>SpringGetMapping<CR>", "n", { desc = "Get Request" })
-mapKey("<Leader>Jfp", "<Cmd>SpringPostMapping<CR>", "n", { desc = "Post Request" })
-mapKey("<Leader>JfP", "<Cmd>SpringPutMapping<CR>", "n", { desc = "Put Request" })
-mapKey("<Leader>Jfd", "<Cmd>SpringDeleteMapping<CR>", "n", { desc = "Delete Request" })
 --build tools task
 mapKey("<Leader>JGr", spring.run_gradle_task, "n", { desc = "Run Gradle Task" })
 mapKey("<Leader>JMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
