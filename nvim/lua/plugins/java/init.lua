@@ -229,17 +229,7 @@ return {
         bundles = get_bundles(),
       },
       on_attach = function(client, bufnr)
-        local jdtls = require("jdtls")
-        jdtls.setup_dap({ hotcodereplace = "auto" })
-        require("jdtls.dap").setup_dap_main_class_configs()
-
-        local opts = { buffer = bufnr, silent = true }
-        vim.keymap.set("n", "<leader>jo", jdtls.organize_imports, opts)
-        vim.keymap.set("n", "<leader>jv", jdtls.extract_variable, opts)
-        vim.keymap.set("n", "<leader>jc", jdtls.extract_constant, opts)
-        vim.keymap.set("v", "<leader>jm", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], opts)
-        vim.keymap.set("n", "<leader>jt", jdtls.test_nearest_method, opts)
-        vim.keymap.set("n", "<leader>jT", jdtls.test_class, opts)
+        -- onload custom settings
       end,
     }
 
