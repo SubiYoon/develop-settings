@@ -10,8 +10,8 @@ local spring = require("utils.springUtils")
 
 -- Custom mapping Start
 mapKey("<leader>fqm", search.open_mapper_xml, "n", { desc = "Move to the mapper with the cursor word(id)" }) -- java mapper.xml찾는 함수
-mapKey("<leader>cw", common.widthResize, "n", { desc = "Change Width" }) -- 현재 buffer 너비 조정
-mapKey("<leader>ch", common.heightResize, "n", { desc = "Change Height" }) -- 현재 buffer 높이 조정
+mapKey("<leader>ww", common.widthResize, "n", { desc = "Change Width" }) -- 현재 buffer 너비 조정
+mapKey("<leader>wh", common.heightResize, "n", { desc = "Change Height" }) -- 현재 buffer 높이 조정
 mapKey("<Leader>oD", function()
   require("dbee").toggle()
 end, "n", { desc = "Open Selector" })
@@ -68,7 +68,6 @@ mapKey("K", vim.lsp.buf.hover, "n", { desc = "LSP hover" })
 mapKey("gr", "<cmd>Telescope lsp_references<CR>", "n", { desc = "Show LSP references" })
 mapKey("gd", "<cmd>Telescope lsp_definitions<CR>", "n", { desc = "Show LSP definitions" })
 mapKey("gi", "<cmd>Telescope lsp_implementations<CR>", "n", { desc = "Show LSP implementations" })
-mapKey("<leader>rn", vim.lsp.buf.rename, "n", { desc = "Smart rename" })
 mapKey("<leader>ca", vim.lsp.buf.code_action, "n", { desc = "LSP code action" })
 
 -- Debug
@@ -105,20 +104,20 @@ mapKey("<leader>gg", "<cmd>LazyGit<cr>", "n", { desc = "LazyGit" })
 
 -- Java Start
 --make
-mapKey("<Leader>Jmv", "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Variable" })
-mapKey("<Leader>Jmm", "<Cmd>JavaRefactorExtractMethod<CR>", { "n", "v" }, { desc = "Method" })
-mapKey("<Leader>Jmf", "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Field" })
-mapKey("<Leader>Jmc", "<Cmd>JavaRefactorExtractConstant<CR>", { "n", "v" }, { desc = "Constant" })
-mapKey("<Leader>Jmt", spring.create_test_file, { "n", "v" }, { desc = "Test Class" })
+mapKey("<Leader>jv", "<Cmd>JavaRefactorExtractVariable<CR>", "n", { desc = "Extract Variable" })
+mapKey("<Leader>jm", "<Cmd>JavaRefactorExtractMethod<CR>", { "n", "v" }, { desc = "Extract Method" })
+mapKey("<Leader>jf", "<Cmd>JavaRefactorExtractField<CR>", "n", { desc = "Extract Field" })
+mapKey("<Leader>jc", "<Cmd>JavaRefactorExtractConstant<CR>", { "n", "v" }, { desc = "Extract Constant" })
+mapKey("<Leader>jT", spring.create_test_file, { "n", "v" }, { desc = "Create Test Class" })
 --test
-mapKey("<Leader>Jtc", "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
-mapKey("<Leader>Jtm", "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
-mapKey("<Leader>JtC", "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
-mapKey("<Leader>JtM", "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
-mapKey("<Leader>Jtv", "<Cmd>JavaTestViewLastReport<CR>", "n", { desc = "View Test Result" })
+mapKey("<Leader>jtc", "<Cmd>JavaTestRunCurrentClass<CR>", "n", { desc = "Run Current Class" })
+mapKey("<Leader>jtm", "<Cmd>JavaTestRunCurrentMethod<CR>", "n", { desc = "Run Current Method" })
+mapKey("<Leader>jtC", "<Cmd>JavaTestDebugCurrentClass<CR>", "n", { desc = "Debug Current Class" })
+mapKey("<Leader>jtM", "<Cmd>JavaTestDebugCurrentMethod<CR>", "n", { desc = "Debug Current Method" })
+mapKey("<Leader>jtv", "<Cmd>JavaTestViewLastReport<CR>", "n", { desc = "View Test Result" })
 --build tools task
-mapKey("<Leader>JGr", spring.run_gradle_task, "n", { desc = "Run Gradle Task" })
-mapKey("<Leader>JMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
+mapKey("<Leader>jGr", spring.run_gradle_task, "n", { desc = "Run Gradle Task" })
+mapKey("<Leader>jMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
 -- Java End
 
 -- C++
