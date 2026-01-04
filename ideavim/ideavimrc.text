@@ -107,7 +107,6 @@ let g:WhichKeyDesc_Gradle = '<leader>og 🐘 Gradle'
 nnoremap <leader>oc :action com.anthropic.code.plugin.actions.OpenClaudeInTerminalAction<CR>
 let g:WhichKeyDesc_Claude = '<leader>oc 💨 Claude'
 
-
 " Debug 관련 키맵핑
 let g:WhichKeyDesc_debug = '<leader>d 🐞Debug'
 nnoremap <leader>dd :action ToggleLineBreakpoint<CR>
@@ -120,11 +119,6 @@ nnoremap <leader>dr :action ChooseDebugConfiguration<CR>
 let g:WhichKeyDesc_debug_run = '<leader>dr 🐞Run'
 nnoremap <leader>ds :action Stop<CR>
 let g:WhichKeyDesc_debug_stop = '<leader>ds 🐞Stop'
-
-" Re 키맵핑
-let g:WhichKeyDesc_re = '<leader>r ♻️Re'
-let g:WhichKeyDesc_re_name = '<leader>rn 🪪Name'
-nnoremap <leader>rn :action RenameElement<CR>
 
 " Switcher
 let g:WhichKeyDesc_switcher = '<leader>s ♻️Switcher'
@@ -142,28 +136,30 @@ let g:WhichKeyDesc_git_reset = '<leader>gr 🐙Reset'
 let g:WhichKeyDesc_git_reset_hunk = '<leader>grh 🐙Hunk'
 nnoremap <leader>grh :action Vcs.RollbackChangedLines<CR>
 
-" Create 관련 키맵핑
-let g:WhichKeyDesc_create = '<leader>c 🔨Create'
-map <leader>cv :action IntroduceVariable<CR>
-let g:WhichKeyDesc_create_variable = '<leader>cv 🔨Variable'
-map <leader>cp :action IntroduceParameter<CR>
-let g:WhichKeyDesc_create_parameter = '<leader>cp 🔨Parameter'
-nnoremap <leader>cc :action GenerateConstructor<CR>
-let g:WhichKeyDesc_create_constructor = '<leader>cc 🔨Constructor'
-nnoremap <leader>cb :action GenerateGetterAndSetter<CR>
-let g:WhichKeyDesc_create_getter_and_setter = '<leader>cb 🔨Getter And Setter'
-nnoremap <leader>cg :action GenerateGetter<CR>
-let g:WhichKeyDesc_create_getter = '<leader>cg 🔨Getter'
-nnoremap <leader>cs :action GenerateSetter<CR>
-let g:WhichKeyDesc_create_setter = '<leader>cs 🔨Setter'
-nnoremap <leader>ce :action GenerateEquals<CR>
-let g:WhichKeyDesc_create_euqals = '<leader>ce 🔨Equals'
-nnoremap <leader>ct :action GotoTest<CR>
-let g:WhichKeyDesc_create_test = '<leader>ct 🔨Test Class'
-map <leader>cm :action ExtractMethod<CR>
-let g:WhichKeyDesc_extract_method = '<leader>cm 🔨Extract Method'
-map <leader>cC :action ExtractClass<CR>
-let g:WhichKeyDesc_extract_class = '<leader>cC 🔨Extract Class'
+" refactor 관련 키맵핑
+let g:WhichKeyDesc_refactor = '<leader>r ☕️refactor'
+map <leader>rv :action IntroduceVariable<CR>
+let g:WhichKeyDesc_refactor_variable = '<leader>rv ☕️Variable'
+map <leader>rp :action IntroduceParameter<CR>
+let g:WhichKeyDesc_refactor_parameter = '<leader>rp ☕️Parameter'
+nnoremap <leader>rc :action GenerateConstructor<CR>
+let g:WhichKeyDesc_refactor_constructor = '<leader>rc ☕️Constructor'
+nnoremap <leader>rb :action GenerateGetterAndSetter<CR>
+let g:WhichKeyDesc_refactor_getter_and_setter = '<leader>rb ☕️Getter And Setter'
+nnoremap <leader>rg :action GenerateGetter<CR>
+let g:WhichKeyDesc_refactor_getter = '<leader>rg ☕️Getter'
+nnoremap <leader>rs :action GenerateSetter<CR>
+let g:WhichKeyDesc_refactor_setter = '<leader>rs ☕️Setter'
+nnoremap <leader>re :action GenerateEquals<CR>
+let g:WhichKeyDesc_refactor_equals = '<leader>re ☕️Equals'
+nnoremap <leader>rt :action GotoTest<CR>
+let g:WhichKeyDesc_refactor_test = '<leader>rt ☕️Test Class'
+map <leader>rm :action ExtractMethod<CR>
+let g:WhichKeyDesc_extract_method = '<leader>rm ☕️Extract Method'
+map <leader>rC :action ExtractClass<CR>
+let g:WhichKeyDesc_extract_class = '<leader>rC ☕️Extract Class'
+nnoremap <leader>rd :action JpbCreateDto<CR>
+let g:WhichKeyDesc_refactor_DTO = '<leader>rd ☕️DTO'
 
 " Hide Action
 let g:WhichKeyDesc_hide = '<leader>h 🫥Hide'
@@ -172,25 +168,26 @@ nnoremap <leader>ha :action HideAllWindows<CR>
 let g:WhichKeyDesc_hide_side = '<leader>hs 🫥Side'
 nnoremap <leader>hs :action HideSideWindows<CR>
 
-
-" Code Action
+" Code
+let g:WhichKeyDesc_code = '<leader>c 🍝Code'
+nnoremap <leader>cr :action RenameElement<CR>
+let g:WhichKeyDesc_code_rename = '<leader>cr 🪪Rename'
 map <leader>ca :action ShowIntentionActions<CR>
 let g:WhichKeyDesc_code_action = '<leader>ca 🚨Code Action'
 
 " buffer Maximize
-nnoremap <leader>m :action MaximizeEditorInSplit<CR>
-let g:WhichKeyDesc_maximize_buffer = '<leader>m 🖥️Maximize Buffer'
+nnoremap <leader>M :action MaximizeEditorInSplit<CR>
+let g:WhichKeyDesc_maximize_buffer = '<leader>M 🖥️Maximize Buffer'
 
 " Test Method 함수에 위치하면 함수실행 함수 밖이면 클래스 실행
 nnoremap <leader>T :action RunClass<CR>
 let g:WhichKeyDesc_test = '<leader>T 🧪Test'
 
 " Folding / Expanding
-let g:WhichKeyDesc_block = '<leader>z 🧱block'
-nnoremap <leader>zc :action CollapseRegionRecursively<CR>
-let g:WhichKeyDesc_block_folding = '<leader>zc 🧱Close'
-nnoremap <leader>zo :action ExpandRegionRecursively<CR>
-let g:WhichKeyDesc_block_expanding = '<leader>zo 🧱Open'
+nnoremap zc :action CollapseRegionRecursively<CR>
+let g:WhichKeyDesc_block_folding = 'zc 🧱Close'
+nnoremap zo :action ExpandRegionRecursively<CR>
+let g:WhichKeyDesc_block_expanding = 'zo 🧱Open'
 
 " Go to Implemetation
 nnoremap gi :action GotoImplementation<CR>

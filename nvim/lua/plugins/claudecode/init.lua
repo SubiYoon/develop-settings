@@ -2,6 +2,7 @@ local neominimap
 
 return {
   "coder/claudecode.nvim",
+  cond = require("utils.commonUtils").require_internet,
   dependencies = { "folke/snacks.nvim" },
   event = "VeryLazy",
   config = function()

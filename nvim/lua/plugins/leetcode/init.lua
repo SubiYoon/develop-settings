@@ -1,5 +1,6 @@
 return {
   "kawre/leetcode.nvim",
+  cond = require("utils.commonUtils").require_internet,
   build = ":TSUpdate html",
   dependencies = {
     "nvim-telescope/telescope.nvim",
