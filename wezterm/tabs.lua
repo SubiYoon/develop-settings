@@ -1,6 +1,13 @@
 local wezterm = require("wezterm")
 local module = {}
 
+-- 배터리 정보 캐싱 (10분 = 600초)
+local battery_cache = {
+	last_check = 0,
+	data = nil,
+	interval = 600,
+}
+
 -- Catppuccin Mocha 색상 팔레트
 local colors = {
 	rosewater = "#F5E0DC",
@@ -34,7 +41,7 @@ local colors = {
 function module.apply_to_config(config)
 	config.enable_tab_bar = true
 	config.hide_tab_bar_if_only_one_tab = false
-	config.use_fancy_tab_bar = false
+	config.use_fancy_tab_bar = true
 	config.tab_bar_at_bottom = false
 	config.tab_max_width = 60
 
@@ -94,7 +101,7 @@ function module.apply_to_config(config)
 		-- 스타일 설정
 		local background = colors.surface0
 		local foreground = colors.text
-		local separator_bg = colors.mantle
+		local separator_bg = colors.base
 		local separator_fg = colors.surface0
 
 		if tab.is_active then
@@ -132,8 +139,13 @@ function module.apply_to_config(config)
 	wezterm.on("update-right-status", function(window, pane)
 		local cells = {}
 
-		-- 배터리 정보
-		local battery_info = wezterm.battery_info()
+		-- 배터리 정보 (캐싱 적용)
+		local now = os.time()
+		if now - battery_cache.last_check >= battery_cache.interval then
+			battery_cache.data = wezterm.battery_info()
+			battery_cache.last_check = now
+		end
+		local battery_info = battery_cache.data
 		if battery_info and #battery_info > 0 then
 			local battery = battery_info[1]
 			local battery_pct = battery.state_of_charge * 100
@@ -187,7 +199,7 @@ function module.apply_to_config(config)
 
 		-- 상태바 렌더링
 		local elements = {}
-		local prev_bg = colors.mantle
+		local prev_bg = colors.base
 
 		for i, cell in ipairs(cells) do
 			-- 왼쪽 separator
@@ -204,7 +216,7 @@ function module.apply_to_config(config)
 		end
 
 		-- 마지막 오른쪽 separator
-		table.insert(elements, { Background = { Color = colors.mantle } })
+		table.insert(elements, { Background = { Color = colors.base } })
 		table.insert(elements, { Foreground = { Color = prev_bg } })
 		table.insert(elements, { Text = "" })
 
