@@ -39,7 +39,7 @@ function module.apply_to_config(config)
 	-- 윈도우 장식 (탭을 타이틀 바에 통합)
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.integrated_title_button_style = "MacOsNative"
-	config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+	config.integrated_title_buttons = { "Close", "Hide", "Maximize" }
 
 	-- 타이틀 바 / 탭 바 스타일 (Chrome 스타일)
 	local wezterm = require("wezterm")
