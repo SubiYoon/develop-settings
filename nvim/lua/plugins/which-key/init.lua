@@ -28,6 +28,7 @@ return {
         { "<Leader>r", group = "Refactor", icon = "🔧" },
         { "<Leader>d", group = "Debug" },
         { "<Leader>M", group = "Buffer Maximizer", icon = "👁️" },
+        { "<Leader>p", group = "Python", icon = "🐍" },
         { "<Leader>s", group = "Smart", icon = "🧠" },
         { "<Leader>q", group = "Session", icon = "🎟️" },
         { "<Leader>u", group = "Settings", icon = "⚙️" },

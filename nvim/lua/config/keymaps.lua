@@ -136,6 +136,9 @@ mapKey("<Leader>jtv", "<Cmd>JavaTestViewLastReport<CR>", "n", { desc = "View Tes
 -- Build Tools (빌드 도구)
 mapKey("<Leader>jGr", spring.run_gradle_task, "n", { desc = "Run Gradle Task" })
 mapKey("<Leader>jMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
+
+-- version control
+mapKey("<Leader>jv", "<Cmd>JavaSettingsChangeRuntime<CR>", "n", { desc = "Version Select" })
 -- Java End
 
 -- C++
@@ -225,9 +228,11 @@ mapKey("<leader>mc", ":MoltenHideOutput<CR>", "n", { desc = "Hide Output" }) -- 
 -- 공식 문서 권장 사항에 따라 noautocmd를 사용하여 결과창으로 포커스 이동
 mapKey("<leader>mf", ":noautocmd MoltenEnterOutput<CR>", "n", { desc = "Focus Output Window" })
 mapKey("<leader>md", ":MoltenDelete<CR>", "n", { desc = "Delete Cell Output" }) -- 활성화된 셀의 결과 삭제
-
 -- 4. 네비게이션 및 기타
 mapKey("<leader>mn", ":MoltenNext<CR>", "n", { desc = "Next Cell" }) -- 다음 셀로 이동
 mapKey("<leader>mb", ":MoltenPrev<CR>", "n", { desc = "Previous Cell" }) -- 이전 셀로 이동
 mapKey("<leader>mB", ":MoltenOpenInBrowser<CR>", "n", { desc = "Open in Browser" }) -- HTML 결과를 브라우저에서 열기
 -- Molten-nvim End
+
+--Python
+mapKey("<leader>pv", "<CMD>VenvSelect<CR>", "n", { desc = "Version Select" }) -- 파이썬 버전 선택
