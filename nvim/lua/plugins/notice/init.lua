@@ -2,6 +2,7 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    -- enabled = false,
     opts = {
       -- 알림(notify) 기능을 완전히 끕니다.
       notify = {

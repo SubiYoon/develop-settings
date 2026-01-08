@@ -55,7 +55,7 @@ require("lazy").setup({
 })
 
 -- 파이썬 가상환경 적용
-vim.g.python3_host_prog = os.getenv("HOME") .. "/.nvim-python/bin/python3"
+vim.g.python3_host_prog = os.getenv("HOME") .. "/.nvim-python/venv-3-11/bin/python3"
 
 -- 반복문으로 특정 폴더의 .lua파일을 불러온다.
 -- for _, file in ipairs(require("utils.commonUtils").list_files("config", "/lua/config/secure/dap", true, true)) do

@@ -16,7 +16,7 @@ mapKey("<leader>ww", common.widthResize, "n", { desc = "Change Width" }) -- 현�
 mapKey("<leader>wh", common.heightResize, "n", { desc = "Change Height" }) -- 현재 buffer 높이 조정
 mapKey("<Leader>oD", function()
   require("dbee").toggle()
-end, "n", { desc = "Open Selector" })
+end, "n", { desc = "Open DB" })
 mapKey("<leader>ot", common.toggle_terminal, "n", { desc = "Terminal" }) -- 터미널 Open
 if has_internet then
   mapKey("<leader>ol", "<Cmd>Leet<CR>", "n", { desc = "Leet" }) -- LeetCode Open (인터넷 필요)
@@ -141,11 +141,6 @@ mapKey("<Leader>jMr", spring.run_maven_task, "n", { desc = "Run Maven Task" })
 mapKey("<Leader>jv", "<Cmd>JavaSettingsChangeRuntime<CR>", "n", { desc = "Version Select" })
 -- Java End
 
--- C++
-mapKey("<Leader>Cc", common.c_complie, "n", { desc = "Compile" })
-mapKey("<Leader>Cr", common.c_run, "n", { desc = "Run" })
-mapKey("<Leader>Cd", common.c_debug, "n", { desc = "Debug" })
-
 -- platformIO
 mapKey("<Leader>Pr", "<Cmd>Piorun<CR>", "n", { desc = "PIO build & upload" })
 mapKey("<Leader>Pm", "<Cmd>Piomon<CR>", "n", { desc = "PIO monitor" })
@@ -236,3 +231,8 @@ mapKey("<leader>mB", ":MoltenOpenInBrowser<CR>", "n", { desc = "Open in Browser"
 
 --Python
 mapKey("<leader>pv", "<CMD>VenvSelect<CR>", "n", { desc = "Version Select" }) -- 파이썬 버전 선택
+
+-- Image
+mapKey("<leader>ic", function()
+  require("image").clear()
+end, "n", { desc = "Version Select" }) -- 파이썬 버전 선택
