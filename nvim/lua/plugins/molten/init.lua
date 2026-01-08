@@ -1,5 +1,6 @@
+local home = os.getenv("HOME")
 local VENV_PATTERNS = { ".venv", ".venv-*", "venv", "venv-*" }
-local KERNEL_DIR = vim.fn.expand("~/Library/Jupyter/kernels")
+local KERNEL_DIR = home .. "/Library/Jupyter/kernels"
 local registered_kernels = {}
 
 local function show_loading(msg)
@@ -28,26 +29,24 @@ local function close_loading(win, buf)
   end
 end
 
-local function find_workspace_venv()
+local function find_workspace_venvs()
   local cwd = vim.fn.getcwd()
+  local venvs = {}
   for _, pattern in ipairs(VENV_PATTERNS) do
     local matches = vim.fn.glob(cwd .. "/" .. pattern, false, true)
     for _, path in ipairs(matches) do
       local python_path = path .. "/bin/python"
       if vim.fn.executable(python_path) == 1 then
-        return { path = path, python = python_path }
+        table.insert(venvs, { path = path, python = python_path })
       end
     end
   end
-  return nil
+  return venvs
 end
 
-local function get_kernel_name()
+local function get_kernel_info(venv)
   local workspace = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-  local venv = find_workspace_venv()
-  if not venv then
-    return nil
-  end
+  local venv_name = vim.fn.fnamemodify(venv.path, ":t")
 
   local handle = io.popen(venv.python .. " -c \"import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')\"")
   if not handle then
@@ -56,11 +55,14 @@ local function get_kernel_name()
   local version = handle:read("*a"):gsub("%s+", "")
   handle:close()
 
-  return workspace .. "-python-" .. version, venv.python, workspace .. " (Python " .. version .. ")"
+  local kernel_name = workspace .. "-" .. venv_name .. "-python-" .. version
+  local display_name = workspace .. "/" .. venv_name .. " (Python " .. version .. ")"
+
+  return kernel_name, venv.python, display_name
 end
 
-local function register_kernel()
-  local kernel_name, python_path, display_name = get_kernel_name()
+local function register_kernel(venv)
+  local kernel_name, python_path, display_name = get_kernel_info(venv)
   if not kernel_name then
     return
   end
@@ -73,19 +75,23 @@ local function register_kernel()
 
   local win, buf = show_loading("Registering kernel: " .. kernel_name .. "...")
 
-  local check = os.execute(python_path .. " -c \"import ipykernel\" 2>/dev/null")
+  local check = os.execute(python_path .. ' -c "import ipykernel" 2>/dev/null')
   if check ~= 0 then
-    local install_cmd = vim.fn.executable("uv") == 1
-        and "uv pip install --python " .. python_path .. " ipykernel --quiet"
-        or python_path .. " -m pip install ipykernel --quiet"
+    local install_cmd = vim.fn.executable("uv") == 1 and "uv pip install --python " .. python_path .. " ipykernel --quiet" or python_path .. " -m pip install ipykernel --quiet"
     os.execute(install_cmd)
   end
 
   os.execute(string.format('%s -m ipykernel install --user --name="%s" --display-name="%s" 2>&1', python_path, kernel_name, display_name))
 
   close_loading(win, buf)
-  vim.notify("[Molten] Kernel registered: " .. kernel_name, vim.log.levels.INFO)
   table.insert(registered_kernels, kernel_name)
+end
+
+local function register_kernels()
+  local venvs = find_workspace_venvs()
+  for _, venv in ipairs(venvs) do
+    register_kernel(venv)
+  end
 end
 
 local function unregister_kernels()
@@ -113,9 +119,7 @@ return {
       vim.g.molten_image_provider = "image.nvim"
     end,
     config = function()
-      if find_workspace_venv() then
-        register_kernel()
-      end
+      register_kernels()
 
       vim.api.nvim_create_autocmd("VimLeavePre", {
         callback = unregister_kernels,

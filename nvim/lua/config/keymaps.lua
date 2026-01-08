@@ -229,10 +229,7 @@ mapKey("<leader>mb", ":MoltenPrev<CR>", "n", { desc = "Previous Cell" }) -- 이�
 mapKey("<leader>mB", ":MoltenOpenInBrowser<CR>", "n", { desc = "Open in Browser" }) -- HTML 결과를 브라우저에서 열기
 -- Molten-nvim End
 
---Python
-mapKey("<leader>pv", "<CMD>VenvSelect<CR>", "n", { desc = "Version Select" }) -- 파이썬 버전 선택
-
 -- Image
 mapKey("<leader>ic", function()
   require("image").clear()
-end, "n", { desc = "Version Select" }) -- 파이썬 버전 선택
+end, "n", { desc = "Clear Image" })

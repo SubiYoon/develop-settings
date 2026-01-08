@@ -340,7 +340,6 @@ function M.select_fields_with_ui(fields, title, callback)
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
 
-				-- 선택된 필드들 수집
 				local selected = {}
 				for _, field in ipairs(fields) do
 					if selected_set[field.name] then
@@ -348,19 +347,7 @@ function M.select_fields_with_ui(fields, title, callback)
 					end
 				end
 
-				-- 아무것도 선택 안했으면 커서 위치의 항목 선택
-				if #selected == 0 then
-					local entry = action_state.get_selected_entry()
-					if entry then
-						selected = { entry.value }
-					end
-				end
-
-				if #selected > 0 then
-					callback(selected)
-				else
-					vim.notify("No fields selected", vim.log.levels.WARN)
-				end
+				callback(selected)
 			end)
 
 			-- Esc: 취소
@@ -513,19 +500,7 @@ function M.select_functions_with_ui(functions, title, callback)
 					end
 				end
 
-				-- 아무것도 선택 안했으면 커서 위치의 항목 선택
-				if #selected == 0 then
-					local entry = action_state.get_selected_entry()
-					if entry then
-						selected = { entry.value }
-					end
-				end
-
-				if #selected > 0 then
-					callback(selected)
-				else
-					vim.notify("No functions selected", vim.log.levels.WARN)
-				end
+				callback(selected)
 			end)
 
 			-- Esc: 취소

@@ -521,10 +521,6 @@ function M.generate_constructor()
 	local class_name = lang.find_class_name()
 
 	core.select_fields_with_ui(fields, "Select fields for constructor", function(selected_fields)
-		if #selected_fields == 0 then
-			return
-		end
-
 		local insert_pos = lang.find_insert_position()
 		local code = lang.generate_constructor(class_name, selected_fields, "    ")
 
@@ -548,6 +544,7 @@ function M.generate_getter()
 
 	core.select_fields_with_ui(fields, "Select fields for getters", function(selected_fields)
 		if #selected_fields == 0 then
+			vim.notify("No fields selected", vim.log.levels.WARN)
 			return
 		end
 
@@ -579,6 +576,7 @@ function M.generate_setter()
 
 	core.select_fields_with_ui(fields, "Select fields for setters", function(selected_fields)
 		if #selected_fields == 0 then
+			vim.notify("No fields selected", vim.log.levels.WARN)
 			return
 		end
 
@@ -610,6 +608,7 @@ function M.generate_getter_and_setter()
 
 	core.select_fields_with_ui(fields, "Select fields for getters/setters", function(selected_fields)
 		if #selected_fields == 0 then
+			vim.notify("No fields selected", vim.log.levels.WARN)
 			return
 		end
 
@@ -644,6 +643,7 @@ function M.generate_equals()
 
 	core.select_fields_with_ui(fields, "Select fields for equals/hashCode", function(selected_fields)
 		if #selected_fields == 0 then
+			vim.notify("No fields selected", vim.log.levels.WARN)
 			return
 		end
 
@@ -652,7 +652,6 @@ function M.generate_equals()
 
 		api.nvim_buf_set_lines(0, insert_pos, insert_pos, false, vim.split("\n" .. code .. "\n", "\n"))
 
-		-- Add Objects import if needed
 		if lang.add_import then
 			lang.add_import("java.util.Objects")
 		end
@@ -678,6 +677,7 @@ function M.generate_tostring()
 
 	core.select_fields_with_ui(fields, "Select fields for toString", function(selected_fields)
 		if #selected_fields == 0 then
+			vim.notify("No fields selected", vim.log.levels.WARN)
 			return
 		end
 
@@ -833,13 +833,20 @@ function M.create_test_file()
 end
 
 -- ============================================================================
--- Auto-load Java module
+-- Auto-load language modules
 -- ============================================================================
 
--- Pre-register Java module
 local ok, java = pcall(require, "refactor.language.java")
 if ok then
 	M.register_language("java", java)
+end
+
+local ok_js, javascript = pcall(require, "refactor.language.javascript")
+if ok_js then
+	M.register_language("javascript", javascript)
+	M.register_language("javascriptreact", javascript)
+	M.register_language("typescript", javascript)
+	M.register_language("typescriptreact", javascript)
 end
 
 return M
