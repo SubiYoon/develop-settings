@@ -17,6 +17,10 @@ return {
     },
   },
   opts = {
+    execution = {
+      hide_result_buffer = true,
+      reuse_result_split_buffer = true,
+    },
     picker_integration = true,
     notify_activate_venv = true,
     keymaps = {
