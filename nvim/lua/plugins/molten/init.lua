@@ -61,36 +61,130 @@ local function get_kernel_info(venv)
   return kernel_name, venv.python, display_name
 end
 
+local function get_project_root(venv_path)
+  -- venv_path: /path/to/project/.venv/bin/python
+  -- Return: /path/to/project
+  local venv_dir = vim.fn.fnamemodify(venv_path, ":h:h")  -- Remove /bin/python
+  local project_root = vim.fn.fnamemodify(venv_dir, ":h")  -- Remove /.venv
+  return project_root
+end
+
+local function install_ipykernel(python_path, max_retries)
+  max_retries = max_retries or 3
+  local project_root = get_project_root(python_path)
+
+  local install_cmd
+  if vim.fn.executable("uv") == 1 then
+    -- Check if pyproject.toml exists (uv project mode)
+    if vim.fn.filereadable(project_root .. "/pyproject.toml") == 1 then
+      -- Use 'uv add --dev' to add to project dependencies
+      install_cmd = string.format("cd %s && uv add --dev ipykernel 2>&1", vim.fn.shellescape(project_root))
+    else
+      -- Fallback to uv pip install
+      install_cmd = string.format("uv pip install --python %s ipykernel 2>&1", python_path)
+    end
+  else
+    -- Fallback to standard pip
+    install_cmd = string.format("%s -m pip install ipykernel 2>&1", python_path)
+  end
+
+  for attempt = 1, max_retries do
+    local output = vim.fn.system(install_cmd)
+    local exit_code = vim.v.shell_error
+
+    if exit_code == 0 then
+      local verify_output = vim.fn.system(python_path .. ' -c "import ipykernel" 2>&1')
+      if vim.v.shell_error == 0 then
+        return true
+      end
+    end
+
+    if attempt < max_retries then
+      vim.wait(1000)
+    else
+      vim.notify(string.format("ipykernel install failed after %d attempts:\n%s", max_retries, output), vim.log.levels.DEBUG)
+    end
+  end
+
+  return false
+end
+
 local function register_kernel(venv)
   local kernel_name, python_path, display_name = get_kernel_info(venv)
   if not kernel_name then
-    return
+    return false, "Failed to get kernel info"
   end
 
   local kernel_path = KERNEL_DIR .. "/" .. kernel_name
   if vim.fn.isdirectory(kernel_path) == 1 then
     table.insert(registered_kernels, kernel_name)
-    return
+    return true
   end
 
   local win, buf = show_loading("Registering kernel: " .. kernel_name .. "...")
 
-  local check = os.execute(python_path .. ' -c "import ipykernel" 2>/dev/null')
-  if check ~= 0 then
-    local install_cmd = vim.fn.executable("uv") == 1 and "uv pip install --python " .. python_path .. " ipykernel --quiet" or python_path .. " -m pip install ipykernel --quiet"
-    os.execute(install_cmd)
+  -- Check if ipykernel is installed
+  vim.fn.system(python_path .. ' -c "import ipykernel" 2>&1')
+  if vim.v.shell_error ~= 0 then
+    if not install_ipykernel(python_path, 3) then
+      close_loading(win, buf)
+      vim.notify("Failed to install ipykernel for " .. kernel_name, vim.log.levels.ERROR)
+      return false, "ipykernel installation failed"
+    end
   end
 
-  os.execute(string.format('%s -m ipykernel install --user --name="%s" --display-name="%s" 2>&1', python_path, kernel_name, display_name))
+  -- Register kernel using vim.fn.system for better error handling
+  local install_cmd = string.format(
+    '%s -m ipykernel install --user --name=%s --display-name=%s',
+    vim.fn.shellescape(python_path),
+    vim.fn.shellescape(kernel_name),
+    vim.fn.shellescape(display_name)
+  )
+
+  local output = vim.fn.system(install_cmd)
+  local exit_code = vim.v.shell_error
 
   close_loading(win, buf)
-  table.insert(registered_kernels, kernel_name)
+
+  if exit_code == 0 and vim.fn.isdirectory(kernel_path) == 1 then
+    table.insert(registered_kernels, kernel_name)
+    return true
+  else
+    vim.notify(string.format("Failed to register kernel: %s\n%s", kernel_name, output), vim.log.levels.ERROR)
+    return false, "kernel registration failed"
+  end
 end
 
 local function register_kernels()
   local venvs = find_workspace_venvs()
+  if #venvs == 0 then
+    return
+  end
+
+  local success_count = 0
+  local failure_count = 0
+  local failures = {}
+
   for _, venv in ipairs(venvs) do
-    register_kernel(venv)
+    local success, err = register_kernel(venv)
+    if success then
+      success_count = success_count + 1
+    else
+      failure_count = failure_count + 1
+      table.insert(failures, { venv = venv.path, error = err })
+    end
+  end
+
+  if success_count > 0 then
+    vim.notify(string.format("Registered %d kernel(s) successfully", success_count), vim.log.levels.INFO)
+  end
+
+  if failure_count > 0 then
+    local msg = string.format("Failed to register %d kernel(s)", failure_count)
+    for _, failure in ipairs(failures) do
+      msg = msg .. string.format("\n  • %s: %s", vim.fn.fnamemodify(failure.venv, ":t"), failure.error)
+    end
+    vim.notify(msg, vim.log.levels.WARN)
   end
 end
 
