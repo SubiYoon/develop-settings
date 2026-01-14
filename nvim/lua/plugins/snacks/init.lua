@@ -9,5 +9,8 @@ return {
       -- "**/.git/*",
       --},
     },
+    explorer = {
+      position = "right", -- 파일 탐색기를 오른쪽에 표시
+    },
   },
 }
